@@ -1,14 +1,30 @@
 <!doctype html>
-<html lang="sv">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Mastery Memory OS - Prompt Lab</title>
-  <meta name="description" content="Prompt Lab med optimala prompting-metoder for ChatGPT, Codex, research, learning och business." />
-  <link rel="stylesheet" href="./assets/styles.css" />
-</head>
-<body>
-  <main id="app"></main>
-  <script src="./assets/app.js"></script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>AI Mastery Memory OS Pro</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>
+          <h1>AI Mastery Memory OS <span>Pro</span></h1>
+          <p>Active recall · spaced repetition · chunking · prompts · AI systems</p>
+        </div>
+      </div>
+      <nav id="tabs" class="tabs" aria-label="Primary navigation"></nav>
+    </header>
+
+    <main id="app" class="app-shell" tabindex="-1"></main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="data/content.js"></script>
+    <script src="src/app.js" defer></script>
+  </body>
 </html>

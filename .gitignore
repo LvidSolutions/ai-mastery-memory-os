@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+dist/
+.ai_mastery_cli_progress.json
+*.log
