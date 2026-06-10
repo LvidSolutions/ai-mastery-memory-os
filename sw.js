@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-pro-v2-1';
+const CACHE = 'ai-mastery-memory-os-pro-v2-2';
 const ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const ASSETS = [
   './src/app.js',
   './data/content.js',
   './data/memory-ai-expert-pack.js',
+  './data/no-memory-review-format.js',
   './data/prompt-lab-ui-upgrade.js',
   './data/cards.json',
   './manifest.webmanifest'
