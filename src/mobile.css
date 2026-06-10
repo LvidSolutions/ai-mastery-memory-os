@@ -1,0 +1,325 @@
+/* Mobile interface patch for iPhone 15/17 class devices and small touch screens. */
+@supports (padding: max(0px)) {
+  :root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+  }
+}
+
+@media (max-width: 520px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 12px;
+  }
+
+  body {
+    overflow-x: hidden;
+    padding-left: var(--safe-left, 0px);
+    padding-right: var(--safe-right, 0px);
+    padding-bottom: calc(86px + var(--safe-bottom, 0px));
+    background-attachment: fixed;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    padding: calc(10px + var(--safe-top, 0px)) 12px 8px;
+    border-bottom: 1px solid rgba(148,163,184,.18);
+  }
+
+  .brand {
+    margin: 0 auto 8px;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    font-size: .9rem;
+    flex: 0 0 auto;
+  }
+
+  h1 {
+    font-size: 1.05rem;
+    line-height: 1.08;
+    letter-spacing: -.04em;
+  }
+
+  .brand p {
+    font-size: .76rem;
+    margin-top: 2px;
+    max-width: 285px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tabs {
+    position: fixed;
+    left: max(8px, var(--safe-left, 0px));
+    right: max(8px, var(--safe-right, 0px));
+    bottom: max(8px, var(--safe-bottom, 0px));
+    z-index: 60;
+    max-width: none;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(78px, 1fr);
+    gap: 6px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 8px;
+    border: 1px solid rgba(148,163,184,.26);
+    border-radius: 22px;
+    background: rgba(8,17,31,.94);
+    box-shadow: 0 18px 48px rgba(0,0,0,.38);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .tab-btn {
+    min-height: 48px;
+    padding: 8px 8px;
+    border-radius: 16px;
+    font-size: .76rem;
+    line-height: 1.05;
+    white-space: normal;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    touch-action: manipulation;
+  }
+
+  .tab-btn.active {
+    color: #03111d;
+    background: linear-gradient(135deg,var(--accent),#7dd3fc);
+    border-color: transparent;
+    font-weight: 900;
+  }
+
+  .app-shell {
+    width: 100%;
+    padding: 14px 12px calc(112px + var(--safe-bottom, 0px));
+  }
+
+  .grid,
+  .grid.two,
+  .grid.three,
+  .grid.four,
+  .stat-grid,
+  .filters,
+  .card-grid,
+  .method-grid,
+  .prompt-method-header,
+  .dual-code-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .panel {
+    padding: 14px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 14px 42px rgba(0,0,0,.24);
+  }
+
+  .panel h2 {
+    font-size: 1.32rem;
+    line-height: 1.12;
+  }
+
+  .panel h3 {
+    font-size: 1.08rem;
+    line-height: 1.16;
+  }
+
+  .panel p,
+  .list-item p,
+  .mini-card p {
+    font-size: .94rem;
+    line-height: 1.5;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .hero-actions,
+  .row,
+  .toolbar {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .toolbar {
+    position: sticky;
+    top: calc(64px + var(--safe-top, 0px));
+    z-index: 8;
+    padding: 8px;
+    margin: 10px -4px;
+    border: 1px solid rgba(148,163,184,.18);
+    border-radius: 16px;
+    background: rgba(8,17,31,.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .btn,
+  button,
+  select,
+  .input,
+  textarea {
+    min-height: 44px;
+    font-size: 16px;
+    touch-action: manipulation;
+  }
+
+  .btn {
+    justify-content: center;
+    padding: 11px 12px;
+    border-radius: 14px;
+  }
+
+  .hero-actions .btn,
+  .toolbar .btn,
+  .row .btn,
+  .dual-code-actions .btn,
+  .method-actions .btn {
+    flex: 1 1 140px;
+  }
+
+  .stat {
+    padding: 13px;
+    border-radius: 15px;
+  }
+
+  .stat strong {
+    font-size: 1.45rem;
+  }
+
+  .timer-face {
+    width: min(190px, 76vw);
+  }
+
+  .timer-time {
+    font-size: 2.05rem;
+  }
+
+  .flashcard {
+    padding: 16px;
+    border-radius: 22px;
+    min-height: min(68vh, 620px);
+  }
+
+  .flashcard h2 {
+    font-size: clamp(1.35rem, 8vw, 2rem);
+    line-height: 1.08;
+  }
+
+  .flashcard p {
+    font-size: .98rem;
+    line-height: 1.52;
+  }
+
+  textarea {
+    min-height: 118px;
+  }
+
+  .answer-reveal {
+    padding: 13px;
+    border-radius: 16px;
+    border-left-width: 3px;
+  }
+
+  .answer-reveal h3 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .answer-reveal h3:first-child {
+    margin-top: 0;
+  }
+
+  .meta,
+  .card-review .row,
+  .dual-code-actions,
+  .method-actions {
+    gap: 7px;
+  }
+
+  .badge,
+  .method-pill,
+  .kbd {
+    font-size: .7rem;
+  }
+
+  .dual-code-svg {
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .dual-code-svg svg {
+    max-height: 210px;
+  }
+
+  .method-card,
+  .mini-card,
+  .list-item,
+  .day {
+    border-radius: 16px;
+    padding: 12px;
+  }
+
+  .method-card pre,
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    font-size: .78rem;
+  }
+
+  .day {
+    grid-template-columns: 1fr;
+  }
+
+  .day-num {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+  }
+
+  .table-wrap {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+
+  table {
+    min-width: 640px;
+  }
+
+  .toast {
+    left: 12px;
+    right: 12px;
+    bottom: calc(86px + var(--safe-bottom, 0px));
+    max-width: none;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand p { max-width: 235px; }
+  .tabs { grid-auto-columns: minmax(70px, 1fr); }
+  .tab-btn { font-size: .7rem; min-height: 46px; padding: 7px 5px; }
+  .app-shell { padding-left: 10px; padding-right: 10px; }
+  .panel, .flashcard { padding: 12px; }
+  .btn { font-size: .92rem; padding-left: 10px; padding-right: 10px; }
+}
+
+@media (min-width: 521px) and (max-width: 932px) and (orientation: portrait) {
+  .app-shell { padding-left: 20px; padding-right: 20px; }
+  .grid.two,.grid.three,.grid.four,.stat-grid,.filters { grid-template-columns: 1fr !important; }
+  .flashcard { min-height: 520px; }
+}
