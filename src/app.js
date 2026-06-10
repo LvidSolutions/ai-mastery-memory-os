@@ -11,6 +11,7 @@
     ['review', 'Reviews'],
     ['reword', 'Reword'],
     ['connections', 'Connect'],
+    ['archweb', 'Arch Web'],
     ['promptlab', 'Prompt Lab'],
     ['curriculum', 'Curriculum'],
     ['glossary', 'Glossary'],
@@ -27,6 +28,7 @@
     currentAnswer: '',
     reword: { id: null, answer: '', lastScore: null },
     connect: { id: null, answer: '' },
+    archweb: { id: null, q: '', tier: 'All', group: 'All' },
     promptLab: { goal: '', context: '', constraints: '', examples: '', output: '', quality: '' },
     timer: {
       mode: 'focus',
@@ -175,6 +177,7 @@
       review: renderReview,
       reword: renderReword,
       connections: renderConnections,
+      archweb: renderArchWeb,
       promptlab: renderPromptLab,
       curriculum: renderCurriculum,
       glossary: renderGlossary,
@@ -471,6 +474,74 @@
       <section class="panel" style="margin-top:18px">
         <h3>Related cards</h3>
         ${related.length ? `<div class="card-grid">${related.map(miniCard).join('')}</div>` : `<div class="empty">No exact related card titles found. Use the direct connection terms as a search query.</div>`}
+      </section>
+    `;
+  }
+
+
+  function awTerm(id) {
+    const AW = window.ARCH_WEB;
+    return (AW && (AW.byId[id] || AW.terms[0])) || null;
+  }
+
+  function renderArchWeb() {
+    const AW = window.ARCH_WEB;
+    if (!AW) return '<section class="panel"><h2>Architecture Web</h2><p class="muted">Module failed to load (data/webdev.js missing).</p></section>';
+    const st = state.archweb;
+    if (!st.id || !AW.byId[st.id]) st.id = AW.terms[0].id;
+    const q = (st.q || '').trim().toLowerCase();
+    const tiers = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+    const groups = ['All', ...AW.groups];
+    const list = AW.terms.filter((t) => {
+      if (st.tier !== 'All' && t.tier !== st.tier) return false;
+      if (st.group !== 'All' && t.group !== st.group) return false;
+      if (!q) return true;
+      return (t.title + ' ' + t.pro + ' ' + t.eli5 + ' ' + t.why + ' ' + t.group).toLowerCase().includes(q);
+    });
+    const term = awTerm(st.id);
+    const p = progressFor(term.id);
+    const related = term.related.map((id) => AW.byId[id]).filter(Boolean);
+    return `
+      <section class="grid two">
+        <div class="panel">
+          <span class="eyebrow">Architecture website review mode</span>
+          <h2>Web terms for architecture firms</h2>
+          <p>${AW.terms.length} terms every architecture-studio website is built from. Study the wireframe, read both explanations, then test yourself.</p>
+          <div class="toolbar">
+            <input class="input" style="flex:2;min-width:150px" data-aw-field="q" placeholder="Search terms…" value="${escapeHTML(st.q)}" />
+            <select data-aw-field="tier">${tiers.map((t) => `<option ${t === st.tier ? 'selected' : ''}>${t}</option>`).join('')}</select>
+            <select data-aw-field="group">${groups.map((g) => `<option ${g === st.group ? 'selected' : ''}>${g}</option>`).join('')}</select>
+          </div>
+          <div class="aw-list">
+            ${list.map((t) => `
+              <button class="aw-item ${t.id === term.id ? 'active' : ''}" data-action="aw-select" data-id="${t.id}">
+                <span class="aw-item-wf">${AW.wire(t.v)}</span>
+                <span><strong>${escapeHTML(t.title)}</strong><em>${escapeHTML(t.tier)} · ${escapeHTML(t.group)}</em></span>
+              </button>`).join('') || '<div class="empty">No terms match this filter.</div>'}
+          </div>
+        </div>
+        <div class="panel light aw-detail">
+          <div class="meta"><span class="badge">${escapeHTML(term.tier)}</span><span class="badge">${escapeHTML(term.group)}</span><span class="badge">${cardStatus(cardById(term.id))}</span></div>
+          <h2>${escapeHTML(term.title)}</h2>
+          <figure class="aw-figure">${AW.wire(term.v)}</figure>
+          <h3>Professional explanation</h3>
+          <p>${escapeHTML(term.pro)}</p>
+          <h3>Explain it to a 5-year-old</h3>
+          <p class="aw-eli5">${escapeHTML(term.eli5)}</p>
+          <h3>Why it matters for architecture websites</h3>
+          <p>${escapeHTML(term.why)}</p>
+          <h3>Example</h3>
+          <p>${escapeHTML(term.example)}</p>
+          <h3>Review question</h3>
+          <p><strong>${escapeHTML(term.question)}</strong></p>
+          <div class="row" style="margin:10px 0 14px">
+            <button class="btn primary" data-action="review-card" data-id="${term.id}">Review this card</button>
+            <span class="small muted">Due: ${fmtDate(p.due)} · Reviews: ${p.reviews}</span>
+          </div>
+          <h3>Related concepts</h3>
+          <div class="graph">${related.map((r) => `<button class="node" data-action="aw-select" data-id="${r.id}">${escapeHTML(r.title)}</button>`).join('')}</div>
+          <p class="small muted" style="margin-top:12px">Practice: ${escapeHTML(term.practice)}</p>
+        </div>
       </section>
     `;
   }
@@ -905,6 +976,12 @@
       toast('Rewording saved locally.');
       return;
     }
+    if (action === 'aw-select') {
+      state.archweb.id = btn.dataset.id;
+      saveState();
+      render();
+      return;
+    }
     if (action === 'select-connect') {
       state.connect.id = btn.dataset.id;
       state.connect.answer = '';
@@ -970,7 +1047,17 @@
     }
   });
 
+  document.addEventListener('change', (event) => {
+    const el = event.target.closest('[data-aw-field]');
+    if (!el) return;
+    state.archweb[el.dataset.awField] = el.value;
+    saveState();
+    render();
+  });
+
   document.addEventListener('input', (event) => {
+    const aw = event.target.closest('input[data-aw-field="q"]');
+    if (aw) { state.archweb.q = aw.value; saveState(); const v = aw.value; render(); const el2 = document.querySelector('input[data-aw-field="q"]'); if (el2) { el2.focus(); el2.setSelectionRange(v.length, v.length); } return; }
     const target = event.target;
     if (target.matches('[data-field="currentAnswer"]')) {
       state.currentAnswer = target.value;

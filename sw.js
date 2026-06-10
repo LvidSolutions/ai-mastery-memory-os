@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-pro-v2-4-mobile';
+const CACHE = 'ai-mastery-memory-os-pro-v3-0-archweb';
 const ASSETS = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const ASSETS = [
   './data/prompt-lab-ui-upgrade.js',
   './data/dual-coding-aids.js',
   './data/cards.json',
+  './data/webdev.js',
   './manifest.webmanifest'
 ];
 
