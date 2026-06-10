@@ -83,30 +83,30 @@
   function detailedExplanation(card) {
     const parts = [
       `${card.title}: ${card.back}`,
-      card.whyItMatters ? `I praktisk AI betyder det att begreppet påverkar hur du bygger, väljer, styr eller kontrollerar ett system: ${card.whyItMatters}` : '',
-      card.example ? `Ett konkret exempel är: ${card.example}` : '',
-      'För att förstå det korrekt ska du kunna säga vad inputen är, vad outputen är, när begreppet används, vilka risker som finns, och hur det kopplas till kvalitet, kostnad, säkerhet eller utvärdering.'
+      card.whyItMatters ? `In practical AI, this concept shapes how you build, choose, steer, or control a system: ${card.whyItMatters}` : '',
+      card.example ? `A concrete example: ${card.example}` : '',
+      'To understand it correctly, you should be able to say what the input is, what the output is, when the concept is used, which risks exist, and how it ties to quality, cost, safety, or evaluation.'
     ].filter(Boolean);
     return parts.join(' ');
   }
 
   function childExplanation(card) {
     const simpleAction = {
-      'Prompting': 'berätta väldigt tydligt för AI:n vad den ska göra',
-      'RAG & Knowledge': 'låta AI:n titta i rätt bok innan den svarar',
-      'Agents & Automation': 'låta en liten robot-hjälpare göra flera steg med regler',
-      'Evaluation': 'kolla om AI:ns svar är rätt, ungefär som att rätta en läxa',
-      'Tools & Ecosystem': 'använda ett verktyg i en verktygslåda',
-      'LLM Mechanics': 'förstå hur AI-hjärnan läser och skriver ord',
-      'Production & System Design': 'göra så att AI-saken fungerar tryggt varje dag',
-      'Safety & Governance': 'ha regler så att AI:n inte gör något dumt eller farligt',
-      'Data Engineering': 'hålla ordning på AI:ns byggklossar och ingredienser',
-      'Math & ML Essentials': 'ha ett poängsystem som visar om AI:n blir bättre',
-      'Multimodal AI': 'låta AI:n använda ögon eller öron, inte bara text',
-      'AI Foundations': 'förstå en av de första byggklossarna i AI',
-      'AI Expert Meta-Skills': 'tänka smart om vilket AI-verktyg som ska användas och varför'
-    }[card.category] || 'förstå en viktig AI-byggkloss';
-    return `${card.title} är som en liten del i en stor AI-maskin. Enkelt sagt hjälper det oss att ${simpleAction}. Tänk att AI är en hjälpare: det här är antingen en regel, ett verktyg, en kontroll eller en byggkloss som gör hjälparen bättre och säkrare.`;
+      'Prompting': 'tell the AI very clearly what to do',
+      'RAG & Knowledge': 'let the AI look in the right book before answering',
+      'Agents & Automation': 'let a small robot helper do several steps with rules',
+      'Evaluation': 'check whether the AI answer is right, a bit like grading homework',
+      'Tools & Ecosystem': 'use one tool from a toolbox',
+      'LLM Mechanics': 'understand how the AI brain reads and writes words',
+      'Production & System Design': 'make the AI thing work safely every day',
+      'Safety & Governance': 'have rules so the AI never does anything silly or dangerous',
+      'Data Engineering': 'keep the AI building blocks and ingredients tidy',
+      'Math & ML Essentials': 'have a scoring system that shows whether the AI is getting better',
+      'Multimodal AI': 'let the AI use eyes or ears, not just text',
+      'AI Foundations': 'understand one of the first building blocks of AI',
+      'AI Expert Meta-Skills': 'think smartly about which AI tool to use and why'
+    }[card.category] || 'understand an important AI building block';
+    return `${card.title} is like a small part in a big AI machine. Simply put, it helps us ${simpleAction}. Think of AI as a helper: this is a rule, a tool, a check, or a building block that makes the helper better and safer.`;
   }
 
   function upgradeAnswerReveals() {
@@ -117,9 +117,9 @@
       if (!card) return;
       box.setAttribute('data-two-explanations', 'true');
       box.innerHTML = `
-        <h3>Längre korrekt förklaring</h3>
+        <h3>Full professional explanation</h3>
         <p>${escapeHTML(detailedExplanation(card))}</p>
-        <h3>Förklaring som en 5-åring förstår</h3>
+        <h3>Explanation a 5-year-old understands</h3>
         <p>${escapeHTML(childExplanation(card))}</p>
       `;
     });

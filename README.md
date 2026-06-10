@@ -1,124 +1,71 @@
 # AI Mastery Memory OS Pro
 
-A local-first, GitHub Pages-ready learning tool for compressing foundational AI knowledge into active recall.
+A local-first learning system for becoming highly competent with AI and modern web development — built on evidence-based learning science.
 
-It includes:
+**Live app:** https://lvidsolutions.github.io/ai-mastery-memory-os/ (GitHub Pages) · Vercel deploy supported (see below)
 
-- 234 curated cards across Beginner, Intermediate, Advanced, and Expert levels.
-- Spaced repetition with an SM-2-inspired scheduler.
-- Active recall writing before answer reveal.
-- Flashcards, rewording/Feynman mode, connection drills, concept graph, glossary, and prompt builder.
-- 7-day, 14-day, and 30-day AI learning sprints.
-- Local progress backup/import/export.
-- Safe defensive coverage of prompt injection and AI-worm concepts without offensive malware instructions.
+## What it does
 
-## Svenska snabbstart
+- **Reviews** — active-recall flashcards with spaced repetition. Write your answer before revealing, then grade yourself (Again / Hard / Good / Easy).
+- **Architecture Web mode** — 36 illustrated web-development terms every architecture-firm website is built from: wireframe diagrams, a professional explanation, an explanation a 5-year-old understands, why it matters for architecture studios, an example, related concepts, and a review question.
+- **Dual coding** — every revealed answer adds a visual memory image, a draw-it-yourself prompt, and optional audio explanations (text-to-speech).
+- **Reword (Feynman)** — explain a concept in your own words and compare against the model answer.
+- **Connect** — drill the relationships between concepts to build a systems view.
+- **Prompt Lab** — a structured prompt builder plus a searchable library of prompt methods for ChatGPT, Claude, coding agents, RAG, research, and more.
+- **Curriculum & glossary** — 300+ cards across four tiers: Beginner → Intermediate → Advanced → Expert.
+- **Focus timer** — Pomodoro-style timer for study sprints.
 
-### Kör lokalt utan installation
+Progress is stored locally in your browser. Export/import it as JSON in **Settings** to move between devices.
 
-1. Packa upp zip-filen.
-2. Öppna `index.html` i webbläsaren.
-3. Börja med **Dashboard → Start due review**.
+## Run locally (no install)
 
-Progress sparas lokalt i webbläsaren. Exportera din progress i **Settings** om du vill flytta den mellan datorer.
+1. Download or clone this repository.
+2. Open `index.html` in a browser.
+3. Start with **Dashboard → Start due review**.
 
-### Kör lokalt med enkel server
+## Run locally with a simple server
 
 ```bash
-cd ai-mastery-memory-os-pro
 python3 -m http.server 8000
 ```
 
-Öppna sedan `http://localhost:8000`.
+Then open `http://localhost:8000`.
 
-### Publicera via GitHub Pages
+## Deploy to GitHub Pages
 
-1. Skapa ett nytt GitHub-repo.
-2. Ladda upp hela mappen `ai-mastery-memory-os-pro`.
-3. Gå till **Settings → Pages**.
-4. Välj antingen:
-   - **Deploy from branch**: `main` / root, eller
-   - **GitHub Actions**: använd workflow-filen i `.github/workflows/deploy-pages.yml`.
+1. Push the repository to GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment → Source**, choose **GitHub Actions** (one-time setting — without it the site returns 404).
+4. The workflow in `.github/workflows/deploy-pages.yml` deploys automatically on every push to `main`.
 
-## How to use the tool
+Expected URL: `https://<owner>.github.io/ai-mastery-memory-os/`
 
-1. **Reviews**: Write your answer before revealing. Grade honestly: Again, Hard, Good, Easy.
-2. **Reword**: Explain a concept in simpler words. The keyword score is only a rough local check.
-3. **Connect**: Link concepts into workflows. This is where isolated terms become system understanding.
-4. **Prompt Lab**: Build prompts with goal, context, constraints, examples, output format, and evaluation criteria.
-5. **Curriculum**: Filter by level/category/status to target weak areas.
-6. **Settings**: Export/import progress and tune timer/new-card settings.
+## Deploy to Vercel
 
-## Curriculum coverage
+1. Import the GitHub repository at vercel.com (Framework preset: **Other**, no build command, output directory: root).
+2. Every push to `main` deploys to production; every pull request gets a preview URL.
+3. `vercel.json` is included and sets cache headers so app updates appear immediately.
 
-Main categories:
+## Project structure
 
-- Learning Science
-- AI Foundations
-- LLM Mechanics
-- Prompting
-- RAG & Knowledge
-- Agents & Automation
-- Tools & Ecosystem
-- Evaluation
-- Production & System Design
-- Math & ML Essentials
-
-The goal is not to pretend that 234 cards make someone an expert. The goal is to build a dense, accurate mental map quickly, then use that map to learn faster, ask better questions, and build/evaluate AI workflows.
-
-## Safety note about “AI worm”
-
-The original request used the phrase “AI worm”. In current cybersecurity usage, that can mean self-propagating AI-enabled malware. This project treats it as likely meaning “AI work/workflow” and includes AI-worm content only as defensive awareness: prompt injection, least privilege, sandboxing, provenance checks, monitoring, and human approval for risky actions.
-
-## Customize the deck
-
-The canonical content is in:
-
-- `scripts/build_data.py` — editable source generator.
-- `data/cards.json` — generated JSON export.
-- `data/content.js` — generated browser-embedded data.
-
-After editing `scripts/build_data.py`, regenerate:
-
-```bash
-python3 scripts/build_data.py
+```
+index.html                 app shell
+src/app.js                 application logic and views
+src/styles.css             styles
+src/mobile.css             small-screen and safe-area refinements
+data/content.js            core curriculum (generated data)
+data/memory-ai-expert-pack.js   additional expert cards + prompt methods
+data/no-memory-review-format.js review-answer format (professional + ELI5)
+data/webdev.js             Architecture Web module (36 terms + SVG wireframes)
+data/dual-coding-aids.js   visual memory images + audio support
+scripts/                   data build/validate utilities (Python)
+docs/                      architecture, curriculum map, learning science, audits
 ```
 
-## Optional terminal quiz
+## Learning method
 
-A lightweight CLI is included:
+The app applies proven techniques as functionality, not theory: retrieval practice (answer before reveal), spaced repetition (graded scheduling), interleaving (mixed review queue), dual coding (visual + verbal + audio), elaboration (why-it-matters and connection drills), and the Feynman technique (Reword mode). See `docs/LEARNING_SCIENCE.md`.
 
-```bash
-python3 scripts/quiz_cli.py --level Beginner --count 10
-```
+## License
 
-CLI progress is stored in `.ai_mastery_cli_progress.json` in the project folder.
-
-## Files
-
-```text
-ai-mastery-memory-os-pro/
-├── index.html
-├── manifest.webmanifest
-├── sw.js
-├── data/
-│   ├── cards.json
-│   └── content.js
-├── src/
-│   ├── app.js
-│   └── styles.css
-├── scripts/
-│   ├── build_data.py
-│   ├── quiz_cli.py
-│   └── validate.py
-├── docs/
-│   ├── CODEX_PROMPT.md
-│   ├── CURRICULUM_MAP.md
-│   ├── LEARNING_SCIENCE.md
-│   └── ARCHITECTURE.md
-└── .github/workflows/deploy-pages.yml
-```
-
-## Evidence base and references
-
-The learning design is based on spacing, retrieval practice, interleaving, elaboration, and metacognition research. Technical terms are grounded in current public AI/developer documentation and common industry usage. See `docs/LEARNING_SCIENCE.md` and the source notes embedded in `data/cards.json`.
+MIT — see `LICENSE`.
