@@ -1,0 +1,5249 @@
+{
+  "version": "1.0.0-pro",
+  "generated": "2026-06-08",
+  "levels": [
+    "Beginner",
+    "Intermediate",
+    "Advanced",
+    "Expert"
+  ],
+  "cards": [
+    {
+      "id": "artificial-intelligence",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Artificial intelligence",
+      "prompt": "Define Artificial intelligence in AI and give its practical purpose.",
+      "answer": "AI is software or machines performing tasks that normally require human intelligence, such as understanding language, recognizing images, planning, reasoning, or generating content.",
+      "keywords": [
+        "human intelligence",
+        "reasoning",
+        "language",
+        "planning"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Machine learning",
+      "prompt": "Define Machine learning in AI and give its practical purpose.",
+      "answer": "Machine learning is a subfield of AI where systems learn patterns from data instead of being explicitly programmed for every rule.",
+      "keywords": [
+        "subfield",
+        "patterns",
+        "data",
+        "rules"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Deep learning",
+      "prompt": "Define Deep learning in AI and give its practical purpose.",
+      "answer": "Deep learning uses multi-layer neural networks to learn representations from large amounts of data, often powering vision, speech, and modern language models.",
+      "keywords": [
+        "neural networks",
+        "layers",
+        "representations",
+        "data"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "generative-ai",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Generative AI",
+      "prompt": "Define Generative AI in AI and give its practical purpose.",
+      "answer": "Generative AI creates new content such as text, images, code, audio, or video by learning patterns from training data.",
+      "keywords": [
+        "creates",
+        "text",
+        "images",
+        "code",
+        "patterns"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "model",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Model",
+      "prompt": "Define Model in AI and give its practical purpose.",
+      "answer": "A model is the learned function or system that maps inputs to outputs after training. In AI products, the model is the engine behind predictions or generations.",
+      "keywords": [
+        "learned function",
+        "input",
+        "output",
+        "training"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "algorithm",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Algorithm",
+      "prompt": "Define Algorithm in AI and give its practical purpose.",
+      "answer": "An algorithm is a precise procedure for solving a problem. In ML it may describe how a model learns, searches, optimizes, or makes predictions.",
+      "keywords": [
+        "procedure",
+        "problem",
+        "learns",
+        "predictions"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "dataset",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Dataset",
+      "prompt": "Define Dataset in AI and give its practical purpose.",
+      "answer": "A dataset is a collection of examples used for training, validating, testing, or grounding an AI system.",
+      "keywords": [
+        "examples",
+        "training",
+        "validation",
+        "testing"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "feature",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Feature",
+      "prompt": "Define Feature in AI and give its practical purpose.",
+      "answer": "A feature is an input signal used by a model, such as a word, pixel value, user action, timestamp, or engineered variable.",
+      "keywords": [
+        "input signal",
+        "word",
+        "pixel",
+        "variable"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "label",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Label",
+      "prompt": "Define Label in AI and give its practical purpose.",
+      "answer": "A label is the target answer used during supervised learning, such as the correct category, score, translation, or outcome.",
+      "keywords": [
+        "target",
+        "answer",
+        "supervised",
+        "category"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "training",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Training",
+      "prompt": "Define Training in AI and give its practical purpose.",
+      "answer": "Training is the process of adjusting model parameters so outputs become better on examples, usually by minimizing a loss function.",
+      "keywords": [
+        "parameters",
+        "examples",
+        "loss",
+        "minimizing"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "inference",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Inference",
+      "prompt": "Define Inference in AI and give its practical purpose.",
+      "answer": "Inference is using a trained model to produce an output for a new input, such as answering a prompt or classifying an image.",
+      "keywords": [
+        "trained model",
+        "new input",
+        "output",
+        "prompt"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "prompt",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Prompt",
+      "prompt": "Define Prompt in AI and give its practical purpose.",
+      "answer": "A prompt is the instruction and context you give an AI model to shape its response. Good prompts specify goal, context, constraints, examples, and output format.",
+      "keywords": [
+        "instruction",
+        "context",
+        "goal",
+        "format"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "completion-or-response",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Completion or response",
+      "prompt": "Define Completion or response in AI and give its practical purpose.",
+      "answer": "The completion or response is the model's generated output. It should be judged against the task goal, factuality, usefulness, and constraints.",
+      "keywords": [
+        "generated output",
+        "task goal",
+        "factuality",
+        "constraints"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "token",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Token",
+      "prompt": "Define Token in AI and give its practical purpose.",
+      "answer": "A token is a unit of text processed by language models. It may be a word, part of a word, punctuation, or whitespace-like unit depending on the tokenizer.",
+      "keywords": [
+        "unit of text",
+        "word",
+        "part",
+        "tokenizer"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "context-window",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Context window",
+      "prompt": "Define Context window in AI and give its practical purpose.",
+      "answer": "The context window is the amount of input and prior conversation the model can consider at once. Longer context helps, but irrelevant context can still confuse outputs.",
+      "keywords": [
+        "amount of input",
+        "conversation",
+        "consider",
+        "irrelevant"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "hallucination",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Hallucination",
+      "prompt": "Define Hallucination in AI and give its practical purpose.",
+      "answer": "A hallucination is a confident-sounding AI output that is false, unsupported, or fabricated. Reduce it with retrieval, citations, constrained outputs, and verification.",
+      "keywords": [
+        "false",
+        "unsupported",
+        "fabricated",
+        "verification"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "temperature",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Temperature",
+      "prompt": "Define Temperature in AI and give its practical purpose.",
+      "answer": "Temperature controls randomness in generation. Lower values are more deterministic; higher values increase variety and risk of unexpected outputs.",
+      "keywords": [
+        "randomness",
+        "deterministic",
+        "variety",
+        "risk"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "system-prompt",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "System prompt",
+      "prompt": "Define System prompt in AI and give its practical purpose.",
+      "answer": "A system prompt gives high-level behavior, role, style, and rules to a model. It should contain durable instructions rather than task-specific one-offs.",
+      "keywords": [
+        "high-level",
+        "behavior",
+        "role",
+        "rules"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "user-prompt",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "User prompt",
+      "prompt": "Define User prompt in AI and give its practical purpose.",
+      "answer": "A user prompt contains the immediate task, question, context, constraints, and desired output for a specific interaction.",
+      "keywords": [
+        "task",
+        "question",
+        "context",
+        "output"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "embedding",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Embedding",
+      "prompt": "Define Embedding in AI and give its practical purpose.",
+      "answer": "An embedding is a vector representation of meaning. Similar ideas are placed near each other, enabling semantic search, clustering, and retrieval.",
+      "keywords": [
+        "vector",
+        "meaning",
+        "semantic search",
+        "similar"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "classification",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Classification",
+      "prompt": "Define Classification in AI and give its practical purpose.",
+      "answer": "Classification predicts which category an input belongs to, such as spam versus not spam or beginner versus advanced.",
+      "keywords": [
+        "category",
+        "predicts",
+        "spam",
+        "class"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "regression",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Regression",
+      "prompt": "Define Regression in AI and give its practical purpose.",
+      "answer": "Regression predicts a continuous number, such as price, demand, probability, time, or score.",
+      "keywords": [
+        "continuous",
+        "number",
+        "price",
+        "score"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "clustering",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Clustering",
+      "prompt": "Define Clustering in AI and give its practical purpose.",
+      "answer": "Clustering groups similar examples without needing labels, often used for exploration, segmentation, or topic discovery.",
+      "keywords": [
+        "groups",
+        "similar",
+        "without labels",
+        "segmentation"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "supervised-learning",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Supervised learning",
+      "prompt": "Define Supervised learning in AI and give its practical purpose.",
+      "answer": "Supervised learning trains on examples with known labels so the model can learn to predict labels for new examples.",
+      "keywords": [
+        "known labels",
+        "predict",
+        "examples",
+        "training"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "unsupervised-learning",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Unsupervised learning",
+      "prompt": "Define Unsupervised learning in AI and give its practical purpose.",
+      "answer": "Unsupervised learning finds patterns in unlabeled data, such as clusters, dimensions, anomalies, or embeddings.",
+      "keywords": [
+        "unlabeled",
+        "patterns",
+        "clusters",
+        "anomalies"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "reinforcement-learning",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Reinforcement learning",
+      "prompt": "Define Reinforcement learning in AI and give its practical purpose.",
+      "answer": "Reinforcement learning trains an agent to choose actions that maximize reward over time in an environment.",
+      "keywords": [
+        "agent",
+        "actions",
+        "reward",
+        "environment"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "neural-network",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Neural network",
+      "prompt": "Define Neural network in AI and give its practical purpose.",
+      "answer": "A neural network is a model made of connected layers of mathematical units that transform inputs into useful outputs.",
+      "keywords": [
+        "layers",
+        "units",
+        "inputs",
+        "outputs"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "loss-function",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Loss function",
+      "prompt": "Define Loss function in AI and give its practical purpose.",
+      "answer": "A loss function measures how wrong a model is. Training tries to reduce loss so predictions become better.",
+      "keywords": [
+        "wrong",
+        "measure",
+        "reduce",
+        "predictions"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "accuracy",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Accuracy",
+      "prompt": "Define Accuracy in AI and give its practical purpose.",
+      "answer": "Accuracy is the share of predictions that are correct. It can be misleading when classes are imbalanced.",
+      "keywords": [
+        "share",
+        "correct",
+        "imbalanced"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "precision",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Precision",
+      "prompt": "Define Precision in AI and give its practical purpose.",
+      "answer": "Precision asks: when the model predicts positive, how often is it right? It matters when false positives are costly.",
+      "keywords": [
+        "positive",
+        "right",
+        "false positives"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "recall",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Recall",
+      "prompt": "Define Recall in AI and give its practical purpose.",
+      "answer": "Recall asks: of all true positives, how many did the model find? It matters when missing a case is costly.",
+      "keywords": [
+        "true positives",
+        "find",
+        "missing"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "f1-score",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "F1 score",
+      "prompt": "Define F1 score in AI and give its practical purpose.",
+      "answer": "F1 combines precision and recall into one harmonic-mean score, useful when both false positives and false negatives matter.",
+      "keywords": [
+        "precision",
+        "recall",
+        "harmonic",
+        "false"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "overfitting",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Overfitting",
+      "prompt": "Define Overfitting in AI and give its practical purpose.",
+      "answer": "Overfitting happens when a model memorizes training patterns too narrowly and performs poorly on new data.",
+      "keywords": [
+        "memorizes",
+        "training",
+        "poorly",
+        "new data"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "underfitting",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Underfitting",
+      "prompt": "Define Underfitting in AI and give its practical purpose.",
+      "answer": "Underfitting happens when a model is too simple or poorly trained to capture the real pattern in the data.",
+      "keywords": [
+        "too simple",
+        "poorly trained",
+        "pattern"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "validation-set",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Validation set",
+      "prompt": "Define Validation set in AI and give its practical purpose.",
+      "answer": "A validation set is held out during training to tune choices such as parameters, prompts, or model selection without touching the final test set.",
+      "keywords": [
+        "held out",
+        "tune",
+        "model selection",
+        "test set"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "test-set",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Test set",
+      "prompt": "Define Test set in AI and give its practical purpose.",
+      "answer": "A test set estimates final performance on unseen data after design decisions are made. It should not be used for repeated tuning.",
+      "keywords": [
+        "final performance",
+        "unseen",
+        "not tuning"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "api",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "API",
+      "prompt": "Define API in AI and give its practical purpose.",
+      "answer": "An API is an interface that lets software call another service. AI APIs let apps send prompts, files, or data and receive model outputs.",
+      "keywords": [
+        "interface",
+        "software",
+        "service",
+        "outputs"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "workflow-automation",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Workflow automation",
+      "prompt": "Define Workflow automation in AI and give its practical purpose.",
+      "answer": "Workflow automation links tools and steps so repeated work happens reliably, such as collecting input, calling an AI model, checking output, and sending results.",
+      "keywords": [
+        "links tools",
+        "repeated",
+        "reliably",
+        "steps"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "ai-assistant",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "AI assistant",
+      "prompt": "Define AI assistant in AI and give its practical purpose.",
+      "answer": "An AI assistant is a system designed to help users complete tasks through conversation, tool use, memory, or workflow execution.",
+      "keywords": [
+        "help users",
+        "conversation",
+        "tools",
+        "tasks"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "chatbot",
+      "level": "Beginner",
+      "category": "Core AI Vocabulary",
+      "type": "concept",
+      "concept": "Chatbot",
+      "prompt": "Define Chatbot in AI and give its practical purpose.",
+      "answer": "A chatbot is a conversational interface. It may be simple rules-based software or a language-model-powered assistant.",
+      "keywords": [
+        "conversational",
+        "interface",
+        "rules",
+        "language model"
+      ],
+      "tags": [
+        "foundations"
+      ],
+      "connections": [
+        "AI",
+        "data",
+        "models"
+      ]
+    },
+    {
+      "id": "transformer",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Transformer",
+      "prompt": "Explain Transformer and why it matters in applied AI.",
+      "answer": "A transformer is a neural-network architecture built around attention. It is the foundation for many modern language, vision, and multimodal models.",
+      "keywords": [
+        "architecture",
+        "attention",
+        "language",
+        "multimodal"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "self-attention",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Self-attention",
+      "prompt": "Explain Self-attention and why it matters in applied AI.",
+      "answer": "Self-attention lets each token weigh other tokens in the same context, helping the model decide what information matters for the current representation.",
+      "keywords": [
+        "tokens",
+        "weigh",
+        "context",
+        "information"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "multi-head-attention",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Multi-head attention",
+      "prompt": "Explain Multi-head attention and why it matters in applied AI.",
+      "answer": "Multi-head attention runs attention several ways in parallel so a model can capture different relationships, such as syntax, references, and topic links.",
+      "keywords": [
+        "parallel",
+        "relationships",
+        "syntax",
+        "references"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "positional-encoding",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Positional encoding",
+      "prompt": "Explain Positional encoding and why it matters in applied AI.",
+      "answer": "Positional encoding gives a transformer information about token order, because attention alone does not inherently know sequence position.",
+      "keywords": [
+        "token order",
+        "sequence",
+        "position",
+        "attention"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "tokenizer",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Tokenizer",
+      "prompt": "Explain Tokenizer and why it matters in applied AI.",
+      "answer": "A tokenizer converts text into tokens and token IDs that the model can process. Tokenization affects cost, context length, and exact string handling.",
+      "keywords": [
+        "text",
+        "tokens",
+        "IDs",
+        "cost"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "vocabulary",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Vocabulary",
+      "prompt": "Explain Vocabulary and why it matters in applied AI.",
+      "answer": "A model vocabulary is the set of tokens the tokenizer can represent. Unknown words are usually split into smaller known tokens.",
+      "keywords": [
+        "tokens",
+        "tokenizer",
+        "represent",
+        "split"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "pretraining",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Pretraining",
+      "prompt": "Explain Pretraining and why it matters in applied AI.",
+      "answer": "Pretraining teaches a model broad patterns from large data before it is adapted for specific tasks or assistant behavior.",
+      "keywords": [
+        "broad patterns",
+        "large data",
+        "adapted",
+        "tasks"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "supervised-fine-tuning",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Supervised fine-tuning",
+      "prompt": "Explain Supervised fine-tuning and why it matters in applied AI.",
+      "answer": "Supervised fine-tuning trains a pretrained model on curated input-output examples to shape task performance and response style.",
+      "keywords": [
+        "pretrained",
+        "curated",
+        "input-output",
+        "style"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "instruction-tuning",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Instruction tuning",
+      "prompt": "Explain Instruction tuning and why it matters in applied AI.",
+      "answer": "Instruction tuning adapts a model to follow natural-language instructions across many task types.",
+      "keywords": [
+        "follow",
+        "instructions",
+        "task types"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "rlhf",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "RLHF",
+      "prompt": "Explain RLHF and why it matters in applied AI.",
+      "answer": "Reinforcement learning from human feedback uses preference judgments to train or align model behavior toward outputs humans prefer.",
+      "keywords": [
+        "human feedback",
+        "preference",
+        "align",
+        "outputs"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "lora",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "LoRA",
+      "prompt": "Explain LoRA and why it matters in applied AI.",
+      "answer": "LoRA is a parameter-efficient fine-tuning method that learns small adapter matrices instead of updating all model weights.",
+      "keywords": [
+        "parameter-efficient",
+        "adapters",
+        "weights",
+        "fine-tuning"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "quantization",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Quantization",
+      "prompt": "Explain Quantization and why it matters in applied AI.",
+      "answer": "Quantization stores or computes model values with lower precision to reduce memory and speed inference, often with some quality tradeoff.",
+      "keywords": [
+        "lower precision",
+        "memory",
+        "inference",
+        "tradeoff"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "batch",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Batch",
+      "prompt": "Explain Batch and why it matters in applied AI.",
+      "answer": "A batch is a group of examples processed together. Batching can improve hardware efficiency but may affect latency.",
+      "keywords": [
+        "group",
+        "examples",
+        "hardware",
+        "latency"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "gpu",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "GPU",
+      "prompt": "Explain GPU and why it matters in applied AI.",
+      "answer": "A GPU is a processor optimized for parallel computation, widely used to train and run deep learning models.",
+      "keywords": [
+        "parallel",
+        "computation",
+        "train",
+        "run"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "tpu",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "TPU",
+      "prompt": "Explain TPU and why it matters in applied AI.",
+      "answer": "A TPU is a specialized accelerator designed for tensor operations common in machine learning workloads.",
+      "keywords": [
+        "accelerator",
+        "tensor",
+        "machine learning"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "vector-database",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Vector database",
+      "prompt": "Explain Vector database and why it matters in applied AI.",
+      "answer": "A vector database stores embeddings and retrieves nearest neighbors, enabling semantic search and RAG systems.",
+      "keywords": [
+        "embeddings",
+        "nearest neighbors",
+        "semantic search",
+        "RAG"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "cosine-similarity",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Cosine similarity",
+      "prompt": "Explain Cosine similarity and why it matters in applied AI.",
+      "answer": "Cosine similarity measures the angle between vectors. In embeddings, it is often used to estimate semantic relatedness.",
+      "keywords": [
+        "angle",
+        "vectors",
+        "semantic",
+        "relatedness"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "semantic-search",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Semantic search",
+      "prompt": "Explain Semantic search and why it matters in applied AI.",
+      "answer": "Semantic search retrieves content by meaning instead of exact keywords, usually by comparing embeddings.",
+      "keywords": [
+        "meaning",
+        "keywords",
+        "embeddings",
+        "retrieve"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "chunking-for-rag",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Chunking for RAG",
+      "prompt": "Explain Chunking for RAG and why it matters in applied AI.",
+      "answer": "Chunking splits documents into smaller units for retrieval. Good chunks preserve meaning, fit context budgets, and avoid splitting important ideas.",
+      "keywords": [
+        "documents",
+        "smaller units",
+        "meaning",
+        "context"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "reranking",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Reranking",
+      "prompt": "Explain Reranking and why it matters in applied AI.",
+      "answer": "Reranking reorders retrieved items using a stronger relevance model so the most useful evidence enters the prompt.",
+      "keywords": [
+        "reorders",
+        "retrieved",
+        "relevance",
+        "evidence"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "rag-pipeline",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "RAG pipeline",
+      "prompt": "Explain RAG pipeline and why it matters in applied AI.",
+      "answer": "A RAG pipeline usually ingests documents, chunks them, embeds them, retrieves relevant chunks, builds a grounded prompt, and returns an answer with evidence.",
+      "keywords": [
+        "ingest",
+        "chunks",
+        "embeds",
+        "retrieves",
+        "grounded"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "grounding",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Grounding",
+      "prompt": "Explain Grounding and why it matters in applied AI.",
+      "answer": "Grounding means tying an AI answer to supplied evidence, data, or tools rather than relying only on model memory.",
+      "keywords": [
+        "evidence",
+        "data",
+        "tools",
+        "memory"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "citation-discipline",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Citation discipline",
+      "prompt": "Explain Citation discipline and why it matters in applied AI.",
+      "answer": "Citation discipline means every factual claim that needs support is linked to a source or trace, making outputs easier to verify.",
+      "keywords": [
+        "factual",
+        "source",
+        "verify",
+        "trace"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "prompt-injection",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Prompt injection",
+      "prompt": "Explain Prompt injection and why it matters in applied AI.",
+      "answer": "Prompt injection is an attack where untrusted content tries to override instructions or manipulate tool use. Treat external text as data, not commands.",
+      "keywords": [
+        "attack",
+        "untrusted",
+        "override",
+        "tool use"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "jailbreak",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Jailbreak",
+      "prompt": "Explain Jailbreak and why it matters in applied AI.",
+      "answer": "A jailbreak is an attempt to bypass a model or product's safety and policy constraints through adversarial prompting.",
+      "keywords": [
+        "bypass",
+        "safety",
+        "constraints",
+        "adversarial"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "guardrails",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Guardrails",
+      "prompt": "Explain Guardrails and why it matters in applied AI.",
+      "answer": "Guardrails are technical and process controls that keep AI outputs within desired rules, such as validation, refusal logic, moderation, and human review.",
+      "keywords": [
+        "controls",
+        "rules",
+        "validation",
+        "review"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "moderation",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Moderation",
+      "prompt": "Explain Moderation and why it matters in applied AI.",
+      "answer": "Moderation classifies or filters content to reduce unsafe, abusive, illegal, or policy-violating outputs and inputs.",
+      "keywords": [
+        "classifies",
+        "filters",
+        "unsafe",
+        "policy"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "function-calling",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Function calling",
+      "prompt": "Explain Function calling and why it matters in applied AI.",
+      "answer": "Function calling lets a model request a typed tool or function with structured arguments so software can execute actions reliably.",
+      "keywords": [
+        "tool",
+        "structured arguments",
+        "execute",
+        "reliably"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "json-schema-output",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "JSON schema output",
+      "prompt": "Explain JSON schema output and why it matters in applied AI.",
+      "answer": "JSON schema output constrains model responses to a predictable structure that programs can parse and validate.",
+      "keywords": [
+        "structure",
+        "parse",
+        "validate",
+        "predictable"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "zero-shot-prompting",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Zero-shot prompting",
+      "prompt": "Explain Zero-shot prompting and why it matters in applied AI.",
+      "answer": "Zero-shot prompting asks a model to perform a task without examples, relying on the instruction alone.",
+      "keywords": [
+        "without examples",
+        "instruction",
+        "task"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "few-shot-prompting",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Few-shot prompting",
+      "prompt": "Explain Few-shot prompting and why it matters in applied AI.",
+      "answer": "Few-shot prompting includes examples of desired input-output behavior so the model can imitate pattern, style, and structure.",
+      "keywords": [
+        "examples",
+        "input-output",
+        "imitate",
+        "style"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "chain-of-thought-prompting",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Chain-of-thought prompting",
+      "prompt": "Explain Chain-of-thought prompting and why it matters in applied AI.",
+      "answer": "Chain-of-thought prompting asks for step-by-step reasoning, but production systems often prefer concise rationales or hidden reasoning with verifiable final answers.",
+      "keywords": [
+        "step-by-step",
+        "reasoning",
+        "concise",
+        "verifiable"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "prompt-chaining",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Prompt chaining",
+      "prompt": "Explain Prompt chaining and why it matters in applied AI.",
+      "answer": "Prompt chaining splits a complex task into smaller model calls, where each step has a clear input, output, and validation rule.",
+      "keywords": [
+        "splits",
+        "smaller",
+        "steps",
+        "validation"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "evaluation-dataset",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Evaluation dataset",
+      "prompt": "Explain Evaluation dataset and why it matters in applied AI.",
+      "answer": "An evaluation dataset is a representative set of tasks and expected outcomes used to measure whether an AI system is improving.",
+      "keywords": [
+        "representative",
+        "tasks",
+        "expected",
+        "measure"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "benchmark",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Benchmark",
+      "prompt": "Explain Benchmark and why it matters in applied AI.",
+      "answer": "A benchmark is a standardized test for comparing models or systems. It is useful but can miss real workflow performance.",
+      "keywords": [
+        "standardized",
+        "comparing",
+        "models",
+        "workflow"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "confusion-matrix",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Confusion matrix",
+      "prompt": "Explain Confusion matrix and why it matters in applied AI.",
+      "answer": "A confusion matrix counts true positives, false positives, true negatives, and false negatives for classification analysis.",
+      "keywords": [
+        "true positives",
+        "false positives",
+        "true negatives",
+        "false negatives"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "roc-auc",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "ROC AUC",
+      "prompt": "Explain ROC AUC and why it matters in applied AI.",
+      "answer": "ROC AUC summarizes how well a classifier ranks positives above negatives across thresholds.",
+      "keywords": [
+        "classifier",
+        "ranks",
+        "positives",
+        "thresholds"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "calibration",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Calibration",
+      "prompt": "Explain Calibration and why it matters in applied AI.",
+      "answer": "Calibration means predicted probabilities match real-world frequencies. A well-calibrated 80% confidence prediction is right about 80% of the time.",
+      "keywords": [
+        "probabilities",
+        "frequencies",
+        "confidence",
+        "80"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "data-leakage",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Data leakage",
+      "prompt": "Explain Data leakage and why it matters in applied AI.",
+      "answer": "Data leakage occurs when training or evaluation accidentally includes information that would not be available in real use, inflating performance.",
+      "keywords": [
+        "training",
+        "evaluation",
+        "unavailable",
+        "inflating"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "model-drift",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Model drift",
+      "prompt": "Explain Model drift and why it matters in applied AI.",
+      "answer": "Model drift happens when real-world data changes so a deployed model becomes less accurate or useful over time.",
+      "keywords": [
+        "real-world data",
+        "changes",
+        "deployed",
+        "accuracy"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "latency",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Latency",
+      "prompt": "Explain Latency and why it matters in applied AI.",
+      "answer": "Latency is the time from request to response. AI latency is affected by model size, context length, tools, network, and output length.",
+      "keywords": [
+        "time",
+        "request",
+        "response",
+        "context"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "throughput",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Throughput",
+      "prompt": "Explain Throughput and why it matters in applied AI.",
+      "answer": "Throughput is how many requests or tokens a system can process per unit of time.",
+      "keywords": [
+        "requests",
+        "tokens",
+        "time",
+        "capacity"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "cost-per-token",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Cost per token",
+      "prompt": "Explain Cost per token and why it matters in applied AI.",
+      "answer": "Cost per token estimates model usage cost based on input and output token counts, often critical for production economics.",
+      "keywords": [
+        "input",
+        "output",
+        "token counts",
+        "cost"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "prompt-caching",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Prompt caching",
+      "prompt": "Explain Prompt caching and why it matters in applied AI.",
+      "answer": "Prompt caching reuses repeated prompt prefixes or context to reduce latency and cost when supported by the provider.",
+      "keywords": [
+        "reuses",
+        "prefixes",
+        "latency",
+        "cost"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "fine-tuning-vs-rag",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "Fine-tuning vs RAG",
+      "prompt": "Explain Fine-tuning vs RAG and why it matters in applied AI.",
+      "answer": "RAG adds external knowledge at inference time; fine-tuning changes model behavior or specialized patterns. Use RAG for fresh facts, fine-tuning for consistent behavior.",
+      "keywords": [
+        "external knowledge",
+        "inference",
+        "behavior",
+        "fresh facts"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "api-key",
+      "level": "Intermediate",
+      "category": "LLMs and Applied AI",
+      "type": "concept",
+      "concept": "API key",
+      "prompt": "Explain API key and why it matters in applied AI.",
+      "answer": "An API key authenticates software to a service. Treat it like a secret: never commit it to GitHub or expose it in client-side code.",
+      "keywords": [
+        "authenticates",
+        "secret",
+        "never commit",
+        "client-side"
+      ],
+      "tags": [
+        "llm",
+        "applied"
+      ],
+      "connections": [
+        "prompting",
+        "RAG",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "agent",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Agent",
+      "prompt": "What is Agent, and what failure does it help prevent or solve?",
+      "answer": "An agent is an AI system that can plan, call tools, maintain state, and take multiple steps toward a goal under constraints.",
+      "keywords": [
+        "plan",
+        "tools",
+        "state",
+        "goal"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "planner-executor-architecture",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Planner-executor architecture",
+      "prompt": "What is Planner-executor architecture, and what failure does it help prevent or solve?",
+      "answer": "A planner-executor pattern separates strategy from action: one component decomposes the task, another executes steps and reports results.",
+      "keywords": [
+        "strategy",
+        "action",
+        "decomposes",
+        "executes"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "tool-router",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Tool router",
+      "prompt": "What is Tool router, and what failure does it help prevent or solve?",
+      "answer": "A tool router decides which tool or API should handle a subtask, based on intent, permissions, input type, and reliability.",
+      "keywords": [
+        "decides",
+        "tool",
+        "intent",
+        "permissions"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "state-machine",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "State machine",
+      "prompt": "What is State machine, and what failure does it help prevent or solve?",
+      "answer": "A state machine models allowed states and transitions so an AI workflow behaves predictably instead of drifting through vague conversation.",
+      "keywords": [
+        "states",
+        "transitions",
+        "predictably",
+        "workflow"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "semantic-memory",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Semantic memory",
+      "prompt": "What is Semantic memory, and what failure does it help prevent or solve?",
+      "answer": "Semantic memory stores durable facts, concepts, and preferences that can be retrieved later for context.",
+      "keywords": [
+        "facts",
+        "concepts",
+        "preferences",
+        "retrieved"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "episodic-memory",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Episodic memory",
+      "prompt": "What is Episodic memory, and what failure does it help prevent or solve?",
+      "answer": "Episodic memory stores event-like records of what happened in past interactions, including decisions, outcomes, and timestamps.",
+      "keywords": [
+        "events",
+        "interactions",
+        "decisions",
+        "timestamps"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "procedural-memory",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Procedural memory",
+      "prompt": "What is Procedural memory, and what failure does it help prevent or solve?",
+      "answer": "Procedural memory stores reusable methods, playbooks, skills, and workflows rather than facts.",
+      "keywords": [
+        "methods",
+        "playbooks",
+        "skills",
+        "workflows"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "scratchpad",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Scratchpad",
+      "prompt": "What is Scratchpad, and what failure does it help prevent or solve?",
+      "answer": "A scratchpad is temporary working memory for intermediate notes, calculations, or step results. It should not replace verified final outputs.",
+      "keywords": [
+        "temporary",
+        "working memory",
+        "intermediate",
+        "verified"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "observability",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Observability",
+      "prompt": "What is Observability, and what failure does it help prevent or solve?",
+      "answer": "Observability means logging prompts, tool calls, traces, latency, costs, errors, and outcomes so AI systems can be debugged and improved.",
+      "keywords": [
+        "logging",
+        "traces",
+        "latency",
+        "costs"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "tracing",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Tracing",
+      "prompt": "What is Tracing, and what failure does it help prevent or solve?",
+      "answer": "Tracing records the steps in an AI workflow, including model calls, tool calls, inputs, outputs, and timing.",
+      "keywords": [
+        "steps",
+        "model calls",
+        "tool calls",
+        "timing"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "evaluation-harness",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Evaluation harness",
+      "prompt": "What is Evaluation harness, and what failure does it help prevent or solve?",
+      "answer": "An evaluation harness automatically runs test cases against prompts, models, and workflows to detect regressions and compare variants.",
+      "keywords": [
+        "automatically",
+        "test cases",
+        "regressions",
+        "variants"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "golden-dataset",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Golden dataset",
+      "prompt": "What is Golden dataset, and what failure does it help prevent or solve?",
+      "answer": "A golden dataset is a carefully reviewed set of examples and expected outputs used as a stable quality reference.",
+      "keywords": [
+        "reviewed",
+        "expected outputs",
+        "stable",
+        "quality"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "prompt-unit-test",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Prompt unit test",
+      "prompt": "What is Prompt unit test, and what failure does it help prevent or solve?",
+      "answer": "A prompt unit test checks whether a prompt still produces acceptable behavior on representative cases after changes.",
+      "keywords": [
+        "prompt",
+        "acceptable",
+        "representative",
+        "changes"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "red-teaming",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Red-teaming",
+      "prompt": "What is Red-teaming, and what failure does it help prevent or solve?",
+      "answer": "Red-teaming deliberately probes a system for failures, misuse, bias, leakage, or unsafe behavior before deployment.",
+      "keywords": [
+        "probes",
+        "failures",
+        "misuse",
+        "unsafe"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "human-in-the-loop",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Human-in-the-loop",
+      "prompt": "What is Human-in-the-loop, and what failure does it help prevent or solve?",
+      "answer": "Human-in-the-loop design sends uncertain, high-risk, or high-value decisions to people for review, approval, or correction.",
+      "keywords": [
+        "uncertain",
+        "high-risk",
+        "review",
+        "correction"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "confidence-threshold",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Confidence threshold",
+      "prompt": "What is Confidence threshold, and what failure does it help prevent or solve?",
+      "answer": "A confidence threshold triggers different actions depending on estimated reliability, such as answer, ask, retrieve more, or escalate.",
+      "keywords": [
+        "estimated reliability",
+        "answer",
+        "retrieve",
+        "escalate"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "fallback-model",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Fallback model",
+      "prompt": "What is Fallback model, and what failure does it help prevent or solve?",
+      "answer": "A fallback model or path handles failures, overload, cost spikes, safety issues, or low confidence from the primary route.",
+      "keywords": [
+        "failures",
+        "overload",
+        "cost",
+        "primary"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "retrieval-precision",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Retrieval precision",
+      "prompt": "What is Retrieval precision, and what failure does it help prevent or solve?",
+      "answer": "Retrieval precision is the share of retrieved chunks that are actually relevant. Low precision pollutes the model context.",
+      "keywords": [
+        "share",
+        "retrieved",
+        "relevant",
+        "pollutes"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "retrieval-recall",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Retrieval recall",
+      "prompt": "What is Retrieval recall, and what failure does it help prevent or solve?",
+      "answer": "Retrieval recall is the share of needed evidence that the retriever found. Low recall means the answer may miss crucial facts.",
+      "keywords": [
+        "needed evidence",
+        "found",
+        "miss",
+        "facts"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "chunk-overlap",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Chunk overlap",
+      "prompt": "What is Chunk overlap, and what failure does it help prevent or solve?",
+      "answer": "Chunk overlap repeats some text between adjacent chunks to avoid cutting important meaning at boundaries.",
+      "keywords": [
+        "repeats",
+        "adjacent",
+        "boundaries",
+        "meaning"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "hybrid-search",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Hybrid search",
+      "prompt": "What is Hybrid search, and what failure does it help prevent or solve?",
+      "answer": "Hybrid search combines keyword retrieval such as BM25 with vector retrieval so exact terms and semantic meaning both matter.",
+      "keywords": [
+        "keyword",
+        "BM25",
+        "vector",
+        "semantic"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "bm25",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "BM25",
+      "prompt": "What is BM25, and what failure does it help prevent or solve?",
+      "answer": "BM25 is a classic keyword ranking method that scores documents by term frequency, inverse document frequency, and length normalization.",
+      "keywords": [
+        "keyword",
+        "term frequency",
+        "inverse document frequency",
+        "length"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "knowledge-graph",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Knowledge graph",
+      "prompt": "What is Knowledge graph, and what failure does it help prevent or solve?",
+      "answer": "A knowledge graph represents entities and relationships explicitly, helping systems reason about connected facts and dependencies.",
+      "keywords": [
+        "entities",
+        "relationships",
+        "connected",
+        "dependencies"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "mcp",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "MCP",
+      "prompt": "What is MCP, and what failure does it help prevent or solve?",
+      "answer": "Model Context Protocol is a standard pattern for connecting AI applications to external tools, data sources, and actions through servers.",
+      "keywords": [
+        "protocol",
+        "external tools",
+        "data sources",
+        "servers"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "webhook",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Webhook",
+      "prompt": "What is Webhook, and what failure does it help prevent or solve?",
+      "answer": "A webhook sends data from one system to another when an event happens, enabling event-driven AI automations.",
+      "keywords": [
+        "event",
+        "sends data",
+        "automation",
+        "system"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "oauth-scopes",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "OAuth scopes",
+      "prompt": "What is OAuth scopes, and what failure does it help prevent or solve?",
+      "answer": "OAuth scopes limit what an integration can access or do. Least-privilege scopes reduce damage from mistakes or compromise.",
+      "keywords": [
+        "limit",
+        "access",
+        "least privilege",
+        "compromise"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "secrets-management",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Secrets management",
+      "prompt": "What is Secrets management, and what failure does it help prevent or solve?",
+      "answer": "Secrets management protects API keys, tokens, and credentials using environment variables or secret stores rather than source code.",
+      "keywords": [
+        "API keys",
+        "tokens",
+        "environment variables",
+        "source code"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "rate-limiting",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Rate limiting",
+      "prompt": "What is Rate limiting, and what failure does it help prevent or solve?",
+      "answer": "Rate limiting controls how many requests can be made in a time window, protecting services from overload and abuse.",
+      "keywords": [
+        "requests",
+        "time window",
+        "overload",
+        "abuse"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "retry-with-backoff",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Retry with backoff",
+      "prompt": "What is Retry with backoff, and what failure does it help prevent or solve?",
+      "answer": "Retry with backoff waits longer between retries after failures, reducing overload and improving reliability.",
+      "keywords": [
+        "waits longer",
+        "retries",
+        "failures",
+        "reliability"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "queue",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Queue",
+      "prompt": "What is Queue, and what failure does it help prevent or solve?",
+      "answer": "A queue stores jobs so work can be processed asynchronously, smoothed over spikes, and retried safely.",
+      "keywords": [
+        "jobs",
+        "processed",
+        "spikes",
+        "retried"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "ci-cd",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "CI/CD",
+      "prompt": "What is CI/CD, and what failure does it help prevent or solve?",
+      "answer": "CI/CD automates testing, building, and deployment so code and AI workflow changes can ship with fewer regressions.",
+      "keywords": [
+        "testing",
+        "building",
+        "deployment",
+        "regressions"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "docker",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Docker",
+      "prompt": "What is Docker, and what failure does it help prevent or solve?",
+      "answer": "Docker packages software with its runtime environment so it runs more consistently across machines and servers.",
+      "keywords": [
+        "packages",
+        "runtime",
+        "consistently",
+        "machines"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "git",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Git",
+      "prompt": "What is Git, and what failure does it help prevent or solve?",
+      "answer": "Git tracks code changes over time, enabling branching, review, rollback, and collaboration.",
+      "keywords": [
+        "tracks",
+        "changes",
+        "branching",
+        "rollback"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "github",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "GitHub",
+      "prompt": "What is GitHub, and what failure does it help prevent or solve?",
+      "answer": "GitHub hosts Git repositories and supports pull requests, issues, actions, and collaboration around code.",
+      "keywords": [
+        "repositories",
+        "pull requests",
+        "actions",
+        "collaboration"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "github-actions",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "GitHub Actions",
+      "prompt": "What is GitHub Actions, and what failure does it help prevent or solve?",
+      "answer": "GitHub Actions runs automated workflows such as tests, deployments, linting, and scheduled jobs inside GitHub.",
+      "keywords": [
+        "automated",
+        "tests",
+        "deployments",
+        "workflows"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "openai-codex",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "OpenAI Codex",
+      "prompt": "What is OpenAI Codex, and what failure does it help prevent or solve?",
+      "answer": "Codex is OpenAI's coding agent family for editing, explaining, running, and reviewing code in local, cloud, IDE, CLI, and GitHub workflows.",
+      "keywords": [
+        "coding agent",
+        "editing",
+        "reviewing",
+        "GitHub"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "github-copilot",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "GitHub Copilot",
+      "prompt": "What is GitHub Copilot, and what failure does it help prevent or solve?",
+      "answer": "GitHub Copilot is an AI coding assistant integrated into developer workflows for code suggestions, chat, and repository-aware help.",
+      "keywords": [
+        "coding assistant",
+        "suggestions",
+        "chat",
+        "repository"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "cursor",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Cursor",
+      "prompt": "What is Cursor, and what failure does it help prevent or solve?",
+      "answer": "Cursor is an AI-focused code editor that lets developers work with codebases through chat, edits, and agentic workflows.",
+      "keywords": [
+        "code editor",
+        "chat",
+        "edits",
+        "agentic"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "vs-code",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "VS Code",
+      "prompt": "What is VS Code, and what failure does it help prevent or solve?",
+      "answer": "VS Code is a widely used code editor with extensions, terminal integration, debugging, and AI coding assistant support.",
+      "keywords": [
+        "code editor",
+        "extensions",
+        "terminal",
+        "debugging"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "hugging-face",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Hugging Face",
+      "prompt": "What is Hugging Face, and what failure does it help prevent or solve?",
+      "answer": "Hugging Face is an ecosystem for models, datasets, Spaces apps, evaluation tools, and open-source ML collaboration.",
+      "keywords": [
+        "models",
+        "datasets",
+        "Spaces",
+        "collaboration"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "langchain",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "LangChain",
+      "prompt": "What is LangChain, and what failure does it help prevent or solve?",
+      "answer": "LangChain is a framework for building LLM applications with chains, agents, tools, retrievers, and integrations.",
+      "keywords": [
+        "framework",
+        "chains",
+        "agents",
+        "retrievers"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "llamaindex",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "LlamaIndex",
+      "prompt": "What is LlamaIndex, and what failure does it help prevent or solve?",
+      "answer": "LlamaIndex focuses on connecting private or domain data to LLM applications, especially retrieval and data indexing workflows.",
+      "keywords": [
+        "private data",
+        "LLM applications",
+        "retrieval",
+        "indexing"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "faiss",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "FAISS",
+      "prompt": "What is FAISS, and what failure does it help prevent or solve?",
+      "answer": "FAISS is a library for efficient similarity search over vectors, commonly used for embedding retrieval.",
+      "keywords": [
+        "similarity search",
+        "vectors",
+        "embedding",
+        "retrieval"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "chroma",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Chroma",
+      "prompt": "What is Chroma, and what failure does it help prevent or solve?",
+      "answer": "Chroma is a developer-friendly vector database often used for local RAG prototypes and embedding search.",
+      "keywords": [
+        "vector database",
+        "local",
+        "RAG",
+        "embeddings"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "pinecone",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Pinecone",
+      "prompt": "What is Pinecone, and what failure does it help prevent or solve?",
+      "answer": "Pinecone is a managed vector database for production semantic search and RAG systems.",
+      "keywords": [
+        "managed",
+        "vector database",
+        "semantic search",
+        "production"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "mlflow",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "MLflow",
+      "prompt": "What is MLflow, and what failure does it help prevent or solve?",
+      "answer": "MLflow tracks experiments, models, parameters, metrics, and deployment artifacts across the ML lifecycle.",
+      "keywords": [
+        "experiments",
+        "models",
+        "metrics",
+        "lifecycle"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "weights-and-biases",
+      "level": "Advanced",
+      "category": "Systems, Agents and Tooling",
+      "type": "concept",
+      "concept": "Weights and Biases",
+      "prompt": "What is Weights and Biases, and what failure does it help prevent or solve?",
+      "answer": "Weights and Biases helps track experiments, datasets, prompts, traces, and model evaluation metrics.",
+      "keywords": [
+        "experiments",
+        "datasets",
+        "prompts",
+        "metrics"
+      ],
+      "tags": [
+        "systems",
+        "agents",
+        "tools"
+      ],
+      "connections": [
+        "automation",
+        "security",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "scaling-laws",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Scaling laws",
+      "prompt": "Give a precise explanation of Scaling laws and one implication for building AI systems.",
+      "answer": "Scaling laws describe predictable relationships between model performance and factors such as compute, data, and parameter count.",
+      "keywords": [
+        "performance",
+        "compute",
+        "data",
+        "parameters"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "compute-optimal-training",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Compute optimal training",
+      "prompt": "Give a precise explanation of Compute optimal training and one implication for building AI systems.",
+      "answer": "Compute optimal training balances model size, data size, and compute budget so resources improve capability efficiently.",
+      "keywords": [
+        "model size",
+        "data size",
+        "compute",
+        "efficiently"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "distillation",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Distillation",
+      "prompt": "Give a precise explanation of Distillation and one implication for building AI systems.",
+      "answer": "Distillation trains a smaller or cheaper model to imitate a larger model, often improving latency and cost while retaining useful behavior.",
+      "keywords": [
+        "smaller",
+        "imitate",
+        "larger",
+        "latency"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "mixture-of-experts",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Mixture of experts",
+      "prompt": "Give a precise explanation of Mixture of experts and one implication for building AI systems.",
+      "answer": "A mixture-of-experts model routes inputs through selected expert subnetworks, increasing capacity while activating only part of the model per token.",
+      "keywords": [
+        "routes",
+        "experts",
+        "capacity",
+        "sparse"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "sparse-activation",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Sparse activation",
+      "prompt": "Give a precise explanation of Sparse activation and one implication for building AI systems.",
+      "answer": "Sparse activation means only some parameters or experts are used for a given input, saving compute compared with dense activation.",
+      "keywords": [
+        "some parameters",
+        "experts",
+        "saving compute",
+        "dense"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "kv-cache",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "KV cache",
+      "prompt": "Give a precise explanation of KV cache and one implication for building AI systems.",
+      "answer": "A KV cache stores key and value tensors from previous tokens so autoregressive inference can avoid recomputing the entire context.",
+      "keywords": [
+        "key",
+        "value",
+        "previous tokens",
+        "inference"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "speculative-decoding",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Speculative decoding",
+      "prompt": "Give a precise explanation of Speculative decoding and one implication for building AI systems.",
+      "answer": "Speculative decoding uses a smaller draft model to propose tokens that a larger model verifies, often speeding generation.",
+      "keywords": [
+        "draft model",
+        "propose tokens",
+        "larger model",
+        "speed"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "long-context-modeling",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Long-context modeling",
+      "prompt": "Give a precise explanation of Long-context modeling and one implication for building AI systems.",
+      "answer": "Long-context modeling lets systems use more documents or conversation history, but quality still depends on retrieval, attention, and relevance management.",
+      "keywords": [
+        "documents",
+        "history",
+        "retrieval",
+        "relevance"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "attention-optimization",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Attention optimization",
+      "prompt": "Give a precise explanation of Attention optimization and one implication for building AI systems.",
+      "answer": "Attention optimization reduces the compute or memory cost of attention, helping long-context and high-throughput inference.",
+      "keywords": [
+        "compute",
+        "memory",
+        "attention",
+        "throughput"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "multimodal-model",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Multimodal model",
+      "prompt": "Give a precise explanation of Multimodal model and one implication for building AI systems.",
+      "answer": "A multimodal model can process or generate across modalities such as text, images, audio, video, and structured data.",
+      "keywords": [
+        "text",
+        "images",
+        "audio",
+        "video"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "vision-language-model",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Vision-language model",
+      "prompt": "Give a precise explanation of Vision-language model and one implication for building AI systems.",
+      "answer": "A vision-language model connects images and text, enabling tasks such as image description, visual question answering, and document understanding.",
+      "keywords": [
+        "images",
+        "text",
+        "question answering",
+        "documents"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "diffusion-model",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Diffusion model",
+      "prompt": "Give a precise explanation of Diffusion model and one implication for building AI systems.",
+      "answer": "A diffusion model generates data by learning to reverse a gradual noising process, widely used in image, audio, and video generation.",
+      "keywords": [
+        "reverse",
+        "noising",
+        "image",
+        "generation"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "speech-to-text",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Speech-to-text",
+      "prompt": "Give a precise explanation of Speech-to-text and one implication for building AI systems.",
+      "answer": "Speech-to-text converts audio speech into written text, often used for transcription, voice assistants, and searchable meeting notes.",
+      "keywords": [
+        "audio",
+        "written text",
+        "transcription",
+        "voice"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "text-to-speech",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Text-to-speech",
+      "prompt": "Give a precise explanation of Text-to-speech and one implication for building AI systems.",
+      "answer": "Text-to-speech converts written text into spoken audio, enabling voice agents, accessibility, and content production.",
+      "keywords": [
+        "written text",
+        "audio",
+        "voice agents",
+        "accessibility"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "synthetic-data",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Synthetic data",
+      "prompt": "Give a precise explanation of Synthetic data and one implication for building AI systems.",
+      "answer": "Synthetic data is generated rather than directly collected. It can augment training or testing but must be checked for bias, leakage, and realism.",
+      "keywords": [
+        "generated",
+        "augment",
+        "bias",
+        "realism"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "evaluation-contamination",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Evaluation contamination",
+      "prompt": "Give a precise explanation of Evaluation contamination and one implication for building AI systems.",
+      "answer": "Evaluation contamination occurs when benchmark answers or near-duplicates appear in training data, making results look better than real generalization.",
+      "keywords": [
+        "benchmark",
+        "training data",
+        "duplicates",
+        "generalization"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "adversarial-example",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Adversarial example",
+      "prompt": "Give a precise explanation of Adversarial example and one implication for building AI systems.",
+      "answer": "An adversarial example is an input crafted to make a model fail, often revealing brittleness or unsafe behavior.",
+      "keywords": [
+        "crafted",
+        "fail",
+        "brittleness",
+        "unsafe"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "interpretability",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Interpretability",
+      "prompt": "Give a precise explanation of Interpretability and one implication for building AI systems.",
+      "answer": "Interpretability studies how to understand why a model produced an output, from feature importance to mechanistic circuit analysis.",
+      "keywords": [
+        "understand",
+        "why",
+        "feature importance",
+        "circuits"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "mechanistic-interpretability",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Mechanistic interpretability",
+      "prompt": "Give a precise explanation of Mechanistic interpretability and one implication for building AI systems.",
+      "answer": "Mechanistic interpretability tries to reverse-engineer internal model circuits and representations to understand behavior at a detailed level.",
+      "keywords": [
+        "reverse-engineer",
+        "circuits",
+        "representations",
+        "behavior"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "activation",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Activation",
+      "prompt": "Give a precise explanation of Activation and one implication for building AI systems.",
+      "answer": "An activation is the numeric output of a model unit or layer for a given input. Activations are internal signals used to compute predictions.",
+      "keywords": [
+        "numeric output",
+        "unit",
+        "layer",
+        "signals"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "logits",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Logits",
+      "prompt": "Give a precise explanation of Logits and one implication for building AI systems.",
+      "answer": "Logits are raw model scores before probability conversion. In language models, logits are converted into next-token probabilities.",
+      "keywords": [
+        "raw scores",
+        "probability",
+        "next-token",
+        "conversion"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "softmax",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Softmax",
+      "prompt": "Give a precise explanation of Softmax and one implication for building AI systems.",
+      "answer": "Softmax converts logits into probabilities that sum to one, often used for classification or next-token prediction.",
+      "keywords": [
+        "logits",
+        "probabilities",
+        "sum to one",
+        "classification"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "top-k-sampling",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Top-k sampling",
+      "prompt": "Give a precise explanation of Top-k sampling and one implication for building AI systems.",
+      "answer": "Top-k sampling limits generation to the k most likely tokens before sampling, reducing very unlikely continuations.",
+      "keywords": [
+        "k",
+        "most likely",
+        "tokens",
+        "sampling"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "top-p-sampling",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Top-p sampling",
+      "prompt": "Give a precise explanation of Top-p sampling and one implication for building AI systems.",
+      "answer": "Top-p sampling, also called nucleus sampling, chooses from the smallest token set whose cumulative probability exceeds p.",
+      "keywords": [
+        "nucleus",
+        "cumulative probability",
+        "token set",
+        "sampling"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "beam-search",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Beam search",
+      "prompt": "Give a precise explanation of Beam search and one implication for building AI systems.",
+      "answer": "Beam search keeps several high-scoring candidate sequences during decoding, often useful in structured generation but less natural for open chat.",
+      "keywords": [
+        "candidate sequences",
+        "decoding",
+        "structured",
+        "high-scoring"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "reward-model",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Reward model",
+      "prompt": "Give a precise explanation of Reward model and one implication for building AI systems.",
+      "answer": "A reward model predicts which outputs are preferable, enabling reinforcement-learning style optimization from human or AI feedback.",
+      "keywords": [
+        "preferable",
+        "outputs",
+        "feedback",
+        "optimization"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "rlaif",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "RLAIF",
+      "prompt": "Give a precise explanation of RLAIF and one implication for building AI systems.",
+      "answer": "Reinforcement learning from AI feedback uses AI-generated preference or critique signals instead of, or alongside, human feedback.",
+      "keywords": [
+        "AI feedback",
+        "preference",
+        "critique",
+        "human"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "constitutional-ai",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Constitutional AI",
+      "prompt": "Give a precise explanation of Constitutional AI and one implication for building AI systems.",
+      "answer": "Constitutional AI uses a written set of principles to guide critique and revision of model outputs during training or alignment.",
+      "keywords": [
+        "principles",
+        "critique",
+        "revision",
+        "alignment"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "alignment",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Alignment",
+      "prompt": "Give a precise explanation of Alignment and one implication for building AI systems.",
+      "answer": "Alignment is the effort to make AI systems act according to intended goals, human values, safety constraints, and truthful behavior.",
+      "keywords": [
+        "intended goals",
+        "values",
+        "safety",
+        "truthful"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "differential-privacy",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Differential privacy",
+      "prompt": "Give a precise explanation of Differential privacy and one implication for building AI systems.",
+      "answer": "Differential privacy adds mathematical noise or constraints so aggregate learning reveals less about any single person's data.",
+      "keywords": [
+        "noise",
+        "aggregate",
+        "single person",
+        "data"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "federated-learning",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Federated learning",
+      "prompt": "Give a precise explanation of Federated learning and one implication for building AI systems.",
+      "answer": "Federated learning trains across devices or organizations while keeping raw data local, sharing updates instead of centralizing data.",
+      "keywords": [
+        "devices",
+        "raw data local",
+        "updates",
+        "centralizing"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "model-card",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Model card",
+      "prompt": "Give a precise explanation of Model card and one implication for building AI systems.",
+      "answer": "A model card documents a model's intended uses, limitations, training data notes, evaluation results, and risks.",
+      "keywords": [
+        "intended uses",
+        "limitations",
+        "evaluation",
+        "risks"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "system-card",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "System card",
+      "prompt": "Give a precise explanation of System card and one implication for building AI systems.",
+      "answer": "A system card documents a deployed AI system's capabilities, limitations, safety mitigations, evaluations, and release considerations.",
+      "keywords": [
+        "deployed system",
+        "safety",
+        "evaluations",
+        "limitations"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "data-governance",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Data governance",
+      "prompt": "Give a precise explanation of Data governance and one implication for building AI systems.",
+      "answer": "Data governance defines who can access data, how it is classified, retained, audited, and used safely in AI systems.",
+      "keywords": [
+        "access",
+        "classified",
+        "retained",
+        "audited"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "inference-serving",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Inference serving",
+      "prompt": "Give a precise explanation of Inference serving and one implication for building AI systems.",
+      "answer": "Inference serving is the production infrastructure for receiving requests, running models, applying tools or guardrails, and returning outputs reliably.",
+      "keywords": [
+        "production",
+        "requests",
+        "models",
+        "reliably"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "agentic-evaluation",
+      "level": "Expert",
+      "category": "Frontier Concepts and Strategy",
+      "type": "concept",
+      "concept": "Agentic evaluation",
+      "prompt": "Give a precise explanation of Agentic evaluation and one implication for building AI systems.",
+      "answer": "Agentic evaluation tests multi-step AI systems on goals, tool use, recovery from errors, side effects, and final outcomes.",
+      "keywords": [
+        "multi-step",
+        "tool use",
+        "errors",
+        "outcomes"
+      ],
+      "tags": [
+        "frontier",
+        "strategy"
+      ],
+      "connections": [
+        "model internals",
+        "deployment",
+        "safety"
+      ]
+    },
+    {
+      "id": "rtcf-prompt-frame",
+      "level": "Beginner",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "RTCF prompt frame",
+      "prompt": "What are the four parts of an RTCF-style prompt?",
+      "answer": "Role, task, context, and format. A strong prompt says who the model should act as, what it must do, what information it should use, and exactly how the answer should be shaped.",
+      "keywords": [
+        "role",
+        "task",
+        "context",
+        "format"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "output-format-control",
+      "level": "Beginner",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Output format control",
+      "prompt": "How do you make an AI answer easier to reuse in another tool?",
+      "answer": "Specify the exact structure: bullets, table, JSON, checklist, title length, fields, or examples. Add constraints such as 'return only valid JSON' when software will parse the answer.",
+      "keywords": [
+        "structure",
+        "JSON",
+        "fields",
+        "constraints"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "active-recall-prompt",
+      "level": "Beginner",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Active recall prompt",
+      "prompt": "Write the pattern for using AI as an active-recall tutor.",
+      "answer": "Ask the AI to quiz you one question at a time, wait for your answer, grade it against a rubric, correct gaps, and schedule the next review.",
+      "keywords": [
+        "quiz",
+        "one question",
+        "grade",
+        "schedule"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "few-shot-examples",
+      "level": "Intermediate",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Few-shot examples",
+      "prompt": "When should you use examples in a prompt?",
+      "answer": "Use examples when output style, classification boundaries, or edge cases are hard to describe in rules alone. Keep examples concise and representative.",
+      "keywords": [
+        "style",
+        "boundaries",
+        "edge cases",
+        "representative"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "prompt-decomposition",
+      "level": "Intermediate",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Prompt decomposition",
+      "prompt": "How do you prompt a model for a complex task without overloading it?",
+      "answer": "Break the work into smaller steps: define goal, gather facts, create outline, draft, critique, revise, and validate. Each step should have a clear output.",
+      "keywords": [
+        "break",
+        "steps",
+        "outline",
+        "critique",
+        "validate"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "verification-prompt",
+      "level": "Intermediate",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Verification prompt",
+      "prompt": "What should a verification prompt ask the AI to do?",
+      "answer": "Ask it to list claims, identify unsupported claims, check calculations, cite evidence, flag uncertainty, and separate facts from assumptions.",
+      "keywords": [
+        "claims",
+        "unsupported",
+        "calculations",
+        "uncertainty"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "agent-tool-prompt",
+      "level": "Advanced",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Agent tool prompt",
+      "prompt": "What must a tool-use prompt specify to reduce bad actions?",
+      "answer": "It should specify allowed tools, when to use each tool, required arguments, permission boundaries, validation checks, and when to ask for human approval.",
+      "keywords": [
+        "allowed tools",
+        "arguments",
+        "permissions",
+        "validation"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "rubric-prompting",
+      "level": "Advanced",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Rubric prompting",
+      "prompt": "Why is a rubric useful for AI outputs?",
+      "answer": "A rubric turns subjective quality into explicit criteria, enabling consistent grading, self-review, evals, and improvement loops.",
+      "keywords": [
+        "criteria",
+        "grading",
+        "self-review",
+        "evals"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "context-engineering",
+      "level": "Expert",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Context engineering",
+      "prompt": "What is context engineering?",
+      "answer": "Context engineering is designing what information, tools, memories, policies, examples, and state enter the model context so the system behaves reliably.",
+      "keywords": [
+        "information",
+        "tools",
+        "memories",
+        "policies",
+        "state"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "eval-first-prompting",
+      "level": "Expert",
+      "category": "Prompting Skill",
+      "type": "skill",
+      "concept": "Eval-first prompting",
+      "prompt": "What is eval-first prompting?",
+      "answer": "Eval-first prompting means building representative tests before optimizing prompts, so changes are measured against real use cases instead of vibes.",
+      "keywords": [
+        "tests",
+        "optimizing",
+        "measured",
+        "use cases"
+      ],
+      "tags": [
+        "prompting",
+        "practice"
+      ],
+      "connections": [
+        "evaluation",
+        "active recall"
+      ]
+    },
+    {
+      "id": "chatgpt",
+      "level": "Beginner",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "ChatGPT",
+      "prompt": "What is ChatGPT used for in an AI learning or build workflow?",
+      "answer": "AI assistant for conversation, writing, analysis, coding help, multimodal tasks, and workflow support.",
+      "keywords": [
+        "ai",
+        "assistant",
+        "for",
+        "conversation",
+        "writing"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "openai-api",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "OpenAI API",
+      "prompt": "What is OpenAI API used for in an AI learning or build workflow?",
+      "answer": "Developer platform for adding model calls, structured outputs, tools, audio, vision, and agents to applications.",
+      "keywords": [
+        "developer",
+        "platform",
+        "for",
+        "adding",
+        "model"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "claude",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Claude",
+      "prompt": "What is Claude used for in an AI learning or build workflow?",
+      "answer": "Anthropic's assistant family used for writing, coding, reasoning, document work, and tool-using workflows.",
+      "keywords": [
+        "anthropic",
+        "s",
+        "assistant",
+        "family",
+        "used"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "claude-code",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Claude Code",
+      "prompt": "What is Claude Code used for in an AI learning or build workflow?",
+      "answer": "Agentic coding tool from Anthropic for working with codebases through terminal or editor workflows.",
+      "keywords": [
+        "agentic",
+        "coding",
+        "tool",
+        "from",
+        "anthropic"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "gemini",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Gemini",
+      "prompt": "What is Gemini used for in an AI learning or build workflow?",
+      "answer": "Google's AI model and assistant ecosystem for multimodal reasoning, coding, search-connected tasks, and Workspace integrations.",
+      "keywords": [
+        "google",
+        "s",
+        "ai",
+        "model",
+        "and"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "notebooklm",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "NotebookLM",
+      "prompt": "What is NotebookLM used for in an AI learning or build workflow?",
+      "answer": "Google tool for working with sources, summaries, study guides, and grounded notes from uploaded materials.",
+      "keywords": [
+        "google",
+        "tool",
+        "for",
+        "working",
+        "with"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "perplexity",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Perplexity",
+      "prompt": "What is Perplexity used for in an AI learning or build workflow?",
+      "answer": "AI answer engine focused on web-connected research with citations and source discovery.",
+      "keywords": [
+        "ai",
+        "answer",
+        "engine",
+        "focused",
+        "on"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "github-copilot-2",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "GitHub Copilot",
+      "prompt": "What is GitHub Copilot used for in an AI learning or build workflow?",
+      "answer": "AI pair programmer integrated into GitHub and editors for suggestions, chat, and coding help.",
+      "keywords": [
+        "ai",
+        "pair",
+        "programmer",
+        "integrated",
+        "into"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "openai-codex-cli",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "OpenAI Codex CLI",
+      "prompt": "What is OpenAI Codex CLI used for in an AI learning or build workflow?",
+      "answer": "Local terminal coding agent that can inspect repositories, edit files, and run commands.",
+      "keywords": [
+        "local",
+        "terminal",
+        "coding",
+        "agent",
+        "that"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "hugging-face-hub",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Hugging Face Hub",
+      "prompt": "What is Hugging Face Hub used for in an AI learning or build workflow?",
+      "answer": "Repository ecosystem for models, datasets, demos, and ML collaboration.",
+      "keywords": [
+        "repository",
+        "ecosystem",
+        "for",
+        "models",
+        "datasets"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "google-colab",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Google Colab",
+      "prompt": "What is Google Colab used for in an AI learning or build workflow?",
+      "answer": "Hosted notebook environment for Python, data science, and GPU-backed ML experiments.",
+      "keywords": [
+        "hosted",
+        "notebook",
+        "environment",
+        "for",
+        "python"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "kaggle",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Kaggle",
+      "prompt": "What is Kaggle used for in an AI learning or build workflow?",
+      "answer": "Platform for datasets, notebooks, ML competitions, and example projects.",
+      "keywords": [
+        "platform",
+        "for",
+        "datasets",
+        "notebooks",
+        "ml"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "jupyter",
+      "level": "Beginner",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Jupyter",
+      "prompt": "What is Jupyter used for in an AI learning or build workflow?",
+      "answer": "Interactive notebook environment for code, charts, data exploration, and reproducible analysis.",
+      "keywords": [
+        "interactive",
+        "notebook",
+        "environment",
+        "for",
+        "code"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "ollama",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Ollama",
+      "prompt": "What is Ollama used for in an AI learning or build workflow?",
+      "answer": "Local model runner for using open-weight language models on your own machine.",
+      "keywords": [
+        "local",
+        "model",
+        "runner",
+        "for",
+        "using"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "lm-studio",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "LM Studio",
+      "prompt": "What is LM Studio used for in an AI learning or build workflow?",
+      "answer": "Desktop app for discovering, downloading, and running local language models.",
+      "keywords": [
+        "desktop",
+        "app",
+        "for",
+        "discovering",
+        "downloading"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "vllm",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "vLLM",
+      "prompt": "What is vLLM used for in an AI learning or build workflow?",
+      "answer": "High-throughput inference server/library for serving language models efficiently.",
+      "keywords": [
+        "high",
+        "throughput",
+        "inference",
+        "server",
+        "library"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "langsmith",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "LangSmith",
+      "prompt": "What is LangSmith used for in an AI learning or build workflow?",
+      "answer": "Observability and evaluation platform for LLM applications, especially LangChain workflows.",
+      "keywords": [
+        "observability",
+        "and",
+        "evaluation",
+        "platform",
+        "for"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "pinecone-2",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Pinecone",
+      "prompt": "What is Pinecone used for in an AI learning or build workflow?",
+      "answer": "Managed vector database for production semantic search and RAG.",
+      "keywords": [
+        "managed",
+        "vector",
+        "database",
+        "for",
+        "production"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "weaviate",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Weaviate",
+      "prompt": "What is Weaviate used for in an AI learning or build workflow?",
+      "answer": "Vector database with hybrid search and retrieval features for AI applications.",
+      "keywords": [
+        "vector",
+        "database",
+        "with",
+        "hybrid",
+        "search"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "zapier",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Zapier",
+      "prompt": "What is Zapier used for in an AI learning or build workflow?",
+      "answer": "No-code automation platform connecting apps and AI steps.",
+      "keywords": [
+        "no",
+        "code",
+        "automation",
+        "platform",
+        "connecting"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "make",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Make",
+      "prompt": "What is Make used for in an AI learning or build workflow?",
+      "answer": "Visual automation platform for building workflows across apps and APIs.",
+      "keywords": [
+        "visual",
+        "automation",
+        "platform",
+        "for",
+        "building"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "n8n",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "n8n",
+      "prompt": "What is n8n used for in an AI learning or build workflow?",
+      "answer": "Source-available workflow automation tool popular for self-hosted AI automations.",
+      "keywords": [
+        "source",
+        "available",
+        "workflow",
+        "automation",
+        "tool"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "postman",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Postman",
+      "prompt": "What is Postman used for in an AI learning or build workflow?",
+      "answer": "API development and testing tool for sending requests, documenting endpoints, and debugging integrations.",
+      "keywords": [
+        "api",
+        "development",
+        "and",
+        "testing",
+        "tool"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    },
+    {
+      "id": "docker-2",
+      "level": "Intermediate",
+      "category": "Tool Names",
+      "type": "tool",
+      "concept": "Docker",
+      "prompt": "What is Docker used for in an AI learning or build workflow?",
+      "answer": "Container platform that makes projects easier to run consistently across machines.",
+      "keywords": [
+        "container",
+        "platform",
+        "that",
+        "makes",
+        "projects"
+      ],
+      "tags": [
+        "toolname"
+      ],
+      "connections": [
+        "workflow",
+        "coding",
+        "AI tools"
+      ]
+    }
+  ],
+  "chunks": [
+    {
+      "id": "chunk-01",
+      "level": "Beginner",
+      "title": "AI vocabulary spine",
+      "goal": "Build instant recall for core terms: AI, ML, model, data, prompt, tokens, context, hallucination.",
+      "cards": [
+        "artificial-intelligence",
+        "machine-learning",
+        "model",
+        "prompt",
+        "token",
+        "context-window",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "chunk-02",
+      "level": "Beginner",
+      "title": "ML task types",
+      "goal": "Separate classification, regression, clustering, supervised, unsupervised, and reinforcement learning.",
+      "cards": [
+        "classification",
+        "regression",
+        "clustering",
+        "supervised-learning",
+        "unsupervised-learning",
+        "reinforcement-learning"
+      ]
+    },
+    {
+      "id": "chunk-03",
+      "level": "Beginner",
+      "title": "Evaluation basics",
+      "goal": "Know accuracy, precision, recall, F1, overfitting, underfitting, validation, and test sets.",
+      "cards": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1-score",
+        "overfitting",
+        "underfitting",
+        "validation-set",
+        "test-set"
+      ]
+    },
+    {
+      "id": "chunk-04",
+      "level": "Intermediate",
+      "title": "LLM architecture",
+      "goal": "Understand tokens, transformers, attention, positional encoding, pretraining, and tuning.",
+      "cards": [
+        "transformer",
+        "self-attention",
+        "multi-head-attention",
+        "positional-encoding",
+        "tokenizer",
+        "pretraining",
+        "instruction-tuning"
+      ]
+    },
+    {
+      "id": "chunk-05",
+      "level": "Intermediate",
+      "title": "RAG and retrieval",
+      "goal": "Connect embeddings, vector databases, semantic search, chunking, reranking, grounding, and citations.",
+      "cards": [
+        "embedding",
+        "vector-database",
+        "semantic-search",
+        "chunking-for-rag",
+        "reranking",
+        "rag-pipeline",
+        "grounding",
+        "citation-discipline"
+      ]
+    },
+    {
+      "id": "chunk-06",
+      "level": "Intermediate",
+      "title": "Prompting operator basics",
+      "goal": "Use RTCF, examples, decomposition, verification, and output schemas.",
+      "cards": [
+        "rtcf-prompt-frame",
+        "few-shot-examples",
+        "prompt-decomposition",
+        "verification-prompt",
+        "json-schema-output"
+      ]
+    },
+    {
+      "id": "chunk-07",
+      "level": "Advanced",
+      "title": "Agent systems",
+      "goal": "Map agents, planners, routers, state machines, memory, scratchpads, and tool prompts.",
+      "cards": [
+        "agent",
+        "planner-executor-architecture",
+        "tool-router",
+        "state-machine",
+        "semantic-memory",
+        "episodic-memory",
+        "procedural-memory",
+        "scratchpad",
+        "agent-tool-prompt"
+      ]
+    },
+    {
+      "id": "chunk-08",
+      "level": "Advanced",
+      "title": "Production reliability",
+      "goal": "Build around evals, observability, traces, fallbacks, rate limits, retries, queues, CI/CD.",
+      "cards": [
+        "observability",
+        "tracing",
+        "evaluation-harness",
+        "golden-dataset",
+        "fallback-model",
+        "rate-limiting",
+        "retry-with-backoff",
+        "queue",
+        "ci-cd"
+      ]
+    },
+    {
+      "id": "chunk-09",
+      "level": "Advanced",
+      "title": "Security and safety",
+      "goal": "Recognize prompt injection, jailbreaks, secrets, OAuth scopes, red-teaming, human review, moderation.",
+      "cards": [
+        "prompt-injection",
+        "jailbreak",
+        "secrets-management",
+        "oauth-scopes",
+        "red-teaming",
+        "human-in-the-loop",
+        "moderation"
+      ]
+    },
+    {
+      "id": "chunk-10",
+      "level": "Expert",
+      "title": "Frontier internals",
+      "goal": "Understand logits, softmax, sampling, KV cache, speculative decoding, MoE, scaling laws.",
+      "cards": [
+        "logits",
+        "softmax",
+        "top-k-sampling",
+        "top-p-sampling",
+        "kv-cache",
+        "speculative-decoding",
+        "mixture-of-experts",
+        "scaling-laws"
+      ]
+    },
+    {
+      "id": "chunk-11",
+      "level": "Expert",
+      "title": "Governance and alignment",
+      "goal": "Connect model cards, system cards, data governance, privacy, alignment, constitutional AI, and evaluations.",
+      "cards": [
+        "model-card",
+        "system-card",
+        "data-governance",
+        "differential-privacy",
+        "federated-learning",
+        "alignment",
+        "constitutional-ai",
+        "agentic-evaluation"
+      ]
+    }
+  ],
+  "promptLabs": [
+    {
+      "id": "lab-01",
+      "level": "Beginner",
+      "title": "Turn a vague prompt into a precise task",
+      "bad": "Tell me about AI.",
+      "mission": "Rewrite it so the model teaches AI foundations to a busy beginner in 15 minutes.",
+      "rubric": [
+        "Defines audience",
+        "Sets time box",
+        "Specifies output format",
+        "Requests active recall questions"
+      ],
+      "model": "Act as an AI tutor. Teach a busy beginner the 12 most important AI foundations in 15 minutes. Use a table with term, plain-English meaning, example, and one active-recall question. End with a 5-question quiz and answer key."
+    },
+    {
+      "id": "lab-02",
+      "level": "Intermediate",
+      "title": "Make a RAG answer verifiable",
+      "bad": "Answer using the docs.",
+      "mission": "Rewrite it so the answer is grounded and cites evidence.",
+      "rubric": [
+        "Requires source snippets",
+        "Separates facts from assumptions",
+        "Flags missing evidence",
+        "Avoids unsupported claims"
+      ],
+      "model": "Use only the provided documents. For each factual claim, cite the document title and section. If evidence is missing, say 'not found in sources'. Finish with assumptions, open questions, and a confidence level."
+    },
+    {
+      "id": "lab-03",
+      "level": "Intermediate",
+      "title": "Structure output for automation",
+      "bad": "Summarize these leads and tell me who to contact.",
+      "mission": "Rewrite it so another tool can parse the output.",
+      "rubric": [
+        "Valid JSON",
+        "Fields defined",
+        "Ranking criteria included",
+        "No prose outside JSON"
+      ],
+      "model": "Return only valid JSON with an array named leads. Each lead must include name, company, fit_score_0_to_100, reason, missing_info, next_action, and draft_email. Rank by fit_score descending."
+    },
+    {
+      "id": "lab-04",
+      "level": "Advanced",
+      "title": "Safe tool-use prompt",
+      "bad": "Use my tools to fix this customer issue.",
+      "mission": "Rewrite it to include permission boundaries and escalation rules.",
+      "rubric": [
+        "Lists allowed tools",
+        "Requires confirmation for irreversible actions",
+        "Logs actions",
+        "Escalates uncertainty"
+      ],
+      "model": "You may inspect CRM notes, draft replies, and create a proposed refund note. Do not send messages, issue refunds, delete data, or change account status without explicit human approval. Log each tool call, validate customer ID before action, and escalate if confidence is below 0.8."
+    },
+    {
+      "id": "lab-05",
+      "level": "Expert",
+      "title": "Eval-first optimization",
+      "bad": "Improve my prompt until it feels good.",
+      "mission": "Rewrite it so improvements are measured against a test set.",
+      "rubric": [
+        "Defines eval set",
+        "Defines metrics",
+        "Compares variants",
+        "Keeps changelog"
+      ],
+      "model": "Create 20 representative test cases first. Define pass/fail criteria for factuality, instruction following, format validity, and safety. Then propose three prompt variants, run them against the tests, summarize failures, and recommend the smallest high-confidence change."
+    }
+  ],
+  "studyPlan": [
+    {
+      "day": 1,
+      "focus": "Vocabulary spine and tool orientation",
+      "sessions": [
+        "Review chunks 1-2",
+        "Active recall on beginner terms",
+        "Install/run app locally or via GitHub Pages"
+      ]
+    },
+    {
+      "day": 2,
+      "focus": "ML task types and evaluation basics",
+      "sessions": [
+        "Chunks 2-3",
+        "Write your own examples for classification/regression/clustering",
+        "Quiz weak cards"
+      ]
+    },
+    {
+      "day": 3,
+      "focus": "Prompting foundations",
+      "sessions": [
+        "RTCF and output formats",
+        "Prompt Lab 1",
+        "Create 5 prompts for your own workflow"
+      ]
+    },
+    {
+      "day": 4,
+      "focus": "LLM internals in plain English",
+      "sessions": [
+        "Transformer, attention, tokenizer",
+        "Draw concept map",
+        "Due reviews"
+      ]
+    },
+    {
+      "day": 5,
+      "focus": "RAG and embeddings",
+      "sessions": [
+        "Chunk 5",
+        "Explain RAG from memory",
+        "Prompt Lab 2"
+      ]
+    },
+    {
+      "day": 6,
+      "focus": "Prompt engineering operator skills",
+      "sessions": [
+        "Few-shot, decomposition, verification",
+        "Prompt Lab 3",
+        "Interleaved mixed review"
+      ]
+    },
+    {
+      "day": 7,
+      "focus": "Checkpoint 1",
+      "sessions": [
+        "100-card mixed review",
+        "Feynman mode for weak concepts",
+        "Export backup"
+      ]
+    },
+    {
+      "day": 8,
+      "focus": "Agents and memory",
+      "sessions": [
+        "Chunk 7",
+        "Connect agent, tools, memory, state",
+        "Build a tiny agent spec"
+      ]
+    },
+    {
+      "day": 9,
+      "focus": "Production reliability",
+      "sessions": [
+        "Chunk 8",
+        "Design eval harness checklist",
+        "Review weak cards"
+      ]
+    },
+    {
+      "day": 10,
+      "focus": "Security and safety",
+      "sessions": [
+        "Chunk 9",
+        "Prompt injection drills",
+        "Safe automation policy"
+      ]
+    },
+    {
+      "day": 11,
+      "focus": "Tool ecosystem",
+      "sessions": [
+        "Toolname cards",
+        "Map when to use each tool",
+        "Compare local vs cloud workflows"
+      ]
+    },
+    {
+      "day": 12,
+      "focus": "Frontier internals",
+      "sessions": [
+        "Chunk 10",
+        "Teach logits/sampling/KV cache",
+        "Mixed review"
+      ]
+    },
+    {
+      "day": 13,
+      "focus": "Governance and alignment",
+      "sessions": [
+        "Chunk 11",
+        "Model/system card memory drill",
+        "Risk checklist"
+      ]
+    },
+    {
+      "day": 14,
+      "focus": "Capstone",
+      "sessions": [
+        "Design an AI learning assistant architecture",
+        "Run full quiz",
+        "Export progress and next 30-day plan"
+      ]
+    }
+  ]
+}
