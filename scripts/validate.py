@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate AI Mastery Memory OS Pro data and app files."""
+"""LEGACY validator for the optional CLI quiz data (data/cards.json). The live app is validated by scripts/validate-app.js. Validate AI Mastery Memory OS Pro data and app files."""
 from __future__ import annotations
 import json
 from pathlib import Path

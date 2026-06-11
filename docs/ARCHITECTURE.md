@@ -72,3 +72,14 @@ Each card contains:
 - Add teacher/admin decks.
 - Add richer graph visualization.
 - Add tests with Playwright if adopting a package-based build.
+
+---
+
+## 2026-06 update (Phases 1–7)
+
+- **Scheduler:** SM-2 logic replaced by `src/fsrs.js` — FSRS-6 with official default parameters; legacy progress migrates automatically (interval→stability, ease→difficulty).
+- **Data layers (load order matters):** `content.js` → `memory-ai-expert-pack.js` → `prompt-methods-v2.js` → `no-memory-review-format.js` → `webdev.js` → `fsrs.js` → `app.js` → UI enhancement layers.
+- **Architecture Web module:** `data/webdev.js` owns 36 illustrated terms + the wireframe SVG renderer (`window.ARCH_WEB`).
+- **Source of truth:** the `data/*.js` files are canonical. The old `curriculum.export.json` → `build_data.py` pipeline was removed (it was stale and would have deleted cards on rebuild). `data/cards.json` remains only for the optional Python CLI quiz.
+- **Validation gate:** `node scripts/validate-app.js` (also `npm run validate`) runs in CI before every Pages deploy — deck integrity, link integrity, FSRS sanity, asset wiring.
+- **Workflows:** single Pages workflow (`deploy-pages.yml`); the duplicate `static.yml` was removed.
