@@ -153,3 +153,168 @@ h2 { letter-spacing: -.03em; font-weight: 700; }
   .rv { opacity: 1; transform: none; transition: none; }
   .panel, .btn, .list-item, .node, .tab-btn::after, .gnode circle.core { transition: none; }
 }
+
+/* =====================================================================
+   PHASE 8B — full-surface premium transformation
+   ===================================================================== */
+
+/* --- futuristic command bar + dock navigation --- */
+.topbar.glass {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(8, 17, 31, .68);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom: 1px solid rgba(125, 211, 252, .14);
+}
+.tabs { gap: 4px; padding: 6px; border: 1px solid rgba(125, 211, 252, .14); border-radius: 18px; background: rgba(10, 20, 36, .55); }
+.tab-btn {
+  text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; font-weight: 700;
+  border-radius: 12px; border: 1px solid transparent;
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, .22), rgba(167, 139, 250, .18));
+  border-color: rgba(125, 211, 252, .45);
+  box-shadow: 0 0 22px rgba(56, 189, 248, .22), inset 0 0 14px rgba(56, 189, 248, .1);
+  color: #e0f2fe;
+}
+
+/* --- panel system: hairline gradients, corner ticks, pointer glow --- */
+.panel {
+  background: linear-gradient(165deg, rgba(23, 36, 60, .82), rgba(11, 19, 34, .92));
+  border: 1px solid rgba(125, 211, 252, .13);
+  overflow: hidden;
+}
+.panel::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%), rgba(56, 189, 248, .09), transparent 62%);
+  opacity: 0; transition: opacity .3s;
+}
+.panel:hover::before { opacity: 1; }
+.panel::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .6;
+  background:
+    linear-gradient(90deg, rgba(125, 211, 252, .8), transparent) no-repeat 14px 0 / 30px 1.5px,
+    linear-gradient(180deg, rgba(125, 211, 252, .8), transparent) no-repeat 0 14px / 1.5px 30px,
+    linear-gradient(270deg, rgba(167, 139, 250, .7), transparent) no-repeat right 14px bottom 0 / 30px 1.5px,
+    linear-gradient(0deg, rgba(167, 139, 250, .7), transparent) no-repeat right 0 bottom 14px / 1.5px 30px;
+}
+.panel.light::before, .panel.light::after { display: none; }
+.panel.light { overflow: visible; }
+.eyebrow { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(125, 211, 252, .85); }
+
+/* --- hero command center --- */
+.hero { min-height: 280px; }
+.hero h2 { font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1.05; max-width: 22ch; }
+.orbital {
+  position: absolute; border: 1px solid rgba(125, 211, 252, .16); border-radius: 50%;
+  pointer-events: none; z-index: 0;
+}
+.orbital.o1 { width: 430px; height: 430px; right: -170px; top: -170px; animation: orbit 70s linear infinite; }
+.orbital.o2 { width: 260px; height: 260px; right: -60px; top: -50px; border-color: rgba(167, 139, 250, .2); animation: orbit 110s linear infinite reverse; }
+.orbital::after {
+  content: ''; position: absolute; top: -3.5px; left: 50%; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 14px var(--accent);
+}
+.orbital.o2::after { background: var(--accent-2); box-shadow: 0 0 14px var(--accent-2); }
+@keyframes orbit { to { transform: rotate(360deg); } }
+.hero > *:not(.orbital) { position: relative; z-index: 1; }
+
+/* --- HUD stats --- */
+.stat {
+  position: relative; background: rgba(9, 18, 33, .75);
+  border: 1px solid rgba(125, 211, 252, .13);
+}
+.stat::before { content: ''; position: absolute; top: 0; left: 16px; width: 36px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
+.stat strong { font-family: 'Space Grotesk', sans-serif; font-size: 1.85rem; letter-spacing: -.02em; }
+.stat span { text-transform: uppercase; letter-spacing: .12em; font-size: .64rem; }
+
+/* --- mastery rings --- */
+.mastery-ring { position: relative; display: grid; place-items: center; }
+.mastery-ring .track { stroke: rgba(148, 163, 184, .16); fill: none; }
+.mastery-ring .fill {
+  stroke: var(--accent); fill: none; stroke-linecap: round;
+  transform: rotate(-90deg); transform-box: fill-box; transform-origin: center;
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, .55));
+  transition: stroke-dashoffset .9s cubic-bezier(.22, .9, .24, 1);
+}
+.mastery-ring strong { position: absolute; font-family: 'Space Grotesk', sans-serif; font-size: .82rem; }
+.ring-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.ring-cell {
+  display: grid; justify-items: center; gap: 4px; padding: 12px 14px; cursor: pointer;
+  background: rgba(9, 18, 33, .55); border: 1px solid rgba(125, 211, 252, .14); border-radius: 16px;
+  color: var(--text); transition: transform .16s, border-color .16s, box-shadow .16s;
+}
+.ring-cell:hover { transform: translateY(-2px); border-color: rgba(125, 211, 252, .5); box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
+.ring-cell.rec { border-color: rgba(56, 189, 248, .55); box-shadow: 0 0 24px rgba(56, 189, 248, .18); }
+.ring-cell.rec .mastery-ring::after {
+  content: ''; position: absolute; inset: -5px; border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, .5); animation: nodePulse 2.4s ease-in-out infinite;
+}
+
+/* --- knowledge nodes (concept chips) --- */
+.knowledge-node { position: relative; padding-left: 22px !important; }
+.knowledge-node::before {
+  content: ''; position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+  width: 6.5px; height: 6.5px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 9px rgba(56, 189, 248, .8);
+}
+.knowledge-node.active::before { background: #fff; box-shadow: 0 0 10px #fff; }
+
+/* --- review stage: spatial learning surface --- */
+.review-stage { position: relative; }
+.review-stage textarea { background: rgba(7, 14, 27, .72); border-color: rgba(125, 211, 252, .2); font-size: 1rem; }
+.review-stage .confidence-block { border-color: rgba(125, 211, 252, .3); background: rgba(56, 189, 248, .05); }
+.flash-question h2, .review-stage h2 { font-size: clamp(1.25rem, 2.6vw, 1.7rem); }
+
+/* --- exploratory knowledge maps (curriculum / glossary) --- */
+.map-list { position: relative; padding-left: 18px; }
+.map-list .list-item { position: relative; }
+.map-list .list-item::before {
+  content: ''; position: absolute; left: -18px; top: -12px; bottom: -12px; width: 1.5px;
+  background: linear-gradient(180deg, rgba(125, 211, 252, .35), rgba(167, 139, 250, .14));
+}
+.map-list .list-item::after {
+  content: ''; position: absolute; left: -22px; top: 24px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 9px rgba(56, 189, 248, .75);
+}
+.map-list .list-item:first-child::before { top: 16px; }
+.map-list .list-item:last-child::before { bottom: auto; height: 40px; }
+.map-list .list-item:hover::after { background: #fff; box-shadow: 0 0 12px #fff; }
+
+/* --- prompt lab studio --- */
+textarea, .input, select { transition: border-color .18s, box-shadow .18s; }
+textarea:focus, .input:focus, select:focus { border-color: rgba(56, 189, 248, .55); box-shadow: 0 0 0 3px rgba(56, 189, 248, .14); outline: none; }
+.panel pre, .panel code, .prompt-output, .panel textarea { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace; }
+
+/* --- progress bars: charged --- */
+.progress-bar span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 0 12px rgba(56, 189, 248, .45); }
+
+/* --- reveal (scroll-triggered) --- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s cubic-bezier(.22,.9,.24,1), transform .55s cubic-bezier(.22,.9,.24,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* --- mobile polish --- */
+@media (max-width: 560px) {
+  .orbital { display: none; }
+  .hero h2 { font-size: 1.45rem; }
+  .ring-row { gap: 10px; }
+  .ring-cell { padding: 10px; flex: 1 1 44%; }
+  .stat strong { font-size: 1.5rem; }
+  .map-list { padding-left: 14px; }
+  .tab-btn { letter-spacing: .04em; }
+}
+
+/* --- reduced motion: total shutdown --- */
+@media (prefers-reduced-motion: reduce) {
+  .orbital, .ring-cell.rec .mastery-ring::after { animation: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .panel::before { transition: none; }
+  .mastery-ring .fill { transition: none; }
+}
+
+/* --- curriculum/glossary as exploratory concept maps --- */
+.concept-card { position: relative; border-left: 2px solid hsl(var(--hue, 200) 70% 60% / .65) !important; padding-left: 24px !important; }
+.concept-card.knowledge-node::before { left: 10px; top: 22px; transform: none; background: hsl(var(--hue, 200) 72% 62%); box-shadow: 0 0 10px hsl(var(--hue, 200) 72% 62% / .8); }
+.concept-card:hover { border-left-color: hsl(var(--hue, 200) 80% 70%) !important; }
+td.knowledge-node { padding-left: 26px !important; }
+td.knowledge-node::before { left: 10px; }

@@ -214,7 +214,7 @@
 
     return `\n      ${renderNextAction()}
       <section class="grid two">
-        <div class="panel hero">
+        <div class="panel hero command-hero"><span class="orbital o1" aria-hidden="true"></span><span class="orbital o2" aria-hidden="true"></span>
           <span class="eyebrow">Evidence-informed AI learning system</span>
           <h2>Compress foundational AI knowledge into active recall, not passive reading.</h2>
           <p>This app trains concepts, terminology, tool names, prompting, RAG, agents, evaluation, safety, and production system thinking through a spaced repetition workflow.</p>
@@ -278,7 +278,7 @@
   function miniCard(card) {
     const p = progressFor(card.id);
     return `
-      <div class="mini-card">
+      <div class="mini-card knowledge-node concept-card" style="--hue:${graphHue(card.category)}">
         <div class="meta"><span class="badge dark">${escapeHTML(card.level)}</span><span class="badge dark">${escapeHTML(cardStatus(card))}</span></div>
         <h4>${escapeHTML(card.title)}</h4>
         <p>${escapeHTML(card.front)}</p>
@@ -350,7 +350,7 @@
     if (!state.queue.length || state.queueIndex >= state.queue.length) {
       const count = filteredCards().length;
       return `
-        <section class="panel">
+        <section class="panel review-stage"><span class="orbital o2" aria-hidden="true"></span>
           <span class="eyebrow">Active recall + spaced repetition</span>
           <h2>Review queue</h2>
           <p>Write your own answer first. Reveal only after retrieval effort, then grade honestly. This is the core of the system.</p>
@@ -447,7 +447,7 @@
           <h4>Hit terms</h4>
           <div class="graph">${score.hit.map((k) => `<span class="node active">${escapeHTML(k)}</span>`).join('') || '<span class="muted">No key terms yet.</span>'}</div>
           <h4>Missing terms</h4>
-          <div class="graph">${score.missing.slice(0, 16).map((k) => `<span class="node">${escapeHTML(k)}</span>`).join('') || '<span class="muted">Looks covered. Now check if it is accurate.</span>'}</div>
+          <div class="graph">${score.missing.slice(0, 16).map((k) => `<span class="node knowledge-node">${escapeHTML(k)}</span>`).join('') || '<span class="muted">Looks covered. Now check if it is accurate.</span>'}</div>
           <hr style="border-color:var(--line);border-style:solid;border-width:1px 0 0;margin:18px 0">
           ${renderFilters()}
         </div>
@@ -471,7 +471,7 @@
           <p>Build a systems view. AI expertise comes from knowing how terms connect in workflows.</p>
           ${renderFilters()}
           <div class="graph">
-            ${cards.map((c) => `<button class="node ${c.id === card.id ? 'active' : ''}" data-action="select-connect" data-id="${c.id}">${escapeHTML(c.title)}</button>`).join('')}
+            ${cards.map((c) => `<button class="node knowledge-node ${c.id === card.id ? 'active' : ''}" data-action="select-connect" data-id="${c.id}">${escapeHTML(c.title)}</button>`).join('')}
           </div>
         </div>
         <div class="panel light">
@@ -607,7 +607,7 @@
           <button class="btn ${st.mode === 'tree' ? 'primary' : 'ghost'}" data-action="graph-mode" data-mode="tree">Skill tree</button>
         </div>
         <div class="graph-legend">
-          ${cats.map((c) => `<button class="node ${c === st.cat ? 'active' : ''}" data-action="graph-cat" data-cat="${escapeHTML(c)}">${escapeHTML(c)}</button>`).join('')}
+          ${cats.map((c) => `<button class="node knowledge-node ${c === st.cat ? 'active' : ''}" data-action="graph-cat" data-cat="${escapeHTML(c)}">${escapeHTML(c)}</button>`).join('')}
         </div>
         <div class="graph-stage">
           <svg viewBox="0 0 1000 700" role="img" aria-label="Interactive concept graph">
@@ -637,7 +637,7 @@
             <button class="btn primary" data-action="review-card" data-id="${focusCard.id}">Review this card</button>
             <button class="btn ghost" data-action="graph-node" data-id="">Clear focus</button>
           </div>
-          ${neighbors.size ? `<h4 style="margin:10px 0 6px">Connected concepts</h4><div class="graph">${[...neighbors].map((id) => { const n = cardById(id); return n ? `<button class="node" data-action="graph-node" data-id="${id}">${escapeHTML(n.title)}</button>` : ''; }).join('')}</div>` : ''}
+          ${neighbors.size ? `<h4 style="margin:10px 0 6px">Connected concepts</h4><div class="graph">${[...neighbors].map((id) => { const n = cardById(id); return n ? `<button class="node knowledge-node" data-action="graph-node" data-id="${id}">${escapeHTML(n.title)}</button>` : ''; }).join('')}</div>` : ''}
         </div>` : '<p class="small muted" style="margin-top:10px">Tap any node to inspect it and light up its connections.</p>'}
       </section>`;
   }
@@ -696,6 +696,12 @@
       </section>`;
   }
 
+  function masteryRing(pct, size) {
+    const r = (size - 12) / 2;
+    const c = 2 * Math.PI * r;
+    return `<span class="mastery-ring" style="width:${size}px;height:${size}px"><svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle class="track" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-width="6"/><circle class="fill" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-width="6" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${(c * (1 - pct / 100)).toFixed(1)}"/></svg><strong>${pct}%</strong></span>`;
+  }
+
   function tierMastery() {
     return DATA.levels.map((level) => {
       const cs = DATA.cards.filter((c) => c.level === level);
@@ -723,8 +729,8 @@
           <span class="spacer"></span>
           <span class="small muted">Focus tier: <strong>${escapeHTML(rec.level)}</strong> (${rec.pct}% solid — unlock the next tier at 60%)</span>
         </div>
-        <div class="graph" style="margin-top:12px">
-          ${mastery.map((m) => `<button class="node ${m.level === rec.level ? 'active' : ''}" data-action="focus-tier" data-level="${m.level}">${escapeHTML(m.level)} · ${m.pct}%</button>`).join('')}
+        <div class="ring-row" style="margin-top:16px">
+          ${mastery.map((m) => `<button class="ring-cell ${m.level === rec.level ? 'rec' : ''}" data-action="focus-tier" data-level="${m.level}">${masteryRing(m.pct, 62)}<span class="small" style="font-weight:800">${escapeHTML(m.level)}</span><span class="small muted">${m.solid}/${m.total} solid</span></button>`).join('')}
         </div>
       </section>`;
   }
@@ -807,7 +813,7 @@
             ${conf.map((c) => `<tr><td>${confName[c.level]}</td><td>${c.n}</td><td>${c.acc == null ? '—' : c.acc + '%'}</td></tr>`).join('')}
           </table></div>
           <h3 style="margin-top:18px">Card states</h3>
-          <div class="graph">${Object.entries(statuses).map(([k, v]) => `<span class="node">${k}: ${v}</span>`).join('')}</div>
+          <div class="graph">${Object.entries(statuses).map(([k, v]) => `<span class="node knowledge-node">${k}: ${v}</span>`).join('')}</div>
           <h3 style="margin-top:18px">Tier mastery (progressive overload)</h3>
           <div class="list">
             ${mastery.map((m) => `<div class="list-item"><strong>${escapeHTML(m.level)}</strong> — ${m.solid}/${m.total} solid (stability ≥ 7 days)<div class="progress-bar" style="--w:${m.pct}%;margin-top:8px"><span></span></div></div>`).join('')}
@@ -876,7 +882,7 @@
             <span class="small muted">Due: ${fmtDate(p.due)} · Reviews: ${p.reviews}</span>
           </div>
           <h3>Related concepts</h3>
-          <div class="graph">${related.map((r) => `<button class="node" data-action="aw-select" data-id="${r.id}">${escapeHTML(r.title)}</button>`).join('')}</div>
+          <div class="graph">${related.map((r) => `<button class="node knowledge-node" data-action="aw-select" data-id="${r.id}">${escapeHTML(r.title)}</button>`).join('')}</div>
           <p class="small muted" style="margin-top:12px">Practice: ${escapeHTML(term.practice)}</p>
         </div>
       </section>
@@ -989,7 +995,7 @@
           <h3>Safe scope note</h3>
           <div class="warning">The original wording included “AI worm”. This curriculum treats that as likely “AI work/workflow”. AI worms are included only as a defensive security concept: no malware-building steps, propagation instructions, or exploitation playbooks.</div>
           <h3 style="margin-top:18px">Source notes</h3>
-          <div class="list">${DATA.sourceNotes.slice(0, 5).map((s) => `<div class="list-item"><strong>${escapeHTML(s.name)}</strong><p>${escapeHTML(s.note)}</p></div>`).join('')}</div>
+          <div class="list map-list">${DATA.sourceNotes.slice(0, 5).map((s) => `<div class="list-item"><strong>${escapeHTML(s.name)}</strong><p>${escapeHTML(s.note)}</p></div>`).join('')}</div>
         </div>
       </section>
     `;
@@ -1033,7 +1039,7 @@
             <tbody>
               ${terms.map((g) => {
                 const card = DATA.cards.find((c) => c.title === g.term);
-                return `<tr><td><strong>${escapeHTML(g.term)}</strong></td><td>${escapeHTML(g.level)}</td><td>${escapeHTML(g.category)}</td><td>${escapeHTML(g.definition)}</td><td>${card ? `<button class="btn ghost" data-action="review-card" data-id="${card.id}">Review</button>` : ''}</td></tr>`;
+                return `<tr><td class="knowledge-node"><strong>${escapeHTML(g.term)}</strong></td><td>${escapeHTML(g.level)}</td><td>${escapeHTML(g.category)}</td><td>${escapeHTML(g.definition)}</td><td>${card ? `<button class="btn ghost" data-action="review-card" data-id="${card.id}">Review</button>` : ''}</td></tr>`;
               }).join('')}
             </tbody>
           </table>
@@ -1050,7 +1056,7 @@
           <span class="eyebrow">Local-first settings</span>
           <h2>Settings and backup</h2>
           <p>Your progress is saved in this browser's localStorage. Export regularly if you move devices or clear browser data.</p>
-          <div class="list">
+          <div class="list map-list">
             <label class="list-item"><strong>New cards per queue</strong><input class="input" type="number" min="1" max="60" data-setting="dailyNew" value="${state.dailyNew}" /></label>
             <label class="list-item"><strong>Focus minutes</strong><input class="input" type="number" min="5" max="120" data-setting="focusMinutes" value="${state.timer.focusMinutes}" /></label>
             <label class="list-item"><strong>Break minutes</strong><input class="input" type="number" min="1" max="45" data-setting="breakMinutes" value="${state.timer.breakMinutes}" /></label>

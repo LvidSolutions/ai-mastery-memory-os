@@ -10,9 +10,9 @@
   function mountAmbient() {
     if (document.querySelector('.amb-a')) return;
     const a = document.createElement('div');
-    a.className = 'amb amb-a';
+    a.className = 'amb amb-a parallax';
     const b = document.createElement('div');
-    b.className = 'amb amb-b';
+    b.className = 'amb amb-b parallax';
     document.body.prepend(b);
     document.body.prepend(a);
     if (reduced) return;
@@ -32,7 +32,12 @@
   /* --- scroll-triggered reveals --- */
   let io = null;
   function observeReveals(root) {
-    if (reduced || !('IntersectionObserver' in window)) return;
+    if (reduced) return;
+    const targets = root.querySelectorAll('.panel .list-item, .panel .stat, .aw-item, .prompt-method-card, .card-grid > *');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach((el) => el.classList.add('reveal', 'in'));
+      return;
+    }
     if (!io) {
       io = new IntersectionObserver((entries) => {
         for (const e of entries) {
@@ -40,11 +45,11 @@
         }
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
     }
-    root.querySelectorAll('.panel .list-item, .panel .stat, .aw-item, .prompt-method-card').forEach((el, i) => {
-      if (el.classList.contains('rv')) return;
+    targets.forEach((el) => {
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal');
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.92) return; // already visible: no hidden state
-      el.classList.add('rv');
+      if (r.top < window.innerHeight * 0.92) { el.classList.add('in'); return; }
       io.observe(el);
     });
   }
@@ -101,9 +106,27 @@
   }
 
   let booted = false;
+  function glowTrack() {
+    let raf = false;
+    document.addEventListener('pointermove', (e) => {
+      if (raf) return;
+      raf = true;
+      requestAnimationFrame(() => {
+        raf = false;
+        const panel = e.target && e.target.closest ? e.target.closest('.panel') : null;
+        if (!panel) return;
+        const r = panel.getBoundingClientRect();
+        panel.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        panel.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
+    }, { passive: true });
+  }
+
   function boot() {
     if (booted) return;
     booted = true;
+    document.body.classList.add('premium');
+    glowTrack();
     mountAmbient();
     const app = document.getElementById('app');
     if (app) {

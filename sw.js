@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-pro-v7-0-premium';
+const CACHE = 'ai-mastery-memory-os-pro-v7-1-premium-full';
 const ASSETS = [
   './',
   './index.html',
