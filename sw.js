@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-pro-v4-0-fsrs';
+const CACHE = 'ai-mastery-memory-os-pro-v5-0-promptlab';
 const ASSETS = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ const ASSETS = [
   './data/cards.json',
   './data/webdev.js',
   './src/fsrs.js',
+  './data/prompt-methods-v2.js',
   './manifest.webmanifest'
 ];
 
