@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-pro-v3-0-archweb';
+const CACHE = 'ai-mastery-memory-os-pro-v4-0-fsrs';
 const ASSETS = [
   './',
   './index.html',
@@ -12,6 +12,7 @@ const ASSETS = [
   './data/dual-coding-aids.js',
   './data/cards.json',
   './data/webdev.js',
+  './src/fsrs.js',
   './manifest.webmanifest'
 ];
 

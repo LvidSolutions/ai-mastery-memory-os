@@ -12,6 +12,7 @@
     ['reword', 'Reword'],
     ['connections', 'Connect'],
     ['archweb', 'Arch Web'],
+    ['analytics', 'Analytics'],
     ['promptlab', 'Prompt Lab'],
     ['curriculum', 'Curriculum'],
     ['glossary', 'Glossary'],
@@ -38,6 +39,10 @@
       running: false,
       totalFocusSeconds: 0
     },
+    desiredRetention: 0.9,
+    interleave: true,
+    confidence: null,
+    log: [],
     selectedSprint: 'sprint-7',
     dailyNew: 18,
     lastOpened: Date.now()
@@ -123,6 +128,7 @@
         answers: []
       };
     }
+    if (window.FSRS) window.FSRS.migrate(state.progress[id]);
     return state.progress[id];
   }
 
@@ -131,8 +137,8 @@
     const due = p.due <= Date.now();
     if (p.reviews === 0) return 'New';
     if (due) return 'Due';
-    if (p.reps >= 4 && p.interval >= 14 && p.ease >= 2.35) return 'Mastered';
-    if (p.lapses > 0 || p.ease < 2.05 || p.lastRating === 1) return 'Weak';
+    if (p.state === 'relearning' || (p.difficulty || 0) >= 7.5 || (p.lapses > 1 && (p.stability || 0) < 7)) return 'Weak';
+    if ((p.stability || 0) >= 21) return 'Mastered';
     return 'Learning';
   }
 
@@ -178,6 +184,7 @@
       reword: renderReword,
       connections: renderConnections,
       archweb: renderArchWeb,
+      analytics: renderAnalytics,
       promptlab: renderPromptLab,
       curriculum: renderCurriculum,
       glossary: renderGlossary,
@@ -199,7 +206,7 @@
       .filter((card) => ['Weak', 'Due'].includes(cardStatus(card)))
       .slice(0, 6);
 
-    return `
+    return `\n      ${renderNextAction()}
       <section class="grid two">
         <div class="panel hero">
           <span class="eyebrow">Evidence-informed AI learning system</span>
@@ -269,7 +276,7 @@
         <div class="meta"><span class="badge dark">${escapeHTML(card.level)}</span><span class="badge dark">${escapeHTML(cardStatus(card))}</span></div>
         <h4>${escapeHTML(card.title)}</h4>
         <p>${escapeHTML(card.front)}</p>
-        <p class="small muted">Due: ${fmtDate(p.due)} · Ease: ${p.ease.toFixed(2)}</p>
+        <p class="small muted">Due: ${fmtDate(p.due)} · Stability: ${(p.stability || 0).toFixed(1)}d · Difficulty: ${(p.difficulty || 0).toFixed(1)}</p>
         <button class="btn ghost" data-action="review-card" data-id="${card.id}">Review this</button>
       </div>
     `;
@@ -313,14 +320,20 @@
     `;
   }
 
-  function buildQueue() {
+  function buildQueue(mode) {
     const cards = filteredCards();
-    const due = cards.filter((card) => progressFor(card.id).reviews > 0 && progressFor(card.id).due <= Date.now());
-    const failedLearning = cards.filter((card) => progressFor(card.id).reviews > 0 && progressFor(card.id).reps === 0 && progressFor(card.id).due <= Date.now());
-    const fresh = cards.filter((card) => progressFor(card.id).reviews === 0).slice(0, state.dailyNew);
-    const weak = cards.filter((card) => cardStatus(card) === 'Weak' && progressFor(card.id).due > Date.now()).slice(0, 8);
-    const ids = unique([...due, ...failedLearning, ...fresh, ...weak].map((card) => card.id));
-    state.queue = shuffle(ids);
+    let ids;
+    if (mode === 'weak') {
+      ids = cards.filter((card) => cardStatus(card) === 'Weak' || progressFor(card.id).state === 'relearning').slice(0, 20).map((card) => card.id);
+    } else {
+      const due = cards.filter((card) => progressFor(card.id).reviews > 0 && progressFor(card.id).due <= Date.now());
+      const fresh = cards.filter((card) => progressFor(card.id).reviews === 0).slice(0, state.dailyNew);
+      const weak = cards.filter((card) => cardStatus(card) === 'Weak' && progressFor(card.id).due > Date.now()).slice(0, 8);
+      ids = unique([...due, ...fresh, ...weak].map((card) => card.id));
+    }
+    state.queue = state.interleave === false
+      ? ids.slice().sort((a, b) => cardById(a).category.localeCompare(cardById(b).category))
+      : shuffle(ids);
     state.queueIndex = 0;
     state.showAnswer = false;
     state.currentAnswer = '';
@@ -356,7 +369,7 @@
           <span class="badge dark">${escapeHTML(card.level)}</span>
           <span class="badge dark">${escapeHTML(card.category)}</span>
           <span class="spacer"></span>
-          <span class="small muted">Due: ${fmtDate(p.due)} · Reviews: ${p.reviews} · Ease: ${p.ease.toFixed(2)}</span>
+          <span class="small muted">Due: ${fmtDate(p.due)} · Reviews: ${p.reviews} · Stability: ${(p.stability || 0).toFixed(1)}d · Difficulty: ${(p.difficulty || 0).toFixed(1)}</span>
         </div>
         <div class="progress-bar" style="--w:${percent}%"><span></span></div>
         <article class="flashcard">
@@ -369,7 +382,7 @@
           <p><strong>Question:</strong> ${escapeHTML(card.front)}</p>
           <label for="answer"><strong>Your answer before reveal</strong></label>
           <textarea id="answer" data-field="currentAnswer" placeholder="Write from memory. Bullet points are fine.">${escapeHTML(state.currentAnswer)}</textarea>
-          ${state.showAnswer ? renderAnswer(card) : `<div class="row"><button class="btn primary" data-action="reveal-answer">Reveal answer</button><span class="small muted">Shortcut: <span class="kbd">Space</span> outside textarea</span></div>`}
+          ${state.showAnswer ? renderAnswer(card) : `<div class="confidence-block"><p class="small muted" style="margin:0 0 8px"><strong>Calibrate first:</strong> how confident are you in your answer?</p><div class="row"><button class="btn bad" data-action="confidence" data-level="1">No idea</button><button class="btn warn" data-action="confidence" data-level="2">Think so</button><button class="btn good" data-action="confidence" data-level="3">Certain</button><button class="btn ghost" data-action="reveal-answer">Just reveal</button></div><span class="small muted">Shortcut: <span class="kbd">Space</span> outside textarea</span></div>`}
         </article>
       </section>
     `;
@@ -385,12 +398,13 @@
         <p><strong>Practice:</strong> ${escapeHTML(card.practice)}</p>
         <p><strong>Connections:</strong> ${card.connections.map(escapeHTML).join(' · ')}</p>
       </div>
-      <div class="row" style="margin-top:14px">
-        <button class="btn bad" data-action="grade" data-rating="1">Again · 10m</button>
-        <button class="btn warn" data-action="grade" data-rating="3">Hard</button>
-        <button class="btn good" data-action="grade" data-rating="4">Good</button>
-        <button class="btn purple" data-action="grade" data-rating="5">Easy</button>
-      </div>
+      ${(() => { const pv = window.FSRS.preview(progressFor(card.id), Date.now(), state.desiredRetention || 0.9); return `
+      <div class="row grade-row" style="margin-top:14px">
+        <button class="btn bad" data-action="grade" data-rating="1">Again · ${pv[1]}</button>
+        <button class="btn warn" data-action="grade" data-rating="2">Hard · ${pv[2]}</button>
+        <button class="btn good" data-action="grade" data-rating="3">Good · ${pv[3]}</button>
+        <button class="btn purple" data-action="grade" data-rating="4">Easy · ${pv[4]}</button>
+      </div>`; })()}
     `;
   }
 
@@ -478,6 +492,127 @@
     `;
   }
 
+
+
+  function tierMastery() {
+    return DATA.levels.map((level) => {
+      const cs = DATA.cards.filter((c) => c.level === level);
+      const solid = cs.filter((c) => (progressFor(c.id).stability || 0) >= 7).length;
+      return { level, total: cs.length, solid, pct: cs.length ? Math.round((solid / cs.length) * 100) : 0 };
+    });
+  }
+
+  function renderNextAction() {
+    const now = Date.now();
+    const due = DATA.cards.filter((c) => { const p = progressFor(c.id); return p.reviews > 0 && p.due <= now; }).length;
+    const weak = DATA.cards.filter((c) => cardStatus(c) === 'Weak').length;
+    const mastery = tierMastery();
+    const rec = mastery.find((m) => m.pct < 60) || mastery[mastery.length - 1];
+    let cta;
+    if (due > 0) cta = `<button class="btn primary" data-action="build-queue">Review ${due} due card${due === 1 ? '' : 's'}</button>`;
+    else if (weak > 0) cta = `<button class="btn primary" data-action="build-weak-queue">Drill ${weak} weak card${weak === 1 ? '' : 's'}</button>`;
+    else cta = `<button class="btn primary" data-action="focus-tier" data-level="${rec.level}">Learn new ${rec.level} cards</button>`;
+    return `
+      <section class="panel" style="margin-bottom:18px">
+        <span class="eyebrow">Recommended next action</span>
+        <div class="row" style="margin-top:10px">
+          ${cta}
+          ${weak > 0 && due > 0 ? `<button class="btn ghost" data-action="build-weak-queue">Drill weak (${weak})</button>` : ''}
+          <span class="spacer"></span>
+          <span class="small muted">Focus tier: <strong>${escapeHTML(rec.level)}</strong> (${rec.pct}% solid — unlock the next tier at 60%)</span>
+        </div>
+        <div class="graph" style="margin-top:12px">
+          ${mastery.map((m) => `<button class="node ${m.level === rec.level ? 'active' : ''}" data-action="focus-tier" data-level="${m.level}">${escapeHTML(m.level)} · ${m.pct}%</button>`).join('')}
+        </div>
+      </section>`;
+  }
+
+  function svgBars(values, labels) {
+    const max = Math.max(1, ...values);
+    const n = values.length;
+    const bw = 200 / n;
+    const bars = values.map((v, i) => {
+      const h = Math.round((v / max) * 64);
+      return `<rect class="bar" x="${(i * bw + bw * 0.18).toFixed(1)}" y="${72 - h}" width="${(bw * 0.64).toFixed(1)}" height="${Math.max(h, 1)}" rx="1.6"/>` +
+        (v ? `<text class="bar-v" x="${(i * bw + bw * 0.5).toFixed(1)}" y="${68 - h}" text-anchor="middle">${v}</text>` : '');
+    }).join('');
+    const labs = labels.map((l, i) => `<text class="bar-l" x="${(i * bw + bw * 0.5).toFixed(1)}" y="84" text-anchor="middle">${l}</text>`).join('');
+    return `<svg class="bars" viewBox="0 0 200 88" role="img">${bars}${labs}</svg>`;
+  }
+
+  function renderAnalytics() {
+    const now = Date.now();
+    const log = state.log || [];
+    const dayKey = (t) => new Date(t).toISOString().slice(0, 10);
+    const dayCounts = [];
+    const dayLabels = [];
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(now - i * DAY);
+      dayCounts.push(log.filter((e) => dayKey(e.t) === d.toISOString().slice(0, 10)).length);
+      dayLabels.push(i % 2 ? '' : String(d.getDate()));
+    }
+    const recent = log.slice(-100);
+    const retention = recent.length ? Math.round((recent.filter((e) => e.g >= 2).length / recent.length) * 100) : null;
+    let streak = 0;
+    for (let i = 0; i < 365; i++) {
+      const k = dayKey(now - i * DAY);
+      if (log.some((e) => dayKey(e.t) === k)) streak++;
+      else if (i > 0) break;
+    }
+    const forecast = [];
+    const fLabels = [];
+    for (let d = 0; d < 7; d++) {
+      const start = now + (d === 0 ? -1e15 : d * DAY);
+      const end = now + (d + 1) * DAY;
+      forecast.push(DATA.cards.filter((c) => { const p = state.progress[c.id]; return p && p.reviews > 0 && p.due > (d === 0 ? 0 : start) && p.due <= end; }).length);
+      fLabels.push(d === 0 ? 'now' : '+' + d + 'd');
+    }
+    const conf = [1, 2, 3].map((level) => {
+      const es = log.filter((e) => e.c === level);
+      return { level, n: es.length, acc: es.length ? Math.round((es.filter((e) => e.g >= 2).length / es.length) * 100) : null };
+    });
+    const confName = { 1: 'No idea', 2: 'Think so', 3: 'Certain' };
+    const statuses = { New: 0, Due: 0, Learning: 0, Weak: 0, Mastered: 0 };
+    let sSum = 0, dSum = 0, reviewed = 0;
+    DATA.cards.forEach((c) => {
+      statuses[cardStatus(c)] = (statuses[cardStatus(c)] || 0) + 1;
+      const p = state.progress[c.id];
+      if (p && p.reviews > 0) { reviewed++; sSum += p.stability || 0; dSum += p.difficulty || 0; }
+    });
+    const mastery = tierMastery();
+    return `
+      ${renderNextAction()}
+      <section class="grid two">
+        <div class="panel">
+          <span class="eyebrow">Memory analytics · FSRS-6</span>
+          <h2>How your memory is doing</h2>
+          <div class="stat-grid">
+            <div class="stat"><strong>${retention == null ? '—' : retention + '%'}</strong><span>True retention (last ${recent.length || 0} reviews)</span></div>
+            <div class="stat"><strong>${streak}</strong><span>Day streak</span></div>
+            <div class="stat"><strong>${reviewed ? (sSum / reviewed).toFixed(1) + 'd' : '—'}</strong><span>Avg stability</span></div>
+            <div class="stat"><strong>${reviewed ? (dSum / reviewed).toFixed(1) : '—'}</strong><span>Avg difficulty (1–10)</span></div>
+          </div>
+          <h3 style="margin-top:18px">Reviews per day (last 14 days)</h3>
+          ${svgBars(dayCounts, dayLabels)}
+          <h3>Due forecast (next 7 days)</h3>
+          ${svgBars(forecast, fLabels)}
+        </div>
+        <div class="panel">
+          <h3>Calibration — confidence vs. accuracy</h3>
+          <p class="small muted">Well-calibrated learners are accurate when certain and humble when not. Big gaps mean you are fooling yourself — the most expensive learning error.</p>
+          <div class="table-wrap"><table>
+            <tr><th>You said</th><th>Reviews</th><th>Actually recalled</th></tr>
+            ${conf.map((c) => `<tr><td>${confName[c.level]}</td><td>${c.n}</td><td>${c.acc == null ? '—' : c.acc + '%'}</td></tr>`).join('')}
+          </table></div>
+          <h3 style="margin-top:18px">Card states</h3>
+          <div class="graph">${Object.entries(statuses).map(([k, v]) => `<span class="node">${k}: ${v}</span>`).join('')}</div>
+          <h3 style="margin-top:18px">Tier mastery (progressive overload)</h3>
+          <div class="list">
+            ${mastery.map((m) => `<div class="list-item"><strong>${escapeHTML(m.level)}</strong> — ${m.solid}/${m.total} solid (stability ≥ 7 days)<div class="progress-bar" style="--w:${m.pct}%;margin-top:8px"><span></span></div></div>`).join('')}
+          </div>
+        </div>
+      </section>`;
+  }
 
   function awTerm(id) {
     const AW = window.ARCH_WEB;
@@ -717,6 +852,8 @@
             <label class="list-item"><strong>New cards per queue</strong><input class="input" type="number" min="1" max="60" data-setting="dailyNew" value="${state.dailyNew}" /></label>
             <label class="list-item"><strong>Focus minutes</strong><input class="input" type="number" min="5" max="120" data-setting="focusMinutes" value="${state.timer.focusMinutes}" /></label>
             <label class="list-item"><strong>Break minutes</strong><input class="input" type="number" min="1" max="45" data-setting="breakMinutes" value="${state.timer.breakMinutes}" /></label>
+            <label class="list-item"><strong>Desired retention: ${Math.round((state.desiredRetention || 0.9) * 100)}%</strong><input class="input" type="range" min="80" max="95" step="1" data-setting="desiredRetention" value="${Math.round((state.desiredRetention || 0.9) * 100)}" /><span class="small muted">FSRS-6 scheduler. Higher = shorter intervals, more reviews, stronger memory. 90% is the evidence-based default.</span></label>
+            <label class="list-item"><strong>Interleaving</strong><select data-setting="interleave"><option value="on" ${state.interleave !== false ? 'selected' : ''}>On — mix categories (recommended)</option><option value="off" ${state.interleave === false ? 'selected' : ''}>Off — block by category</option></select><span class="small muted">Mixed practice feels harder but builds far stronger discrimination between concepts.</span></label>
           </div>
           <div class="toolbar">
             <button class="btn primary" data-action="export-progress">Export progress JSON</button>
@@ -757,27 +894,19 @@
     p.answers.push({ t: now, rating: q, answer: state.currentAnswer.slice(0, 1200) });
     if (p.answers.length > 12) p.answers = p.answers.slice(-12);
 
-    if (q < 3) {
-      p.lapses += 1;
-      p.reps = 0;
-      p.interval = 0;
-      p.ease = Math.max(1.3, p.ease - 0.22);
-      p.due = now + 10 * MINUTE;
-    } else {
-      p.reps += 1;
-      const oldEase = p.ease || 2.5;
-      const nextEase = oldEase + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
-      p.ease = Math.max(1.3, nextEase);
-      if (p.reps === 1) {
-        p.interval = q === 3 ? 1 : q === 4 ? 2 : 3;
-      } else if (p.reps === 2) {
-        p.interval = q === 3 ? 2 : q === 4 ? 4 : 6;
-      } else {
-        const multiplier = q === 3 ? 1.25 : q === 4 ? p.ease : p.ease * 1.35;
-        p.interval = Math.max(1, Math.round((p.interval || 1) * multiplier));
-      }
-      p.due = now + p.interval * DAY;
-    }
+    const g = Math.min(4, Math.max(1, q));
+    const next = window.FSRS.review(p, g, now, state.desiredRetention || 0.9);
+    if (g === 1) { p.lapses += 1; } else { p.reps += 1; }
+    p.stability = next.stability;
+    p.difficulty = next.difficulty;
+    p.due = next.due;
+    p.lastReview = now;
+    p.state = next.state;
+    p.interval = next.interval;
+    state.log = state.log || [];
+    state.log.push({ t: now, id: card.id, g, c: state.confidence });
+    if (state.log.length > 2500) state.log = state.log.slice(-2000);
+    state.confidence = null;
 
     state.queueIndex += 1;
     state.showAnswer = false;
@@ -976,6 +1105,29 @@
       toast('Rewording saved locally.');
       return;
     }
+    if (action === 'confidence') {
+      state.confidence = Number(btn.dataset.level);
+      state.showAnswer = true;
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'build-weak-queue') {
+      state.tab = 'review';
+      buildQueue('weak');
+      if (!state.queue.length) toast('No weak cards right now. Keep reviewing to surface them.');
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'focus-tier') {
+      state.filters.level = btn.dataset.level;
+      state.tab = 'review';
+      buildQueue();
+      saveState();
+      render();
+      return;
+    }
     if (action === 'aw-select') {
       state.archweb.id = btn.dataset.id;
       saveState();
@@ -1100,6 +1252,8 @@
     if (target.matches('[data-setting]')) {
       const n = Math.max(1, Number(target.value));
       if (target.dataset.setting === 'dailyNew') state.dailyNew = Math.min(60, n);
+      if (target.dataset.setting === 'desiredRetention') state.desiredRetention = Math.min(0.95, Math.max(0.8, Number(target.value) / 100));
+      if (target.dataset.setting === 'interleave') state.interleave = target.value !== 'off';
       if (target.dataset.setting === 'focusMinutes') {
         state.timer.focusMinutes = Math.min(120, Math.max(5, n));
         if (state.timer.mode === 'focus' && !state.timer.running) state.timer.secondsLeft = state.timer.focusMinutes * 60;
@@ -1158,7 +1312,7 @@
     }
     if (state.showAnswer && ['Digit1', 'Digit2', 'Digit3', 'Digit4'].includes(event.code)) {
       event.preventDefault();
-      const map = { Digit1: 1, Digit2: 3, Digit3: 4, Digit4: 5 };
+      const map = { Digit1: 1, Digit2: 2, Digit3: 3, Digit4: 4 };
       gradeCurrent(map[event.code]);
     }
   });
