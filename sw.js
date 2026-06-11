@@ -1,9 +1,11 @@
-const CACHE = 'ai-mastery-memory-os-pro-v6-0-mobile';
+const CACHE = 'ai-mastery-memory-os-pro-v7-0-premium';
 const ASSETS = [
   './',
   './index.html',
   './src/styles.css',
   './src/mobile.css',
+  './src/premium.css',
+  './src/premium.js',
   './src/app.js',
   './data/content.js',
   './data/memory-ai-expert-pack.js',

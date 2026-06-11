@@ -1,0 +1,155 @@
+/* ===== Premium creative UI layer =====
+   Ambient depth, motion design, knowledge-graph + skill-tree visuals.
+   All animation uses transform/opacity only; fully disabled under
+   prefers-reduced-motion. */
+
+/* --- typography upgrade --- */
+h1, h2, h3, .brand, .tab-btn, .eyebrow {
+  font-family: 'Space Grotesk', Inter, ui-sans-serif, system-ui, sans-serif;
+}
+h1 { letter-spacing: -.035em; }
+h2 { letter-spacing: -.03em; font-weight: 700; }
+.panel h2 {
+  background: linear-gradient(100deg, var(--text) 60%, rgba(125, 211, 252, .9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.panel.light h2 { background: none; -webkit-text-fill-color: initial; }
+
+/* --- ambient depth layers (parallax via premium.js) --- */
+.amb { position: fixed; inset: -12%; z-index: -1; pointer-events: none; will-change: transform; }
+.amb-a {
+  background:
+    radial-gradient(42% 34% at 18% 12%, rgba(56, 189, 248, .14), transparent 70%),
+    radial-gradient(36% 30% at 84% 16%, rgba(167, 139, 250, .12), transparent 70%),
+    radial-gradient(50% 44% at 60% 92%, rgba(34, 197, 94, .07), transparent 72%);
+  animation: ambDrift 90s ease-in-out infinite alternate;
+}
+.amb-b {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(148, 163, 184, .045) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(148, 163, 184, .045) 0 1px, transparent 1px 64px);
+  mask-image: radial-gradient(70% 60% at 50% 36%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 36%, #000 30%, transparent 100%);
+}
+@keyframes ambDrift {
+  from { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+  to   { transform: translate3d(1.5%, 1.5%, 0) scale(1.05); }
+}
+
+/* --- view transitions (staggered entrance per render) --- */
+#app.view-enter > * { animation: viewIn .5s cubic-bezier(.22, .9, .24, 1) both; }
+#app.view-enter > *:nth-child(2) { animation-delay: .06s; }
+#app.view-enter > *:nth-child(3) { animation-delay: .12s; }
+#app.view-enter > *:nth-child(4) { animation-delay: .18s; }
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- scroll reveals --- */
+.rv { opacity: 0; transform: translateY(16px); transition: opacity .55s cubic-bezier(.22,.9,.24,1), transform .55s cubic-bezier(.22,.9,.24,1); }
+.rv.in { opacity: 1; transform: none; }
+
+/* --- layered panels, rich hover --- */
+.panel {
+  position: relative;
+  transition: transform .22s cubic-bezier(.22,.9,.24,1), box-shadow .22s, border-color .22s;
+}
+.panel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(125, 211, 252, .34);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .4), 0 0 0 1px rgba(56, 189, 248, .08);
+}
+.list-item, .aw-item, .stat {
+  transition: transform .16s cubic-bezier(.22,.9,.24,1), border-color .16s, background .16s;
+}
+.list-item:hover, .stat:hover { transform: translateY(-1px); border-color: rgba(125, 211, 252, .3); }
+
+/* --- micro-interactions --- */
+.btn { transition: transform .14s cubic-bezier(.22,.9,.24,1), filter .14s, box-shadow .14s; }
+.btn:hover { filter: brightness(1.1); }
+.btn:active { transform: scale(.96); }
+.btn.primary { box-shadow: 0 8px 26px rgba(56, 189, 248, .26); }
+.btn.primary:hover { box-shadow: 0 12px 34px rgba(56, 189, 248, .4); }
+.grade-row .btn:active { transform: scale(.93); }
+.tab-btn { position: relative; overflow: hidden; }
+.tab-btn::after {
+  content: ''; position: absolute; left: 18%; right: 18%; bottom: 4px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 2px; transform: scaleX(0); transform-origin: center;
+  transition: transform .22s cubic-bezier(.22,.9,.24,1);
+}
+.tab-btn:hover::after { transform: scaleX(1); }
+.tab-btn.active::after { transform: scaleX(0); }
+.node { transition: transform .14s, border-color .14s, background .14s; }
+.node:hover { transform: translateY(-1px) scale(1.04); border-color: rgba(125, 211, 252, .5); }
+
+/* ===== knowledge graph (Obsidian-inspired) ===== */
+.graph-stage {
+  position: relative; height: 540px; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line); cursor: grab; touch-action: none;
+  background:
+    radial-gradient(80% 70% at 50% 38%, rgba(56, 189, 248, .07), transparent 72%),
+    radial-gradient(60% 55% at 80% 90%, rgba(167, 139, 250, .06), transparent 75%),
+    #0a1424;
+}
+.graph-stage.dragging { cursor: grabbing; }
+.graph-stage svg { width: 100%; height: 100%; display: block; }
+.gedge { stroke: rgba(148, 163, 184, .14); stroke-width: 1; }
+.gedge.hi { stroke: rgba(125, 211, 252, .65); stroke-width: 1.6; }
+.gnode { cursor: pointer; }
+.gnode circle.core { stroke: rgba(229, 237, 247, .35); stroke-width: 1; transition: opacity .2s; }
+.gnode .halo { fill: none; stroke-width: 1.4; opacity: 0; }
+.gnode.due .halo { opacity: 1; stroke: var(--warn); animation: nodePulse 2.2s ease-in-out infinite; }
+.gnode.new circle.core { stroke-dasharray: 3 3; }
+.gnode.weak circle.core { stroke: rgba(239, 68, 68, .8); stroke-width: 1.6; }
+.gnode.mastered circle.core { stroke: rgba(34, 197, 94, .9); stroke-width: 1.8; }
+.gnode.focus .halo { opacity: 1; stroke: #fff; animation: nodePulse 1.6s ease-in-out infinite; }
+.gnode.dim { opacity: .22; }
+.gnode text { font-size: 10px; fill: #cbd5e1; paint-order: stroke; stroke: rgba(8, 17, 31, .85); stroke-width: 3px; pointer-events: none; font-weight: 600; }
+@keyframes nodePulse {
+  0%, 100% { transform: scale(1); opacity: .9; }
+  50% { transform: scale(1.35); opacity: .35; }
+}
+.gnode .halo, .gnode circle.core { transform-box: fill-box; transform-origin: center; }
+.gnode:hover circle.core { transform: scale(1.3); }
+.graph-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.graph-hint { position: absolute; right: 12px; bottom: 10px; font-size: .72rem; color: var(--muted); opacity: .8; pointer-events: none; }
+.gfocus { margin-top: 14px; }
+
+/* ===== skill tree (PoE-inspired progression) ===== */
+.tree-stage {
+  border-radius: 18px; border: 1px solid var(--line); overflow: hidden;
+  background:
+    radial-gradient(70% 80% at 18% 50%, rgba(56, 189, 248, .06), transparent 70%),
+    radial-gradient(70% 80% at 86% 50%, rgba(167, 139, 250, .08), transparent 70%),
+    #0a1424;
+}
+.tree-stage svg { width: 100%; height: auto; display: block; }
+.tpath { fill: none; stroke: rgba(148, 163, 184, .16); stroke-width: 1.4; }
+.tpath.lit { stroke: rgba(125, 211, 252, .55); stroke-width: 2; }
+.tnode { cursor: pointer; }
+.tnode circle.bg { fill: #101d33; stroke: rgba(148, 163, 184, .35); stroke-width: 1.2; }
+.tnode circle.ringfill { fill: none; stroke: var(--accent); stroke-width: 3.4; stroke-linecap: round; transform: rotate(-90deg); transform-box: fill-box; transform-origin: center; transition: stroke-dashoffset .8s cubic-bezier(.22,.9,.24,1); }
+.tnode.done circle.ringfill { stroke: var(--good); }
+.tnode text { fill: #cbd5e1; font-size: 10.5px; font-weight: 600; pointer-events: none; paint-order: stroke; stroke: rgba(8,17,31,.85); stroke-width: 3px; }
+.tnode .pct { font-size: 11px; font-weight: 800; fill: var(--text); }
+.tnode:hover circle.bg { stroke: rgba(125, 211, 252, .8); }
+.ttier-label { fill: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+.ttier-label.rec { fill: var(--accent); }
+.tnode.rec circle.bg { animation: nodePulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* --- small screens --- */
+@media (max-width: 520px) {
+  .graph-stage { height: 420px; }
+  .gnode text { font-size: 12px; }
+}
+
+/* --- accessibility: motion off --- */
+@media (prefers-reduced-motion: reduce) {
+  .amb-a, #app.view-enter > *, .gnode .halo, .tnode.rec circle.bg { animation: none !important; }
+  .rv { opacity: 1; transform: none; transition: none; }
+  .panel, .btn, .list-item, .node, .tab-btn::after, .gnode circle.core { transition: none; }
+}

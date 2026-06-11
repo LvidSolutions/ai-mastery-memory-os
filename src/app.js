@@ -12,6 +12,7 @@
     ['reword', 'Reword'],
     ['connections', 'Connect'],
     ['archweb', 'Arch Web'],
+    ['graph', 'Graph'],
     ['analytics', 'Analytics'],
     ['promptlab', 'Prompt Lab'],
     ['curriculum', 'Curriculum'],
@@ -30,6 +31,7 @@
     reword: { id: null, answer: '', lastScore: null },
     connect: { id: null, answer: '' },
     archweb: { id: null, q: '', tier: 'All', group: 'All' },
+    graph: { cat: 'All', focus: null, mode: 'map' },
     promptLab: { goal: '', context: '', constraints: '', examples: '', output: '', quality: '' },
     timer: {
       mode: 'focus',
@@ -184,6 +186,7 @@
       reword: renderReword,
       connections: renderConnections,
       archweb: renderArchWeb,
+      graph: renderGraph,
       analytics: renderAnalytics,
       promptlab: renderPromptLab,
       curriculum: renderCurriculum,
@@ -191,6 +194,9 @@
       settings: renderSettings
     };
     app.innerHTML = (renderers[state.tab] || renderDashboard)();
+    app.classList.remove('view-enter');
+    void app.offsetWidth;
+    app.classList.add('view-enter');
     updateTimerFace();
   }
 
@@ -493,6 +499,202 @@
   }
 
 
+
+
+  const GRAPH_CACHE = {};
+
+  function graphHue(category) {
+    let h = 7;
+    for (let i = 0; i < category.length; i++) h = (h * 31 + category.charCodeAt(i)) % 360;
+    return h;
+  }
+
+  function buildGraphData(cat) {
+    if (GRAPH_CACHE[cat]) return GRAPH_CACHE[cat];
+    let nodes = cat === 'All' ? DATA.cards.slice() : DATA.cards.filter((c) => c.category === cat);
+    const byTitle = new Map(DATA.cards.map((c) => [c.title.toLowerCase(), c]));
+    const inSet = new Set(nodes.map((c) => c.id));
+    const edges = [];
+    const edgeSet = new Set();
+    const deg = {};
+    const addEdge = (a, b) => {
+      if (a === b) return;
+      const k = a < b ? a + '|' + b : b + '|' + a;
+      if (edgeSet.has(k)) return;
+      edgeSet.add(k);
+      edges.push([a, b]);
+      deg[a] = (deg[a] || 0) + 1;
+      deg[b] = (deg[b] || 0) + 1;
+    };
+    nodes.forEach((c) => (c.connections || []).forEach((t) => {
+      const o = byTitle.get(String(t).toLowerCase());
+      if (o && inSet.has(o.id)) addEdge(c.id, o.id);
+    }));
+    const chunks = {};
+    nodes.forEach((c) => { if (c.chunk) (chunks[c.chunk] = chunks[c.chunk] || []).push(c.id); });
+    Object.values(chunks).forEach((ids) => {
+      for (let i = 0; i < ids.length - 1; i++) if ((deg[ids[i]] || 0) < 4) addEdge(ids[i], ids[i + 1]);
+    });
+    if (nodes.length > 130) {
+      nodes = nodes.filter((c) => deg[c.id]).sort((a, b) => (deg[b.id] || 0) - (deg[a.id] || 0)).slice(0, 130);
+      const keep = new Set(nodes.map((c) => c.id));
+      for (let i = edges.length - 1; i >= 0; i--) if (!keep.has(edges[i][0]) || !keep.has(edges[i][1])) edges.splice(i, 1);
+    }
+    const W = 1000, H = 700, CX = W / 2, CY = H / 2;
+    const cats = [...new Set(nodes.map((c) => c.category))];
+    const pos = {};
+    nodes.forEach((c) => {
+      let hash = 7;
+      for (let i = 0; i < c.id.length; i++) hash = (hash * 31 + c.id.charCodeAt(i)) >>> 0;
+      const a = (cats.indexOf(c.category) / Math.max(1, cats.length)) * Math.PI * 2 + ((hash % 100) / 100 - 0.5) * 1.2;
+      const r = 110 + (hash % 170);
+      pos[c.id] = { x: CX + Math.cos(a) * r, y: CY + Math.sin(a) * r * 0.62 };
+    });
+    const ids = nodes.map((c) => c.id);
+    for (let it = 0; it < 110; it++) {
+      const t = 1 - it / 110;
+      for (let i = 0; i < ids.length; i++) {
+        for (let j = i + 1; j < ids.length; j++) {
+          const a = pos[ids[i]], b = pos[ids[j]];
+          let dx = a.x - b.x, dy = a.y - b.y;
+          let d2 = dx * dx + dy * dy;
+          if (d2 < 1) { dx = 0.5; dy = 0.5; d2 = 0.5; }
+          const d = Math.sqrt(d2);
+          const f = Math.min(7, 1500 / d2) * t;
+          dx = (dx / d) * f; dy = (dy / d) * f;
+          a.x += dx; a.y += dy; b.x -= dx; b.y -= dy;
+        }
+      }
+      for (const [u, v] of edges) {
+        const a = pos[u], b = pos[v];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        const f = (d - 92) * 0.016 * t;
+        a.x += (dx / d) * f; a.y += (dy / d) * f;
+        b.x -= (dx / d) * f; b.y -= (dy / d) * f;
+      }
+      for (const id of ids) {
+        const q = pos[id];
+        q.x += (CX - q.x) * 0.004;
+        q.y += (CY - q.y) * 0.007;
+        q.x = Math.max(34, Math.min(W - 34, q.x));
+        q.y = Math.max(30, Math.min(H - 30, q.y));
+      }
+    }
+    GRAPH_CACHE[cat] = { nodes, edges, pos, deg };
+    return GRAPH_CACHE[cat];
+  }
+
+  function renderGraph() {
+    const st = state.graph;
+    if (st.mode === 'tree') return renderSkillTree();
+    const { nodes, edges, pos, deg } = buildGraphData(st.cat);
+    if (st.focus && !nodes.some((c) => c.id === st.focus)) st.focus = null;
+    const neighbors = new Set();
+    if (st.focus) edges.forEach(([u, v]) => { if (u === st.focus) neighbors.add(v); if (v === st.focus) neighbors.add(u); });
+    const labeled = new Set(nodes.slice().sort((a, b) => (deg[b.id] || 0) - (deg[a.id] || 0)).slice(0, 13).map((c) => c.id));
+    if (st.focus) { labeled.add(st.focus); neighbors.forEach((n) => labeled.add(n)); }
+    const cats = ['All', ...new Set((st.cat === 'All' ? DATA.cards : DATA.cards).map((c) => c.category))].slice(0, 15);
+    const focusCard = st.focus ? cardById(st.focus) : null;
+    const fp = focusCard ? progressFor(focusCard.id) : null;
+    return `
+      <section class="panel">
+        <span class="eyebrow">Knowledge universe</span>
+        <h2>Concept graph</h2>
+        <p>Every node is a concept; size = memory stability, edges = real relationships. Drag to pan, scroll to zoom, double-click to reset, tap a node to focus its neighborhood.</p>
+        <div class="row" style="margin-bottom:4px">
+          <button class="btn ${st.mode === 'map' ? 'primary' : 'ghost'}" data-action="graph-mode" data-mode="map">Knowledge map</button>
+          <button class="btn ${st.mode === 'tree' ? 'primary' : 'ghost'}" data-action="graph-mode" data-mode="tree">Skill tree</button>
+        </div>
+        <div class="graph-legend">
+          ${cats.map((c) => `<button class="node ${c === st.cat ? 'active' : ''}" data-action="graph-cat" data-cat="${escapeHTML(c)}">${escapeHTML(c)}</button>`).join('')}
+        </div>
+        <div class="graph-stage">
+          <svg viewBox="0 0 1000 700" role="img" aria-label="Interactive concept graph">
+            <g>${edges.map(([u, v]) => `<line class="gedge ${st.focus && (u === st.focus || v === st.focus) ? 'hi' : ''}" x1="${pos[u].x.toFixed(1)}" y1="${pos[u].y.toFixed(1)}" x2="${pos[v].x.toFixed(1)}" y2="${pos[v].y.toFixed(1)}"/>`).join('')}</g>
+            <g>${nodes.map((c) => {
+              const p = progressFor(c.id);
+              const stat = cardStatus(c);
+              const r = 4.5 + Math.min(9, Math.sqrt(p.stability || 0) * 1.7);
+              const cls = ['gnode', stat === 'Due' ? 'due' : '', stat === 'New' ? 'new' : '', stat === 'Weak' ? 'weak' : '', stat === 'Mastered' ? 'mastered' : '',
+                c.id === st.focus ? 'focus' : '', st.focus && c.id !== st.focus && !neighbors.has(c.id) ? 'dim' : ''].filter(Boolean).join(' ');
+              const q = pos[c.id];
+              return `<g class="${cls}" data-action="graph-node" data-id="${c.id}" transform="translate(${q.x.toFixed(1)} ${q.y.toFixed(1)})">
+                <circle class="halo" r="${(r + 4).toFixed(1)}"/>
+                <circle class="core" r="${r.toFixed(1)}" fill="hsl(${graphHue(c.category)} 72% 62% / .92)"/>
+                ${labeled.has(c.id) ? `<text x="0" y="${(r + 11).toFixed(1)}" text-anchor="middle">${escapeHTML(c.title.length > 24 ? c.title.slice(0, 23) + '…' : c.title)}</text>` : ''}
+              </g>`;
+            }).join('')}</g>
+          </svg>
+          <span class="graph-hint">drag · scroll · double-click resets</span>
+        </div>
+        ${focusCard ? `
+        <div class="panel light gfocus">
+          <div class="meta"><span class="badge">${escapeHTML(focusCard.level)}</span><span class="badge">${escapeHTML(focusCard.category)}</span><span class="badge">${cardStatus(focusCard)}</span><span class="badge">Stability ${(fp.stability || 0).toFixed(1)}d</span></div>
+          <h3 style="margin:8px 0 4px">${escapeHTML(focusCard.title)}</h3>
+          <p>${escapeHTML(focusCard.back)}</p>
+          <div class="row" style="margin:10px 0">
+            <button class="btn primary" data-action="review-card" data-id="${focusCard.id}">Review this card</button>
+            <button class="btn ghost" data-action="graph-node" data-id="">Clear focus</button>
+          </div>
+          ${neighbors.size ? `<h4 style="margin:10px 0 6px">Connected concepts</h4><div class="graph">${[...neighbors].map((id) => { const n = cardById(id); return n ? `<button class="node" data-action="graph-node" data-id="${id}">${escapeHTML(n.title)}</button>` : ''; }).join('')}</div>` : ''}
+        </div>` : '<p class="small muted" style="margin-top:10px">Tap any node to inspect it and light up its connections.</p>'}
+      </section>`;
+  }
+
+  function renderSkillTree() {
+    const W = 1000;
+    const tiers = DATA.levels;
+    const mastery = tierMastery();
+    const rec = mastery.find((m) => m.pct < 60) || mastery[mastery.length - 1];
+    const cols = tiers.map((level, i) => {
+      const byCat = {};
+      DATA.cards.filter((c) => c.level === level).forEach((c) => {
+        byCat[c.category] = byCat[c.category] || { total: 0, solid: 0 };
+        byCat[c.category].total++;
+        if ((progressFor(c.id).stability || 0) >= 7) byCat[c.category].solid++;
+      });
+      const cats = Object.entries(byCat).sort((a, b) => b[1].total - a[1].total).slice(0, 7);
+      return { level, i, cats, m: mastery[i] };
+    });
+    const H = 110 + Math.max(...cols.map((c) => c.cats.length)) * 86;
+    const x = (i) => 130 + i * ((W - 260) / Math.max(1, tiers.length - 1));
+    const y = (col, j) => 96 + j * ((H - 140) / Math.max(1, col.cats.length - 1 || 1));
+    const find = (col, cat) => { const j = col.cats.findIndex(([c]) => c === cat); return j < 0 ? null : { x: x(col.i), y: y(col, j) }; };
+    const paths = [];
+    for (let i = 0; i < cols.length - 1; i++) {
+      cols[i].cats.forEach(([cat, v]) => {
+        const a = find(cols[i], cat), b = find(cols[i + 1], cat);
+        if (a && b) {
+          const lit = v.total && v.solid / v.total >= 0.6;
+          paths.push(`<path class="tpath ${lit ? 'lit' : ''}" d="M ${a.x} ${a.y} C ${a.x + 110} ${a.y}, ${b.x - 110} ${b.y}, ${b.x} ${b.y}"/>`);
+        }
+      });
+    }
+    const nodes = cols.map((col) => col.cats.map(([cat, v], j) => {
+      const pct = v.total ? Math.round((v.solid / v.total) * 100) : 0;
+      const r = 17 + Math.min(13, v.total * 0.45);
+      const circ = 2 * Math.PI * (r + 5);
+      return `<g class="tnode ${pct >= 100 ? 'done' : ''} ${col.level === rec.level && pct < 60 ? 'rec' : ''}" data-action="tree-node" data-level="${escapeHTML(col.level)}" data-cat="${escapeHTML(cat)}" transform="translate(${x(col.i)} ${y(col, j)})">
+        <circle class="bg" r="${r}"/>
+        <circle class="ringfill" r="${r + 5}" stroke-dasharray="${(circ * pct / 100).toFixed(1)} ${circ.toFixed(1)}"/>
+        <text class="pct" y="4" text-anchor="middle">${pct}%</text>
+        <text y="${r + 18}" text-anchor="middle">${escapeHTML(cat.length > 20 ? cat.slice(0, 19) + '…' : cat)}</text>
+      </g>`;
+    }).join('')).join('');
+    const headers = cols.map((col) => `<text class="ttier-label ${col.level === rec.level ? 'rec' : ''}" x="${x(col.i)}" y="40" text-anchor="middle">${escapeHTML(col.level.toUpperCase())} · ${col.m.pct}%</text>`).join('');
+    return `
+      <section class="panel">
+        <span class="eyebrow">Progression</span>
+        <h2>Skill tree</h2>
+        <p>Each ring fills as a category becomes solid (stability ≥ 7 days). Light a tier to 60% to unlock the next. Tap a node to study that branch.</p>
+        <div class="row" style="margin-bottom:10px">
+          <button class="btn ghost" data-action="graph-mode" data-mode="map">Knowledge map</button>
+          <button class="btn primary" data-action="graph-mode" data-mode="tree">Skill tree</button>
+        </div>
+        <div class="tree-stage"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Skill tree progression">${paths.join('')}${nodes}${headers}</svg></div>
+      </section>`;
+  }
 
   function tierMastery() {
     return DATA.levels.map((level) => {
@@ -1103,6 +1305,33 @@
       saveState();
       render();
       toast('Rewording saved locally.');
+      return;
+    }
+    if (action === 'graph-node') {
+      state.graph.focus = btn.dataset.id || null;
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'graph-cat') {
+      state.graph.cat = btn.dataset.cat;
+      state.graph.focus = null;
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'graph-mode') {
+      state.graph.mode = btn.dataset.mode;
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'tree-node') {
+      state.filters.level = btn.dataset.level;
+      state.filters.category = btn.dataset.cat;
+      state.tab = 'curriculum';
+      saveState();
+      render();
       return;
     }
     if (action === 'confidence') {
