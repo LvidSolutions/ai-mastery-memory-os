@@ -56,3 +56,9 @@ h1{margin:0;font-size:clamp(1.28rem,3vw,2rem);line-height:1.05;letter-spacing:-.
 .bars .bar-l{fill:var(--muted);font-size:5.4px}
 .confidence-block{border:1px dashed rgba(148,163,184,.35);border-radius:14px;padding:12px}
 .grade-row .btn{flex:1;min-width:110px}
+
+/* ===== analytics table base ===== */
+.table-wrap{overflow-x:auto}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:.92rem}
+.table-wrap th,.table-wrap td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+.table-wrap th{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}

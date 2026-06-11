@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-pro-v5-0-promptlab';
+const CACHE = 'ai-mastery-memory-os-pro-v6-0-mobile';
 const ASSETS = [
   './',
   './index.html',

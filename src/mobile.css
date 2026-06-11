@@ -323,3 +323,36 @@
   .grid.two,.grid.three,.grid.four,.stat-grid,.filters { grid-template-columns: 1fr !important; }
   .flashcard { min-height: 520px; }
 }
+
+/* ===== Phase 2-5 components on small screens ===== */
+@media (max-width: 520px) {
+  .grade-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .grade-row .btn {
+    min-height: 52px;
+    min-width: 0;
+    font-size: .92rem;
+    touch-action: manipulation;
+  }
+  .confidence-block .row { flex-wrap: wrap; gap: 8px; }
+  .confidence-block .btn { flex: 1 1 44%; min-height: 48px; }
+  .aw-list { max-height: 320px; }
+  .aw-item { grid-template-columns: 58px 1fr; padding: 10px; min-height: 56px; }
+  .aw-item-wf { padding: 3px; }
+  .aw-figure { padding: 10px; }
+  .aw-detail h2 { font-size: 1.2rem; }
+  .toolbar input.input, .toolbar select { min-height: 44px; }
+  .bars { margin-bottom: 10px; }
+  .table-wrap { margin: 0 -4px; }
+  .table-wrap th, .table-wrap td { padding: 10px 8px; }
+  .graph .node { min-height: 40px; display: inline-flex; align-items: center; }
+}
+/* very small devices (~iPhone SE/13 mini landscape edge) */
+@media (max-width: 360px) {
+  .grade-row { grid-template-columns: 1fr 1fr; }
+  .aw-item { grid-template-columns: 1fr; }
+  .aw-item-wf { max-width: 120px; }
+}
