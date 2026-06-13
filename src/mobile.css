@@ -348,6 +348,20 @@
   .table-wrap { margin: 0 -4px; }
   .table-wrap th, .table-wrap td { padding: 10px 8px; }
   .graph .node { min-height: 40px; display: inline-flex; align-items: center; }
+
+  /* Review mode selector */
+  .mode-bar-wrap { flex-direction: column; align-items: stretch; gap: 10px; }
+  .mode-bar { width: 100%; }
+  .mode-bar-meta { justify-content: space-between; }
+  .mode-pill { min-height: 44px; padding: 9px 14px; font-size: .85rem; touch-action: manipulation; }
+
+  /* Match mode */
+  .match-grid { grid-template-columns: 1fr; }
+  .match-item { min-height: 48px; padding: 12px; }
+
+  /* Connect mode */
+  .connect-chip { min-height: 44px; padding: 10px 14px; touch-action: manipulation; }
+  .connect-term-block { padding: 12px; }
 }
 /* very small devices (~iPhone SE/13 mini landscape edge) */
 @media (max-width: 360px) {

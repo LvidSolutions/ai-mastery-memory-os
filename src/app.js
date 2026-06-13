@@ -18,6 +18,14 @@
     ['settings', 'Settings']
   ];
   const TAB_IDS = new Set(TABS.map(([id]) => id));
+  const REVIEW_MODES = [
+    ['flashcards', 'Flashcards'],
+    ['match', 'Match Term to Explanation'],
+    ['connect', 'Connect Related Terms'],
+    ['write', 'Write in Own Words']
+  ];
+  const REVIEW_MODE_IDS = new Set(REVIEW_MODES.map(([id]) => id));
+  const CARD_MODES = new Set(['flashcards', 'write']);
   const LEGACY_TABS = {
     reviews: 'review',
     reword: 'review',
@@ -36,6 +44,9 @@
     queue: [],
     queueIndex: 0,
     reviewDomain: null,
+    reviewMode: null,
+    match: { ids: [], order: [], selectedTerm: null, matched: {}, wrong: null },
+    connect: { id: null, pool: [], chosen: [], checked: false },
     showAnswer: false,
     currentAnswer: '',
     website: { id: null, q: '', tier: 'All', group: 'All' },
@@ -91,6 +102,7 @@
     if (!TAB_IDS.has(nextState.tab)) nextState.tab = LEGACY_TABS[nextState.tab] || 'dashboard';
     if (!nextState.website && nextState.archweb) nextState.website = nextState.archweb;
     if (!['ai', 'website', null].includes(nextState.reviewDomain)) nextState.reviewDomain = null;
+    if (nextState.reviewMode != null && !REVIEW_MODE_IDS.has(nextState.reviewMode)) nextState.reviewMode = null;
     return nextState;
   }
 
@@ -404,22 +416,92 @@
   }
 
   function renderReview() {
+    if (!state.reviewDomain) return renderReviewLanding();
+    if (!state.reviewMode) return renderModeSelect();
+    const body = state.reviewMode === 'match' ? renderMatchMode()
+      : state.reviewMode === 'connect' ? renderConnectMode()
+      : renderCardReview(state.reviewMode);
+    return renderModeBar() + body;
+  }
+
+  function renderModeBar() {
+    const domain = state.reviewDomain || 'ai';
+    return `
+      <div class="mode-bar-wrap">
+        <div class="mode-bar" role="tablist" aria-label="Review mode">
+          ${REVIEW_MODES.map(([id, label]) => `
+            <button class="mode-pill ${state.reviewMode === id ? 'active' : ''}" role="tab" aria-selected="${state.reviewMode === id}" data-action="set-review-mode" data-mode="${id}">${escapeHTML(label)}</button>
+          `).join('')}
+        </div>
+        <div class="mode-bar-meta">
+          <span class="badge dark">${escapeHTML(domainLabel(domain))}</span>
+          <button class="btn ghost btn-sm" data-action="review-landing">Change track</button>
+        </div>
+      </div>`;
+  }
+
+  function renderModeSelect() {
+    const domain = state.reviewDomain;
+    const stats = allStats(domain);
+    const descriptions = {
+      flashcards: 'Standard active recall: read the question, retrieve the answer from memory, reveal, then rate how hard it was.',
+      match: 'See terms and explanations side by side, then pair each term with the explanation that fits it.',
+      connect: 'Start from one term and pick the concepts that are genuinely related to build a connected chain.',
+      write: 'Write your own explanation from memory and set your confidence before revealing the reference answer.'
+    };
+    return `
+      ${renderModeBar()}
+      <section class="panel review-stage">
+        <span class="eyebrow">${escapeHTML(domainLabel(domain))} review</span>
+        <h2>Choose a review mode</h2>
+        <p>Pick how you want to study the ${escapeHTML(domainLabel(domain))} deck. Every mode uses only ${escapeHTML(domainLabel(domain))} cards (${stats.total} total, ${stats.due} due). You can switch modes anytime from the bar above.</p>
+        <div class="card-grid mode-card-grid">
+          ${REVIEW_MODES.map(([id, label]) => `
+            <article class="mini-card mode-card">
+              <h4>${escapeHTML(label)}</h4>
+              <p>${escapeHTML(descriptions[id])}</p>
+              <button class="btn primary" data-action="set-review-mode" data-mode="${id}">Start ${escapeHTML(label)}</button>
+            </article>
+          `).join('')}
+        </div>
+      </section>`;
+  }
+
+  function renderCardReview(mode) {
     if (!state.queue.length || state.queueIndex >= state.queue.length) {
       const completed = state.queue.length && state.queueIndex >= state.queue.length;
       state.queue = [];
       state.queueIndex = 0;
-      return renderReviewLanding(completed);
+      const domain = state.reviewDomain || 'ai';
+      return `
+        <section class="panel review-stage">
+          <span class="eyebrow">${escapeHTML(domainLabel(domain))} review</span>
+          <h2>${completed ? 'Session complete' : 'No cards in the queue'}</h2>
+          <p>${completed ? 'Nice work — retrieval beats rereading. Build a fresh queue to keep going.' : 'There are no due or new cards for this track right now. Build a queue to review anyway.'}</p>
+          <div class="row">
+            <button class="btn primary" data-action="build-queue">Build ${escapeHTML(domainLabel(domain))} queue</button>
+            <button class="btn ghost" data-action="build-weak-queue">Review weak cards</button>
+          </div>
+        </section>`;
     }
 
+    const isWrite = mode === 'write';
     const card = cardById(state.queue[state.queueIndex]);
     const p = progressFor(card.id);
     const domain = state.reviewDomain || domainForCard(card);
     const topic = domain === 'website' ? (card.chunk || 'Website Terminology') : card.category;
     const percent = Math.round(((state.queueIndex) / state.queue.length) * 100);
+    let prompt;
+    if (state.showAnswer) {
+      prompt = renderAnswer(card);
+    } else if (isWrite) {
+      prompt = `<div class="confidence-block"><p class="small muted" style="margin:0 0 8px"><strong>Calibrate first:</strong> how confident are you in your answer?</p><div class="row"><button class="btn bad" data-action="confidence" data-level="1">No idea</button><button class="btn warn" data-action="confidence" data-level="2">Think so</button><button class="btn good" data-action="confidence" data-level="3">Certain</button><button class="btn ghost" data-action="reveal-answer">Just reveal</button></div><span class="small muted">Shortcut: <span class="kbd">Space</span> outside textarea</span></div>`;
+    } else {
+      prompt = `<div class="confidence-block"><p class="small muted" style="margin:0 0 8px">Retrieve the answer from memory, then reveal to check and grade yourself.</p><div class="row"><button class="btn primary" data-action="reveal-answer">Reveal answer</button></div><span class="small muted">Shortcut: <span class="kbd">Space</span> outside any text field</span></div>`;
+    }
     return `
       <section class="card-review">
         <div class="toolbar">
-          <button class="btn ghost" data-action="review-landing">Review landing</button>
           <button class="btn ghost" data-action="build-queue">Refresh ${escapeHTML(domainLabel(domain))} queue</button>
           <span class="badge dark">${state.queueIndex + 1}/${state.queue.length}</span>
           <span class="badge dark">${escapeHTML(domainLabel(domain))}</span>
@@ -437,22 +519,127 @@
           </div>
           <h2>${escapeHTML(card.title)}</h2>
           <p><strong>Question:</strong> ${escapeHTML(card.front)}</p>
-          <label for="answer"><strong>Your answer before reveal</strong></label>
-          <textarea id="answer" data-field="currentAnswer" placeholder="Write from memory. Bullet points are fine.">${escapeHTML(state.currentAnswer)}</textarea>
-          ${state.showAnswer ? renderAnswer(card) : `<div class="confidence-block"><p class="small muted" style="margin:0 0 8px"><strong>Calibrate first:</strong> how confident are you in your answer?</p><div class="row"><button class="btn bad" data-action="confidence" data-level="1">No idea</button><button class="btn warn" data-action="confidence" data-level="2">Think so</button><button class="btn good" data-action="confidence" data-level="3">Certain</button><button class="btn ghost" data-action="reveal-answer">Just reveal</button></div><span class="small muted">Shortcut: <span class="kbd">Space</span> outside textarea</span></div>`}
+          ${isWrite ? `<label for="answer"><strong>Your answer before reveal</strong></label>
+          <textarea id="answer" data-field="currentAnswer" placeholder="Write from memory. Bullet points are fine.">${escapeHTML(state.currentAnswer)}</textarea>` : ''}
+          ${prompt}
         </article>
       </section>
     `;
   }
 
-  function renderReviewLanding(completed = false) {
+  function buildMatch(domain = state.reviewDomain || 'ai') {
+    const pool = domainCards(domain).filter((card) => card.back && card.title);
+    const ids = shuffle(pool.map((c) => c.id)).slice(0, Math.min(5, pool.length));
+    state.match = { ids, order: shuffle(ids.slice()), selectedTerm: null, matched: {}, wrong: null };
+  }
+
+  function renderMatchMode() {
+    const m = state.match;
+    if (!m.ids.length) buildMatch();
+    const cards = state.match.ids.map(cardById);
+    const explanations = state.match.order.map(cardById);
+    const matchedCount = Object.keys(state.match.matched).length;
+    const done = matchedCount === cards.length && cards.length > 0;
+    const truncate = (text) => { const t = String(text || ''); return t.length > 160 ? t.slice(0, 157) + '...' : t; };
+    return `
+      <section class="panel review-stage">
+        <span class="eyebrow">Match term to explanation</span>
+        <h2>Pair each term with its explanation</h2>
+        <p>${done ? 'All pairs matched. Load a new set to keep practicing.' : 'Select a term, then select the explanation that defines it. Correct pairs lock in green.'} <span class="muted">${matchedCount}/${cards.length} matched.</span></p>
+        <div class="match-grid">
+          <div class="match-col">
+            <h3>Terms</h3>
+            ${cards.map((c) => {
+              const matched = state.match.matched[c.id];
+              const selected = state.match.selectedTerm === c.id;
+              return `<button class="match-item ${matched ? 'matched' : ''} ${selected ? 'selected' : ''}" ${matched ? 'disabled' : ''} data-action="match-term" data-id="${c.id}">${escapeHTML(c.title)}</button>`;
+            }).join('')}
+          </div>
+          <div class="match-col">
+            <h3>Explanations</h3>
+            ${explanations.map((c) => {
+              const matched = state.match.matched[c.id];
+              const wrong = state.match.wrong && state.match.wrong.expl === c.id;
+              return `<button class="match-item ${matched ? 'matched' : ''} ${wrong ? 'wrong' : ''}" ${matched ? 'disabled' : ''} data-action="match-expl" data-id="${c.id}">${escapeHTML(truncate(c.back))}</button>`;
+            }).join('')}
+          </div>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <button class="btn primary" data-action="match-new">New set</button>
+          ${done ? '<span class="small muted">Great recall — every term matched.</span>' : ''}
+        </div>
+      </section>`;
+  }
+
+  function buildConnect(domain = state.reviewDomain || 'ai') {
+    const cards = domainCards(domain).filter((card) => (card.connections || []).length >= 2);
+    const pickFrom = cards.length ? cards : domainCards(domain);
+    const card = pickFrom[Math.floor(Math.random() * pickFrom.length)];
+    const real = (card.connections || []).slice(0, 6);
+    const realSet = new Set(real.map((t) => t.toLowerCase()));
+    const distractors = shuffle(domainCards(domain)
+      .map((c) => c.title)
+      .filter((t) => t !== card.title && !realSet.has(t.toLowerCase())))
+      .slice(0, Math.max(2, Math.min(4, real.length)));
+    state.connect = { id: card.id, pool: shuffle([...real, ...distractors]), chosen: [], checked: false };
+  }
+
+  function renderConnectMode() {
+    if (!state.connect.id) buildConnect();
+    const card = cardById(state.connect.id);
+    const real = (card.connections || []);
+    const realSet = new Set(real.map((t) => t.toLowerCase()));
+    const c = state.connect;
+    const chosenSet = new Set(c.chosen.map((t) => t.toLowerCase()));
+    return `
+      <section class="panel review-stage">
+        <span class="eyebrow">Connect related terms</span>
+        <h2>Build the connections</h2>
+        <p>Which concepts are directly related to the term below? ${c.checked ? 'Review your result, then load a new term.' : 'Tap every related concept, then check your connections.'}</p>
+        <div class="connect-term-block">
+          <span class="badge dark">${escapeHTML(domainLabel(domainForCard(card)))}</span>
+          <div class="connect-term">${escapeHTML(card.title)}</div>
+          <p class="small muted">${escapeHTML(card.front)}</p>
+        </div>
+        <div class="connect-pool">
+          ${c.pool.map((title) => {
+            const isReal = realSet.has(title.toLowerCase());
+            const isChosen = chosenSet.has(title.toLowerCase());
+            let cls = isChosen ? 'chosen' : '';
+            if (c.checked) {
+              if (isReal && isChosen) cls = 'correct';
+              else if (!isReal && isChosen) cls = 'wrong';
+              else if (isReal && !isChosen) cls = 'missed';
+              else cls = '';
+            }
+            return `<button class="connect-chip ${cls}" ${c.checked ? 'disabled' : ''} data-action="connect-toggle" data-title="${escapeHTML(title)}">${escapeHTML(title)}</button>`;
+          }).join('')}
+        </div>
+        ${c.checked ? `
+          <div class="answer-reveal">
+            <h3>Connected chain</h3>
+            <div class="connect-chain">
+              <span class="node knowledge-node">${escapeHTML(card.title)}</span>
+              ${real.map((t) => `<span class="connect-arrow">→</span><span class="node knowledge-node">${escapeHTML(t)}</span>`).join('')}
+            </div>
+            <p class="small muted" style="margin-top:10px">Green = correct, red = not related, amber = a connection you missed.</p>
+          </div>` : ''}
+        <div class="row" style="margin-top:14px">
+          ${c.checked
+            ? '<button class="btn primary" data-action="connect-next">Next term</button>'
+            : '<button class="btn primary" data-action="connect-check">Check connections</button>'}
+        </div>
+      </section>`;
+  }
+
+  function renderReviewLanding() {
     const aiStats = allStats('ai');
     const webStats = allStats('website');
     return `
       <section class="panel review-stage"><span class="orbital o2" aria-hidden="true"></span>
         <span class="eyebrow">Active recall + spaced repetition</span>
         <h2>Choose a review track</h2>
-        <p>${completed ? 'Review session complete. ' : ''}Pick the deck you want to review. The review flow stays the same: answer from memory, reveal, then grade honestly.</p>
+        <p>Pick the deck you want to review. Next you'll choose a review mode — flashcards, match, connect, or write in your own words — using only that track's cards.</p>
         <div class="review-choice-grid">
           ${reviewChoice('ai', 'AI Review', 'Review AI concepts, prompting, RAG, agents, evaluation, safety, tools, and production terms.', aiStats)}
           ${reviewChoice('website', 'Website Terminology Review', 'Review website terminology with wireframes, plain-English explanations, and practical examples.', webStats)}
@@ -1025,6 +1212,8 @@
     }
     if (action === 'review-landing') {
       state.tab = 'review';
+      state.reviewDomain = null;
+      state.reviewMode = null;
       state.queue = [];
       state.queueIndex = 0;
       state.showAnswer = false;
@@ -1036,9 +1225,83 @@
     if (action === 'start-domain-review') {
       state.tab = 'review';
       state.reviewDomain = btn.dataset.domain === 'website' ? 'website' : 'ai';
-      buildQueue(null, state.reviewDomain);
+      state.reviewMode = null;
+      state.queue = [];
+      state.queueIndex = 0;
+      state.match = { ids: [], order: [], selectedTerm: null, matched: {}, wrong: null };
+      state.connect = { id: null, pool: [], chosen: [], checked: false };
+      saveState();
       render();
-      toast(`${state.queue.length} ${domainLabel(state.reviewDomain)} cards added to review queue.`);
+      return;
+    }
+    if (action === 'set-review-mode') {
+      const mode = REVIEW_MODE_IDS.has(btn.dataset.mode) ? btn.dataset.mode : 'flashcards';
+      state.reviewMode = mode;
+      state.tab = 'review';
+      state.showAnswer = false;
+      state.currentAnswer = '';
+      const domain = state.reviewDomain || 'ai';
+      if (CARD_MODES.has(mode)) {
+        if (!state.queue.length) buildQueue(null, domain);
+      } else if (mode === 'match') {
+        buildMatch(domain);
+      } else if (mode === 'connect') {
+        buildConnect(domain);
+      }
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'match-term') {
+      state.match.selectedTerm = btn.dataset.id;
+      state.match.wrong = null;
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'match-expl') {
+      const m = state.match;
+      if (m.matched[btn.dataset.id]) return;
+      if (!m.selectedTerm) { toast('Pick a term first, then its explanation.'); return; }
+      if (btn.dataset.id === m.selectedTerm) {
+        m.matched[m.selectedTerm] = true;
+        m.selectedTerm = null;
+        m.wrong = null;
+        if (Object.keys(m.matched).length === m.ids.length) toast('All pairs matched. Nice recall.');
+      } else {
+        m.wrong = { term: m.selectedTerm, expl: btn.dataset.id };
+      }
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'match-new') {
+      buildMatch(state.reviewDomain || 'ai');
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'connect-toggle') {
+      if (state.connect.checked) return;
+      const title = btn.dataset.title;
+      const lower = title.toLowerCase();
+      const idx = state.connect.chosen.findIndex((t) => t.toLowerCase() === lower);
+      if (idx >= 0) state.connect.chosen.splice(idx, 1);
+      else state.connect.chosen.push(title);
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'connect-check') {
+      state.connect.checked = true;
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'connect-next') {
+      buildConnect(state.reviewDomain || 'ai');
+      saveState();
+      render();
       return;
     }
     if (action === 'build-queue') {
@@ -1053,6 +1316,7 @@
       state.queue = [btn.dataset.id];
       state.queueIndex = 0;
       state.reviewDomain = domainForCard(card);
+      state.reviewMode = 'flashcards';
       state.showAnswer = false;
       state.currentAnswer = '';
       state.tab = 'review';
@@ -1244,7 +1508,7 @@
     }
     const active = document.activeElement;
     const typing = active && ['TEXTAREA', 'INPUT', 'SELECT'].includes(active.tagName);
-    if (state.tab !== 'review' || typing) return;
+    if (state.tab !== 'review' || typing || !CARD_MODES.has(state.reviewMode)) return;
     if (event.code === 'Space' && !state.showAnswer) {
       event.preventDefault();
       state.showAnswer = true;
