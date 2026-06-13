@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-review-modes-v2';
+const CACHE = 'ai-mastery-memory-os-review-modes-v3';
 const ASSETS = [
   './',
   './index.html',

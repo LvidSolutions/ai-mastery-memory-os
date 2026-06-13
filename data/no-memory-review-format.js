@@ -80,7 +80,18 @@
     return String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
   }
 
+  const isWebsiteCard = (card) => card.category === 'Architecture Web' || String(card.id || '').startsWith('aw-') || card.type === 'term';
+
   function detailedExplanation(card) {
+    if (isWebsiteCard(card)) {
+      // Website terminology: explain the actual web concept, not AI systems.
+      const parts = [
+        `${card.title}: ${card.back}`,
+        card.whyItMatters ? `Why it matters: ${card.whyItMatters}` : '',
+        card.example ? `Example: ${card.example}` : ''
+      ].filter(Boolean);
+      return parts.join(' ');
+    }
     const parts = [
       `${card.title}: ${card.back}`,
       card.whyItMatters ? `In practical AI, this concept shapes how you build, choose, steer, or control a system: ${card.whyItMatters}` : '',
@@ -91,6 +102,13 @@
   }
 
   function childExplanation(card) {
+    // Prefer a term-specific plain-English explanation when the card provides one
+    // (every website term does). This avoids the identical generic AI sentence.
+    if (card.eli5) return card.eli5;
+    if (isWebsiteCard(card)) {
+      const first = String(card.back || '').split(/(?<=\.)\s/)[0];
+      return `${card.title} is one part of a website. In simple words: ${first}`;
+    }
     const simpleAction = {
       'Prompting': 'tell the AI very clearly what to do',
       'RAG & Knowledge': 'let the AI look in the right book before answering',
