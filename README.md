@@ -1,19 +1,20 @@
-# AI Mastery Memory OS Pro
+# AI Mastery Memory OS
 
-A local-first learning system for becoming highly competent with AI and modern web development — built on evidence-based learning science.
+A local-first learning system for AI and website terminology, built around active recall and spaced repetition.
 
 **Live app:** https://lvidsolutions.github.io/ai-mastery-memory-os/ (GitHub Pages) · Vercel deploy supported (see below)
 
 ## What it does
 
-- **Reviews** — active-recall flashcards with spaced repetition. Write your answer before revealing, then grade yourself (Again / Hard / Good / Easy).
-- **Architecture Web mode** — 36 illustrated web-development terms every architecture-firm website is built from: wireframe diagrams, a professional explanation, an explanation a 5-year-old understands, why it matters for architecture studios, an example, related concepts, and a review question.
+- **Review** — a landing screen where you choose AI Review or Website Terminology Review, then use active-recall flashcards with spaced repetition.
+- **AI Curriculum** — AI terminology, prompting, RAG, agents, evaluation, safety, tools, and production patterns.
+- **Website Curriculum** — 36 illustrated website terminology cards with wireframes, professional explanations, plain-English explanations, examples, and review questions.
 - **Dual coding** — every revealed answer adds a visual memory image, a draw-it-yourself prompt, and optional audio explanations (text-to-speech).
-- **Reword (Feynman)** — explain a concept in your own words and compare against the model answer.
-- **Connect** — drill the relationships between concepts to build a systems view.
 - **Prompt Lab** — a structured prompt builder plus a searchable library of prompt methods for ChatGPT, Claude, coding agents, RAG, research, and more.
-- **Curriculum & glossary** — 300+ cards across four tiers: Beginner → Intermediate → Advanced → Expert.
+- **Progress** — review counts, due cards, retention, calibration, and tier progress.
 - **Focus timer** — Pomodoro-style timer for study sprints.
+
+Primary navigation: Dashboard, Review, AI Curriculum, Website Curriculum, Prompt Lab, Progress, Settings.
 
 Progress is stored locally in your browser. Export/import it as JSON in **Settings** to move between devices.
 
@@ -21,7 +22,7 @@ Progress is stored locally in your browser. Export/import it as JSON in **Settin
 
 1. Download or clone this repository.
 2. Open `index.html` in a browser.
-3. Start with **Dashboard → Start due review**.
+3. Start with **Dashboard -> Review**.
 
 ## Run locally with a simple server
 
@@ -56,7 +57,7 @@ src/mobile.css             small-screen and safe-area refinements
 data/content.js            core curriculum (generated data)
 data/memory-ai-expert-pack.js   additional expert cards + prompt methods
 data/no-memory-review-format.js review-answer format (professional + ELI5)
-data/webdev.js             Architecture Web module (36 terms + SVG wireframes)
+data/webdev.js             Website terminology module (36 terms + SVG wireframes)
 data/dual-coding-aids.js   visual memory images + audio support
 scripts/                   data build/validate utilities (Python)
 docs/                      architecture, curriculum map, learning science, audits
@@ -64,7 +65,7 @@ docs/                      architecture, curriculum map, learning science, audit
 
 ## Learning method
 
-The app applies proven techniques as functionality, not theory: retrieval practice (answer before reveal), spaced repetition (graded scheduling), interleaving (mixed review queue), dual coding (visual + verbal + audio), elaboration (why-it-matters and connection drills), and the Feynman technique (Reword mode). See `docs/LEARNING_SCIENCE.md`.
+The app applies proven techniques as functionality, not theory: retrieval practice (answer before reveal), spaced repetition (graded scheduling), interleaving (mixed review queue), dual coding (visual + verbal + audio), and elaboration through why-it-matters explanations and examples. See `docs/LEARNING_SCIENCE.md`.
 
 ## License
 

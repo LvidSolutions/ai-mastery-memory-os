@@ -2,23 +2,32 @@
   'use strict';
 
   const DATA = window.AI_MASTERY_DATA;
+  DATA.appName = 'AI Mastery Memory OS';
   const STORAGE_KEY = 'ai-mastery-memory-os-pro:v2';
   const MINUTE = 60 * 1000;
   const DAY = 24 * 60 * MINUTE;
+  const WEBSITE_CATEGORY = 'Architecture Web';
 
   const TABS = [
     ['dashboard', 'Dashboard'],
-    ['review', 'Reviews'],
-    ['reword', 'Reword'],
-    ['connections', 'Connect'],
-    ['archweb', 'Arch Web'],
-    ['graph', 'Graph'],
-    ['analytics', 'Analytics'],
+    ['review', 'Review'],
+    ['aicurriculum', 'AI Curriculum'],
+    ['websitecurriculum', 'Website Curriculum'],
     ['promptlab', 'Prompt Lab'],
-    ['curriculum', 'Curriculum'],
-    ['glossary', 'Glossary'],
+    ['progress', 'Progress'],
     ['settings', 'Settings']
   ];
+  const TAB_IDS = new Set(TABS.map(([id]) => id));
+  const LEGACY_TABS = {
+    reviews: 'review',
+    reword: 'review',
+    connections: 'review',
+    archweb: 'websitecurriculum',
+    graph: 'progress',
+    analytics: 'progress',
+    curriculum: 'aicurriculum',
+    glossary: 'aicurriculum'
+  };
 
   const defaultState = () => ({
     tab: 'dashboard',
@@ -26,12 +35,10 @@
     progress: {},
     queue: [],
     queueIndex: 0,
+    reviewDomain: null,
     showAnswer: false,
     currentAnswer: '',
-    reword: { id: null, answer: '', lastScore: null },
-    connect: { id: null, answer: '' },
-    archweb: { id: null, q: '', tier: 'All', group: 'All' },
-    graph: { cat: 'All', focus: null, mode: 'map' },
+    website: { id: null, q: '', tier: 'All', group: 'All' },
     promptLab: { goal: '', context: '', constraints: '', examples: '', output: '', quality: '' },
     timer: {
       mode: 'focus',
@@ -50,7 +57,7 @@
     lastOpened: Date.now()
   });
 
-  let state = loadState();
+  let state = normalizeState(loadState());
   const app = document.getElementById('app');
   const tabs = document.getElementById('tabs');
   const toastEl = document.getElementById('toast');
@@ -80,6 +87,13 @@
     return base;
   }
 
+  function normalizeState(nextState) {
+    if (!TAB_IDS.has(nextState.tab)) nextState.tab = LEGACY_TABS[nextState.tab] || 'dashboard';
+    if (!nextState.website && nextState.archweb) nextState.website = nextState.archweb;
+    if (!['ai', 'website', null].includes(nextState.reviewDomain)) nextState.reviewDomain = null;
+    return nextState;
+  }
+
   function saveState() {
     state.lastOpened = Date.now();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -89,10 +103,6 @@
     return String(value ?? '').replace(/[&<>'"]/g, (char) => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[char]));
-  }
-
-  function slug(value) {
-    return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   }
 
   function fmtDate(ts) {
@@ -114,6 +124,28 @@
 
   function cardById(id) {
     return DATA.cards.find((card) => card.id === id) || DATA.cards[0];
+  }
+
+  function isWebsiteCard(card) {
+    return card.category === WEBSITE_CATEGORY || String(card.id || '').startsWith('aw-') || card.type === 'term';
+  }
+
+  function domainLabel(domain) {
+    return domain === 'website' ? 'Website Terminology' : 'AI';
+  }
+
+  function domainForCard(card) {
+    return isWebsiteCard(card) ? 'website' : 'ai';
+  }
+
+  function domainCards(domain = 'all') {
+    if (domain === 'website') return DATA.cards.filter(isWebsiteCard);
+    if (domain === 'ai') return DATA.cards.filter((card) => !isWebsiteCard(card));
+    return DATA.cards.slice();
+  }
+
+  function domainCategories(domain = 'all') {
+    return Array.from(new Set(domainCards(domain).map((card) => card.category))).sort();
   }
 
   function progressFor(id) {
@@ -144,11 +176,15 @@
     return 'Learning';
   }
 
-  function filteredCards(limit = Infinity) {
+  function filteredCards(limit = Infinity, domain = 'all') {
     const q = state.filters.q.trim().toLowerCase();
-    const cards = DATA.cards.filter((card) => {
-      if (state.filters.level !== 'All' && card.level !== state.filters.level) return false;
-      if (state.filters.category !== 'All' && card.category !== state.filters.category) return false;
+    const categories = domainCategories(domain);
+    const levels = Array.from(new Set(domainCards(domain).map((card) => card.level)));
+    const activeCategory = categories.includes(state.filters.category) ? state.filters.category : 'All';
+    const activeLevel = levels.includes(state.filters.level) ? state.filters.level : 'All';
+    const cards = domainCards(domain).filter((card) => {
+      if (activeLevel !== 'All' && card.level !== activeLevel) return false;
+      if (activeCategory !== 'All' && card.category !== activeCategory) return false;
       if (state.filters.status !== 'All' && cardStatus(card) !== state.filters.status) return false;
       if (!q) return true;
       const haystack = [card.title, card.front, card.back, card.whyItMatters, card.example, card.category, card.level, ...(card.tags || []), ...(card.connections || [])].join(' ').toLowerCase();
@@ -157,19 +193,20 @@
     return cards.slice(0, limit);
   }
 
-  function allStats() {
-    const progress = DATA.cards.map((card) => progressFor(card.id));
+  function allStats(domain = 'all') {
+    const cards = domainCards(domain);
+    const progress = cards.map((card) => progressFor(card.id));
     const seen = progress.filter((p) => p.reviews > 0);
-    const due = DATA.cards.filter((card) => progressFor(card.id).reviews > 0 && progressFor(card.id).due <= Date.now());
-    const mastered = DATA.cards.filter((card) => cardStatus(card) === 'Mastered');
-    const weak = DATA.cards.filter((card) => cardStatus(card) === 'Weak');
+    const due = cards.filter((card) => progressFor(card.id).reviews > 0 && progressFor(card.id).due <= Date.now());
+    const mastered = cards.filter((card) => cardStatus(card) === 'Mastered');
+    const weak = cards.filter((card) => cardStatus(card) === 'Weak');
     const reviews = progress.reduce((sum, p) => sum + p.reviews, 0);
     const good = progress.reduce((sum, p) => sum + (p.answers || []).filter((a) => a.rating >= 4).length, 0);
     const retention = reviews ? Math.round((good / reviews) * 100) : 0;
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
     const reviewedToday = progress.filter((p) => p.lastReviewed >= todayStart.getTime()).length;
-    return { seen: seen.length, due: due.length, mastered: mastered.length, weak: weak.length, reviews, retention, reviewedToday };
+    return { total: cards.length, seen: seen.length, due: due.length, mastered: mastered.length, weak: weak.length, reviews, retention, reviewedToday };
   }
 
   function renderTabs() {
@@ -183,14 +220,10 @@
     const renderers = {
       dashboard: renderDashboard,
       review: renderReview,
-      reword: renderReword,
-      connections: renderConnections,
-      archweb: renderArchWeb,
-      graph: renderGraph,
-      analytics: renderAnalytics,
+      aicurriculum: renderAICurriculum,
+      websitecurriculum: renderWebsiteCurriculum,
       promptlab: renderPromptLab,
-      curriculum: renderCurriculum,
-      glossary: renderGlossary,
+      progress: renderProgress,
       settings: renderSettings
     };
     app.innerHTML = (renderers[state.tab] || renderDashboard)();
@@ -202,26 +235,29 @@
 
   function renderDashboard() {
     const s = allStats();
+    const aiStats = allStats('ai');
+    const webStats = allStats('website');
     const levelCards = DATA.levels.map((level) => {
-      const cards = DATA.cards.filter((card) => card.level === level);
+      const cards = domainCards('ai').filter((card) => card.level === level);
       const done = cards.filter((card) => progressFor(card.id).reviews > 0).length;
-      const pct = Math.round((done / cards.length) * 100);
+      const pct = cards.length ? Math.round((done / cards.length) * 100) : 0;
       return { level, done, total: cards.length, pct };
     });
-    const weakCards = DATA.cards
+    const weakCards = domainCards('all')
       .filter((card) => ['Weak', 'Due'].includes(cardStatus(card)))
       .slice(0, 6);
 
     return `\n      ${renderNextAction()}
       <section class="grid two">
         <div class="panel hero command-hero"><span class="orbital o1" aria-hidden="true"></span><span class="orbital o2" aria-hidden="true"></span>
-          <span class="eyebrow">Evidence-informed AI learning system</span>
-          <h2>Compress foundational AI knowledge into active recall, not passive reading.</h2>
-          <p>This app trains concepts, terminology, tool names, prompting, RAG, agents, evaluation, safety, and production system thinking through a spaced repetition workflow.</p>
+          <span class="eyebrow">AI + Website Terminology</span>
+          <h2>Choose a track, review from memory, and keep progress visible.</h2>
+          <p>The app now centers on two learning areas: AI and Website Terminology. Use Review for active recall, browse each curriculum separately, and keep Prompt Lab for applied AI work.</p>
           <div class="hero-actions">
-            <button class="btn primary" data-action="start-review">Start due review</button>
+            <button class="btn primary" data-action="set-tab" data-tab="review">Open Review</button>
             <button class="btn ghost" data-action="set-tab" data-tab="promptlab">Open Prompt Lab</button>
-            <button class="btn ghost" data-action="set-tab" data-tab="curriculum">Browse curriculum</button>
+            <button class="btn ghost" data-action="set-tab" data-tab="aicurriculum">AI Curriculum</button>
+            <button class="btn ghost" data-action="set-tab" data-tab="websitecurriculum">Website Curriculum</button>
           </div>
         </div>
         <div class="panel">${renderTimer()}</div>
@@ -229,14 +265,14 @@
 
       <section class="stat-grid" style="margin-top:18px">
         ${statCard(s.due, 'Due cards')}
-        ${statCard(s.seen, `Seen of ${DATA.cards.length}`)}
+        ${statCard(aiStats.seen, `AI seen of ${aiStats.total}`)}
+        ${statCard(webStats.seen, `Website seen of ${webStats.total}`)}
         ${statCard(`${s.retention}%`, 'Good/Easy ratings')}
-        ${statCard(Math.floor(state.timer.totalFocusSeconds / 60), 'Focus minutes')}
       </section>
 
       <section class="grid two" style="margin-top:18px">
         <div class="panel">
-          <h3>Level progress</h3>
+          <h3>AI level progress</h3>
           <div class="list">
             ${levelCards.map((l) => `
               <div class="list-item">
@@ -247,11 +283,11 @@
           </div>
         </div>
         <div class="panel">
-          <h3>Today’s highest-leverage plan</h3>
+          <h3>Start here</h3>
           <div class="list">
-            <div class="list-item"><strong>1. Recall</strong><p>Review ${Math.max(1, s.due)} due cards before learning new cards.</p></div>
-            <div class="list-item"><strong>2. Chunk</strong><p>Use Connect mode to link one weak concept to at least three related terms.</p></div>
-            <div class="list-item"><strong>3. Apply</strong><p>Use Prompt Lab to design one AI workflow prompt with output format and eval criteria.</p></div>
+            <div class="list-item"><strong>1. Review</strong><p>Choose AI Review or Website Terminology Review from the Review screen.</p></div>
+            <div class="list-item"><strong>2. Browse</strong><p>Use the AI Curriculum and Website Curriculum as separate reference spaces.</p></div>
+            <div class="list-item"><strong>3. Apply</strong><p>Use Prompt Lab to turn AI concepts into clear prompts, rubrics, and workflows.</p></div>
           </div>
         </div>
       </section>
@@ -262,12 +298,27 @@
           ${weakCards.length ? `<div class="card-grid">${weakCards.map(miniCard).join('')}</div>` : `<div class="empty">No weak cards yet. Start reviews to calibrate your memory.</div>`}
         </div>
         <div class="panel">
-          <h3>Learning principles baked in</h3>
-          <div class="list">
-            ${DATA.principles.map((p) => `<div class="list-item"><strong>${escapeHTML(p)}</strong></div>`).join('')}
+          <h3>Navigation</h3>
+          <div class="card-grid">
+            ${trackCard('ai', aiStats, 'AI Curriculum', 'aicurriculum')}
+            ${trackCard('website', webStats, 'Website Curriculum', 'websitecurriculum')}
           </div>
         </div>
       </section>
+    `;
+  }
+
+  function trackCard(domain, stats, curriculumLabel, tab) {
+    return `
+      <div class="mini-card">
+        <div class="meta"><span class="badge dark">${domainLabel(domain)}</span><span class="badge dark">${stats.due} due</span></div>
+        <h4>${escapeHTML(domainLabel(domain))}</h4>
+        <p>${stats.seen}/${stats.total} cards seen. ${stats.weak} weak cards.</p>
+        <div class="row">
+          <button class="btn primary" data-action="start-domain-review" data-domain="${domain}">Review</button>
+          <button class="btn ghost" data-action="set-tab" data-tab="${tab}">${escapeHTML(curriculumLabel)}</button>
+        </div>
+      </div>
     `;
   }
 
@@ -277,12 +328,15 @@
 
   function miniCard(card) {
     const p = progressFor(card.id);
+    const domain = domainForCard(card);
+    const topic = domain === 'website' ? (card.chunk || 'Website Terminology') : card.category;
     return `
-      <div class="mini-card knowledge-node concept-card" style="--hue:${graphHue(card.category)}">
-        <div class="meta"><span class="badge dark">${escapeHTML(card.level)}</span><span class="badge dark">${escapeHTML(cardStatus(card))}</span></div>
+      <div class="mini-card knowledge-node concept-card">
+        <div class="meta"><span class="badge dark">${escapeHTML(domainLabel(domain))}</span><span class="badge dark">${escapeHTML(card.level)}</span><span class="badge dark">${escapeHTML(cardStatus(card))}</span></div>
         <h4>${escapeHTML(card.title)}</h4>
         <p>${escapeHTML(card.front)}</p>
-        <p class="small muted">Due: ${fmtDate(p.due)} · Stability: ${(p.stability || 0).toFixed(1)}d · Difficulty: ${(p.difficulty || 0).toFixed(1)}</p>
+        <p class="small muted">Topic: ${escapeHTML(topic)}</p>
+        <p class="small muted">Due: ${fmtDate(p.due)} - Stability: ${(p.stability || 0).toFixed(1)}d - Difficulty: ${(p.difficulty || 0).toFixed(1)}</p>
         <button class="btn ghost" data-action="review-card" data-id="${card.id}">Review this</button>
       </div>
     `;
@@ -309,15 +363,17 @@
     `;
   }
 
-  function renderFilters() {
+  function renderFilters(domain = 'all') {
+    const categories = domainCategories(domain);
+    const levels = Array.from(new Set(domainCards(domain).map((card) => card.level))).sort((a, b) => DATA.levels.indexOf(a) - DATA.levels.indexOf(b));
     return `
       <div class="filters">
-        <input class="input" data-filter="q" placeholder="Search concept, tool, tag..." value="${escapeHTML(state.filters.q)}" />
+        <input class="input" data-filter="q" placeholder="Search term, concept, tool, or tag..." value="${escapeHTML(state.filters.q)}" />
         <select data-filter="level">
-          ${['All', ...DATA.levels].map((l) => `<option ${state.filters.level === l ? 'selected' : ''}>${escapeHTML(l)}</option>`).join('')}
+          ${['All', ...levels].map((l) => `<option ${state.filters.level === l ? 'selected' : ''}>${escapeHTML(l)}</option>`).join('')}
         </select>
         <select data-filter="category">
-          ${['All', ...DATA.categories].map((c) => `<option ${state.filters.category === c ? 'selected' : ''}>${escapeHTML(c)}</option>`).join('')}
+          ${['All', ...categories].map((c) => `<option ${state.filters.category === c ? 'selected' : ''}>${escapeHTML(c)}</option>`).join('')}
         </select>
         <select data-filter="status">
           ${['All', 'New', 'Due', 'Learning', 'Weak', 'Mastered'].map((st) => `<option ${state.filters.status === st ? 'selected' : ''}>${escapeHTML(st)}</option>`).join('')}
@@ -326,8 +382,9 @@
     `;
   }
 
-  function buildQueue(mode) {
-    const cards = filteredCards();
+  function buildQueue(mode, domain = state.reviewDomain || 'ai') {
+    state.reviewDomain = domain;
+    const cards = filteredCards(Infinity, domain);
     let ids;
     if (mode === 'weak') {
       ids = cards.filter((card) => cardStatus(card) === 'Weak' || progressFor(card.id).state === 'relearning').slice(0, 20).map((card) => card.id);
@@ -348,34 +405,28 @@
 
   function renderReview() {
     if (!state.queue.length || state.queueIndex >= state.queue.length) {
-      const count = filteredCards().length;
-      return `
-        <section class="panel review-stage"><span class="orbital o2" aria-hidden="true"></span>
-          <span class="eyebrow">Active recall + spaced repetition</span>
-          <h2>Review queue</h2>
-          <p>Write your own answer first. Reveal only after retrieval effort, then grade honestly. This is the core of the system.</p>
-          ${renderFilters()}
-          <div class="empty">
-            <h3>${state.queue.length ? 'Review session complete.' : 'No active queue yet.'}</h3>
-            <p>${count} cards match your filters. Build a queue from due cards, weak cards, and a small number of new cards.</p>
-            <button class="btn primary" data-action="build-queue">Build review queue</button>
-          </div>
-        </section>
-      `;
+      const completed = state.queue.length && state.queueIndex >= state.queue.length;
+      state.queue = [];
+      state.queueIndex = 0;
+      return renderReviewLanding(completed);
     }
 
     const card = cardById(state.queue[state.queueIndex]);
     const p = progressFor(card.id);
+    const domain = state.reviewDomain || domainForCard(card);
+    const topic = domain === 'website' ? (card.chunk || 'Website Terminology') : card.category;
     const percent = Math.round(((state.queueIndex) / state.queue.length) * 100);
     return `
       <section class="card-review">
         <div class="toolbar">
-          <button class="btn ghost" data-action="build-queue">Refresh queue</button>
+          <button class="btn ghost" data-action="review-landing">Review landing</button>
+          <button class="btn ghost" data-action="build-queue">Refresh ${escapeHTML(domainLabel(domain))} queue</button>
           <span class="badge dark">${state.queueIndex + 1}/${state.queue.length}</span>
+          <span class="badge dark">${escapeHTML(domainLabel(domain))}</span>
           <span class="badge dark">${escapeHTML(card.level)}</span>
-          <span class="badge dark">${escapeHTML(card.category)}</span>
+          <span class="badge dark">${escapeHTML(topic)}</span>
           <span class="spacer"></span>
-          <span class="small muted">Due: ${fmtDate(p.due)} · Reviews: ${p.reviews} · Stability: ${(p.stability || 0).toFixed(1)}d · Difficulty: ${(p.difficulty || 0).toFixed(1)}</span>
+          <span class="small muted">Due: ${fmtDate(p.due)} - Reviews: ${p.reviews} - Stability: ${(p.stability || 0).toFixed(1)}d - Difficulty: ${(p.difficulty || 0).toFixed(1)}</span>
         </div>
         <div class="progress-bar" style="--w:${percent}%"><span></span></div>
         <article class="flashcard">
@@ -394,6 +445,41 @@
     `;
   }
 
+  function renderReviewLanding(completed = false) {
+    const aiStats = allStats('ai');
+    const webStats = allStats('website');
+    return `
+      <section class="panel review-stage"><span class="orbital o2" aria-hidden="true"></span>
+        <span class="eyebrow">Active recall + spaced repetition</span>
+        <h2>Choose a review track</h2>
+        <p>${completed ? 'Review session complete. ' : ''}Pick the deck you want to review. The review flow stays the same: answer from memory, reveal, then grade honestly.</p>
+        <div class="review-choice-grid">
+          ${reviewChoice('ai', 'AI Review', 'Review AI concepts, prompting, RAG, agents, evaluation, safety, tools, and production terms.', aiStats)}
+          ${reviewChoice('website', 'Website Terminology Review', 'Review website terminology with wireframes, plain-English explanations, and practical examples.', webStats)}
+        </div>
+      </section>
+    `;
+  }
+
+  function reviewChoice(domain, title, description, stats) {
+    return `
+      <article class="review-choice">
+        <div class="meta"><span class="badge dark">${escapeHTML(domainLabel(domain))}</span><span class="badge dark">${stats.total} cards</span></div>
+        <h3>${escapeHTML(title)}</h3>
+        <p>${escapeHTML(description)}</p>
+        <div class="stat-grid mini-stats">
+          ${statCard(stats.due, 'Due')}
+          ${statCard(stats.weak, 'Weak')}
+          ${statCard(stats.seen, 'Seen')}
+        </div>
+        <div class="row">
+          <button class="btn primary" data-action="start-domain-review" data-domain="${domain}">Start ${escapeHTML(title)}</button>
+          <button class="btn ghost" data-action="set-tab" data-tab="${domain === 'website' ? 'websitecurriculum' : 'aicurriculum'}">Open curriculum</button>
+        </div>
+      </article>
+    `;
+  }
+
   function renderAnswer(card) {
     return `
       <div class="answer-reveal">
@@ -402,335 +488,38 @@
         <p><strong>Why it matters:</strong> ${escapeHTML(card.whyItMatters)}</p>
         <p><strong>Example:</strong> ${escapeHTML(card.example)}</p>
         <p><strong>Practice:</strong> ${escapeHTML(card.practice)}</p>
-        <p><strong>Connections:</strong> ${card.connections.map(escapeHTML).join(' · ')}</p>
+        <p><strong>Connections:</strong> ${card.connections.map(escapeHTML).join(' - ')}</p>
       </div>
       ${(() => { const pv = window.FSRS.preview(progressFor(card.id), Date.now(), state.desiredRetention || 0.9); return `
       <div class="row grade-row" style="margin-top:14px">
-        <button class="btn bad" data-action="grade" data-rating="1">Again · ${pv[1]}</button>
-        <button class="btn warn" data-action="grade" data-rating="2">Hard · ${pv[2]}</button>
-        <button class="btn good" data-action="grade" data-rating="3">Good · ${pv[3]}</button>
-        <button class="btn purple" data-action="grade" data-rating="4">Easy · ${pv[4]}</button>
+        <button class="btn bad" data-action="grade" data-rating="1">Again - ${pv[1]}</button>
+        <button class="btn warn" data-action="grade" data-rating="2">Hard - ${pv[2]}</button>
+        <button class="btn good" data-action="grade" data-rating="3">Good - ${pv[3]}</button>
+        <button class="btn purple" data-action="grade" data-rating="4">Easy - ${pv[4]}</button>
       </div>`; })()}
     `;
   }
 
-  function renderReword() {
-    const cards = filteredCards();
-    if (!state.reword.id || !cards.some((card) => card.id === state.reword.id)) {
-      state.reword.id = (cards[0] || DATA.cards[0]).id;
-    }
-    const card = cardById(state.reword.id);
-    const score = scoreTextAgainstCard(state.reword.answer, card);
-    return `
-      <section class="grid two">
-        <div class="panel light">
-          <span class="eyebrow" style="color:#0369a1;background:#e0f2fe;border-color:#bae6fd">Feynman rewording</span>
-          <h2>Explain it simply: ${escapeHTML(card.title)}</h2>
-          <p><strong>Prompt:</strong> ${escapeHTML(card.front)}</p>
-          <p class="muted">Write as if teaching a smart beginner. Avoid copying the reference answer. The local score checks keyword coverage, not truth; use it as a nudge.</p>
-          <textarea data-field="rewordAnswer" placeholder="Explain this in simple words...">${escapeHTML(state.reword.answer)}</textarea>
-          <div class="row" style="margin-top:12px">
-            <button class="btn primary" data-action="save-reword">Save rewording</button>
-            <button class="btn ghost" data-action="random-reword">Random concept</button>
-            <button class="btn ghost" data-action="review-card" data-id="${card.id}">Review card</button>
-          </div>
-          <div class="answer-reveal">
-            <h3>Reference answer</h3>
-            <p>${escapeHTML(card.back)}</p>
-            <p><strong>Example:</strong> ${escapeHTML(card.example)}</p>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Coverage signal</h3>
-          <div class="stat"><strong>${score.percent}%</strong><span>${score.hit.length}/${score.keywords.length} key terms present</span></div>
-          <div class="progress-bar" style="--w:${score.percent}%"><span></span></div>
-          <h4>Hit terms</h4>
-          <div class="graph">${score.hit.map((k) => `<span class="node active">${escapeHTML(k)}</span>`).join('') || '<span class="muted">No key terms yet.</span>'}</div>
-          <h4>Missing terms</h4>
-          <div class="graph">${score.missing.slice(0, 16).map((k) => `<span class="node knowledge-node">${escapeHTML(k)}</span>`).join('') || '<span class="muted">Looks covered. Now check if it is accurate.</span>'}</div>
-          <hr style="border-color:var(--line);border-style:solid;border-width:1px 0 0;margin:18px 0">
-          ${renderFilters()}
-        </div>
-      </section>
-    `;
-  }
-
-  function renderConnections() {
-    const cards = filteredCards(60);
-    if (!state.connect.id || !DATA.cards.some((card) => card.id === state.connect.id)) {
-      state.connect.id = DATA.cards[0].id;
-    }
-    const card = cardById(state.connect.id);
-    const backlinks = DATA.cards.filter((candidate) => candidate.connections.some((c) => c.toLowerCase() === card.title.toLowerCase())).slice(0, 10);
-    const related = DATA.cards.filter((candidate) => card.connections.some((c) => c.toLowerCase() === candidate.title.toLowerCase())).slice(0, 10);
-    return `
-      <section class="grid two">
-        <div class="panel">
-          <span class="eyebrow">Connecting + chunking</span>
-          <h2>Concept graph</h2>
-          <p>Build a systems view. AI expertise comes from knowing how terms connect in workflows.</p>
-          ${renderFilters()}
-          <div class="graph">
-            ${cards.map((c) => `<button class="node knowledge-node ${c.id === card.id ? 'active' : ''}" data-action="select-connect" data-id="${c.id}">${escapeHTML(c.title)}</button>`).join('')}
-          </div>
-        </div>
-        <div class="panel light">
-          <h2>${escapeHTML(card.title)}</h2>
-          <p>${escapeHTML(card.back)}</p>
-          <div class="meta"><span class="badge">${escapeHTML(card.level)}</span><span class="badge">${escapeHTML(card.category)}</span><span class="badge">${escapeHTML(card.chunk)}</span></div>
-          <h3>Direct connections</h3>
-          <div class="graph">${card.connections.map((c) => `<span class="node active" style="color:#0f172a;background:#e0f2fe">${escapeHTML(c)}</span>`).join('')}</div>
-          <h3>Cards that point here</h3>
-          <div class="list">${backlinks.length ? backlinks.map((c) => `<div class="list-item light"><strong>${escapeHTML(c.title)}</strong><p>${escapeHTML(c.front)}</p></div>`).join('') : '<p>No backlinks yet.</p>'}</div>
-          <h3>Connection drill</h3>
-          <p class="muted">Explain how <strong>${escapeHTML(card.title)}</strong> connects to one related term.</p>
-          <textarea data-field="connectAnswer" placeholder="Example: RAG connects to hallucination because...">${escapeHTML(state.connect.answer)}</textarea>
-          <div class="row" style="margin-top:12px">
-            <button class="btn primary" data-action="save-connect">Save connection note</button>
-            <button class="btn ghost" data-action="review-card" data-id="${card.id}">Review card</button>
-          </div>
-        </div>
-      </section>
-      <section class="panel" style="margin-top:18px">
-        <h3>Related cards</h3>
-        ${related.length ? `<div class="card-grid">${related.map(miniCard).join('')}</div>` : `<div class="empty">No exact related card titles found. Use the direct connection terms as a search query.</div>`}
-      </section>
-    `;
-  }
-
-
-
-
-  const GRAPH_CACHE = {};
-
-  function graphHue(category) {
-    let h = 7;
-    for (let i = 0; i < category.length; i++) h = (h * 31 + category.charCodeAt(i)) % 360;
-    return h;
-  }
-
-  function buildGraphData(cat) {
-    if (GRAPH_CACHE[cat]) return GRAPH_CACHE[cat];
-    let nodes = cat === 'All' ? DATA.cards.slice() : DATA.cards.filter((c) => c.category === cat);
-    const byTitle = new Map(DATA.cards.map((c) => [c.title.toLowerCase(), c]));
-    const inSet = new Set(nodes.map((c) => c.id));
-    const edges = [];
-    const edgeSet = new Set();
-    const deg = {};
-    const addEdge = (a, b) => {
-      if (a === b) return;
-      const k = a < b ? a + '|' + b : b + '|' + a;
-      if (edgeSet.has(k)) return;
-      edgeSet.add(k);
-      edges.push([a, b]);
-      deg[a] = (deg[a] || 0) + 1;
-      deg[b] = (deg[b] || 0) + 1;
-    };
-    nodes.forEach((c) => (c.connections || []).forEach((t) => {
-      const o = byTitle.get(String(t).toLowerCase());
-      if (o && inSet.has(o.id)) addEdge(c.id, o.id);
-    }));
-    const chunks = {};
-    nodes.forEach((c) => { if (c.chunk) (chunks[c.chunk] = chunks[c.chunk] || []).push(c.id); });
-    Object.values(chunks).forEach((ids) => {
-      for (let i = 0; i < ids.length - 1; i++) if ((deg[ids[i]] || 0) < 4) addEdge(ids[i], ids[i + 1]);
-    });
-    if (nodes.length > 130) {
-      nodes = nodes.filter((c) => deg[c.id]).sort((a, b) => (deg[b.id] || 0) - (deg[a.id] || 0)).slice(0, 130);
-      const keep = new Set(nodes.map((c) => c.id));
-      for (let i = edges.length - 1; i >= 0; i--) if (!keep.has(edges[i][0]) || !keep.has(edges[i][1])) edges.splice(i, 1);
-    }
-    const W = 1000, H = 700, CX = W / 2, CY = H / 2;
-    const cats = [...new Set(nodes.map((c) => c.category))];
-    const pos = {};
-    nodes.forEach((c) => {
-      let hash = 7;
-      for (let i = 0; i < c.id.length; i++) hash = (hash * 31 + c.id.charCodeAt(i)) >>> 0;
-      const a = (cats.indexOf(c.category) / Math.max(1, cats.length)) * Math.PI * 2 + ((hash % 100) / 100 - 0.5) * 1.2;
-      const r = 110 + (hash % 170);
-      pos[c.id] = { x: CX + Math.cos(a) * r, y: CY + Math.sin(a) * r * 0.62 };
-    });
-    const ids = nodes.map((c) => c.id);
-    for (let it = 0; it < 110; it++) {
-      const t = 1 - it / 110;
-      for (let i = 0; i < ids.length; i++) {
-        for (let j = i + 1; j < ids.length; j++) {
-          const a = pos[ids[i]], b = pos[ids[j]];
-          let dx = a.x - b.x, dy = a.y - b.y;
-          let d2 = dx * dx + dy * dy;
-          if (d2 < 1) { dx = 0.5; dy = 0.5; d2 = 0.5; }
-          const d = Math.sqrt(d2);
-          const f = Math.min(7, 1500 / d2) * t;
-          dx = (dx / d) * f; dy = (dy / d) * f;
-          a.x += dx; a.y += dy; b.x -= dx; b.y -= dy;
-        }
-      }
-      for (const [u, v] of edges) {
-        const a = pos[u], b = pos[v];
-        const dx = b.x - a.x, dy = b.y - a.y;
-        const d = Math.sqrt(dx * dx + dy * dy) || 1;
-        const f = (d - 92) * 0.016 * t;
-        a.x += (dx / d) * f; a.y += (dy / d) * f;
-        b.x -= (dx / d) * f; b.y -= (dy / d) * f;
-      }
-      for (const id of ids) {
-        const q = pos[id];
-        q.x += (CX - q.x) * 0.004;
-        q.y += (CY - q.y) * 0.007;
-        q.x = Math.max(34, Math.min(W - 34, q.x));
-        q.y = Math.max(30, Math.min(H - 30, q.y));
-      }
-    }
-    GRAPH_CACHE[cat] = { nodes, edges, pos, deg };
-    return GRAPH_CACHE[cat];
-  }
-
-  function renderGraph() {
-    const st = state.graph;
-    if (st.mode === 'tree') return renderSkillTree();
-    const { nodes, edges, pos, deg } = buildGraphData(st.cat);
-    if (st.focus && !nodes.some((c) => c.id === st.focus)) st.focus = null;
-    const neighbors = new Set();
-    if (st.focus) edges.forEach(([u, v]) => { if (u === st.focus) neighbors.add(v); if (v === st.focus) neighbors.add(u); });
-    const labeled = new Set(nodes.slice().sort((a, b) => (deg[b.id] || 0) - (deg[a.id] || 0)).slice(0, 13).map((c) => c.id));
-    if (st.focus) { labeled.add(st.focus); neighbors.forEach((n) => labeled.add(n)); }
-    const cats = ['All', ...new Set((st.cat === 'All' ? DATA.cards : DATA.cards).map((c) => c.category))].slice(0, 15);
-    const focusCard = st.focus ? cardById(st.focus) : null;
-    const fp = focusCard ? progressFor(focusCard.id) : null;
-    return `
-      <section class="panel">
-        <span class="eyebrow">Knowledge universe</span>
-        <h2>Concept graph</h2>
-        <p>Every node is a concept; size = memory stability, edges = real relationships. Drag to pan, scroll to zoom, double-click to reset, tap a node to focus its neighborhood.</p>
-        <div class="row" style="margin-bottom:4px">
-          <button class="btn ${st.mode === 'map' ? 'primary' : 'ghost'}" data-action="graph-mode" data-mode="map">Knowledge map</button>
-          <button class="btn ${st.mode === 'tree' ? 'primary' : 'ghost'}" data-action="graph-mode" data-mode="tree">Skill tree</button>
-        </div>
-        <div class="graph-legend">
-          ${cats.map((c) => `<button class="node knowledge-node ${c === st.cat ? 'active' : ''}" data-action="graph-cat" data-cat="${escapeHTML(c)}">${escapeHTML(c)}</button>`).join('')}
-        </div>
-        <div class="graph-stage">
-          <svg viewBox="0 0 1000 700" role="img" aria-label="Interactive concept graph">
-            <g>${edges.map(([u, v]) => `<line class="gedge ${st.focus && (u === st.focus || v === st.focus) ? 'hi' : ''}" x1="${pos[u].x.toFixed(1)}" y1="${pos[u].y.toFixed(1)}" x2="${pos[v].x.toFixed(1)}" y2="${pos[v].y.toFixed(1)}"/>`).join('')}</g>
-            <g>${nodes.map((c) => {
-              const p = progressFor(c.id);
-              const stat = cardStatus(c);
-              const r = 4.5 + Math.min(9, Math.sqrt(p.stability || 0) * 1.7);
-              const cls = ['gnode', stat === 'Due' ? 'due' : '', stat === 'New' ? 'new' : '', stat === 'Weak' ? 'weak' : '', stat === 'Mastered' ? 'mastered' : '',
-                c.id === st.focus ? 'focus' : '', st.focus && c.id !== st.focus && !neighbors.has(c.id) ? 'dim' : ''].filter(Boolean).join(' ');
-              const q = pos[c.id];
-              return `<g class="${cls}" data-action="graph-node" data-id="${c.id}" transform="translate(${q.x.toFixed(1)} ${q.y.toFixed(1)})">
-                <circle class="halo" r="${(r + 4).toFixed(1)}"/>
-                <circle class="core" r="${r.toFixed(1)}" fill="hsl(${graphHue(c.category)} 72% 62% / .92)"/>
-                ${labeled.has(c.id) ? `<text x="0" y="${(r + 11).toFixed(1)}" text-anchor="middle">${escapeHTML(c.title.length > 24 ? c.title.slice(0, 23) + '…' : c.title)}</text>` : ''}
-              </g>`;
-            }).join('')}</g>
-          </svg>
-          <span class="graph-hint">drag · scroll · double-click resets</span>
-        </div>
-        ${focusCard ? `
-        <div class="panel light gfocus">
-          <div class="meta"><span class="badge">${escapeHTML(focusCard.level)}</span><span class="badge">${escapeHTML(focusCard.category)}</span><span class="badge">${cardStatus(focusCard)}</span><span class="badge">Stability ${(fp.stability || 0).toFixed(1)}d</span></div>
-          <h3 style="margin:8px 0 4px">${escapeHTML(focusCard.title)}</h3>
-          <p>${escapeHTML(focusCard.back)}</p>
-          <div class="row" style="margin:10px 0">
-            <button class="btn primary" data-action="review-card" data-id="${focusCard.id}">Review this card</button>
-            <button class="btn ghost" data-action="graph-node" data-id="">Clear focus</button>
-          </div>
-          ${neighbors.size ? `<h4 style="margin:10px 0 6px">Connected concepts</h4><div class="graph">${[...neighbors].map((id) => { const n = cardById(id); return n ? `<button class="node knowledge-node" data-action="graph-node" data-id="${id}">${escapeHTML(n.title)}</button>` : ''; }).join('')}</div>` : ''}
-        </div>` : '<p class="small muted" style="margin-top:10px">Tap any node to inspect it and light up its connections.</p>'}
-      </section>`;
-  }
-
-  function renderSkillTree() {
-    const W = 1000;
-    const tiers = DATA.levels;
-    const mastery = tierMastery();
-    const rec = mastery.find((m) => m.pct < 60) || mastery[mastery.length - 1];
-    const cols = tiers.map((level, i) => {
-      const byCat = {};
-      DATA.cards.filter((c) => c.level === level).forEach((c) => {
-        byCat[c.category] = byCat[c.category] || { total: 0, solid: 0 };
-        byCat[c.category].total++;
-        if ((progressFor(c.id).stability || 0) >= 7) byCat[c.category].solid++;
-      });
-      const cats = Object.entries(byCat).sort((a, b) => b[1].total - a[1].total).slice(0, 7);
-      return { level, i, cats, m: mastery[i] };
-    });
-    const H = 110 + Math.max(...cols.map((c) => c.cats.length)) * 86;
-    const x = (i) => 130 + i * ((W - 260) / Math.max(1, tiers.length - 1));
-    const y = (col, j) => 96 + j * ((H - 140) / Math.max(1, col.cats.length - 1 || 1));
-    const find = (col, cat) => { const j = col.cats.findIndex(([c]) => c === cat); return j < 0 ? null : { x: x(col.i), y: y(col, j) }; };
-    const paths = [];
-    for (let i = 0; i < cols.length - 1; i++) {
-      cols[i].cats.forEach(([cat, v]) => {
-        const a = find(cols[i], cat), b = find(cols[i + 1], cat);
-        if (a && b) {
-          const lit = v.total && v.solid / v.total >= 0.6;
-          paths.push(`<path class="tpath ${lit ? 'lit' : ''}" d="M ${a.x} ${a.y} C ${a.x + 110} ${a.y}, ${b.x - 110} ${b.y}, ${b.x} ${b.y}"/>`);
-        }
-      });
-    }
-    const nodes = cols.map((col) => col.cats.map(([cat, v], j) => {
-      const pct = v.total ? Math.round((v.solid / v.total) * 100) : 0;
-      const r = 17 + Math.min(13, v.total * 0.45);
-      const circ = 2 * Math.PI * (r + 5);
-      return `<g class="tnode ${pct >= 100 ? 'done' : ''} ${col.level === rec.level && pct < 60 ? 'rec' : ''}" data-action="tree-node" data-level="${escapeHTML(col.level)}" data-cat="${escapeHTML(cat)}" transform="translate(${x(col.i)} ${y(col, j)})">
-        <circle class="bg" r="${r}"/>
-        <circle class="ringfill" r="${r + 5}" stroke-dasharray="${(circ * pct / 100).toFixed(1)} ${circ.toFixed(1)}"/>
-        <text class="pct" y="4" text-anchor="middle">${pct}%</text>
-        <text y="${r + 18}" text-anchor="middle">${escapeHTML(cat.length > 20 ? cat.slice(0, 19) + '…' : cat)}</text>
-      </g>`;
-    }).join('')).join('');
-    const headers = cols.map((col) => `<text class="ttier-label ${col.level === rec.level ? 'rec' : ''}" x="${x(col.i)}" y="40" text-anchor="middle">${escapeHTML(col.level.toUpperCase())} · ${col.m.pct}%</text>`).join('');
-    return `
-      <section class="panel">
-        <span class="eyebrow">Progression</span>
-        <h2>Skill tree</h2>
-        <p>Each ring fills as a category becomes solid (stability ≥ 7 days). Light a tier to 60% to unlock the next. Tap a node to study that branch.</p>
-        <div class="row" style="margin-bottom:10px">
-          <button class="btn ghost" data-action="graph-mode" data-mode="map">Knowledge map</button>
-          <button class="btn primary" data-action="graph-mode" data-mode="tree">Skill tree</button>
-        </div>
-        <div class="tree-stage"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Skill tree progression">${paths.join('')}${nodes}${headers}</svg></div>
-      </section>`;
-  }
-
-  function masteryRing(pct, size) {
-    const r = (size - 12) / 2;
-    const c = 2 * Math.PI * r;
-    return `<span class="mastery-ring" style="width:${size}px;height:${size}px"><svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle class="track" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-width="6"/><circle class="fill" cx="${size / 2}" cy="${size / 2}" r="${r}" stroke-width="6" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${(c * (1 - pct / 100)).toFixed(1)}"/></svg><strong>${pct}%</strong></span>`;
-  }
-
   function tierMastery() {
     return DATA.levels.map((level) => {
-      const cs = DATA.cards.filter((c) => c.level === level);
+      const cs = domainCards('ai').filter((c) => c.level === level);
       const solid = cs.filter((c) => (progressFor(c.id).stability || 0) >= 7).length;
       return { level, total: cs.length, solid, pct: cs.length ? Math.round((solid / cs.length) * 100) : 0 };
     });
   }
 
   function renderNextAction() {
-    const now = Date.now();
-    const due = DATA.cards.filter((c) => { const p = progressFor(c.id); return p.reviews > 0 && p.due <= now; }).length;
-    const weak = DATA.cards.filter((c) => cardStatus(c) === 'Weak').length;
-    const mastery = tierMastery();
-    const rec = mastery.find((m) => m.pct < 60) || mastery[mastery.length - 1];
-    let cta;
-    if (due > 0) cta = `<button class="btn primary" data-action="build-queue">Review ${due} due card${due === 1 ? '' : 's'}</button>`;
-    else if (weak > 0) cta = `<button class="btn primary" data-action="build-weak-queue">Drill ${weak} weak card${weak === 1 ? '' : 's'}</button>`;
-    else cta = `<button class="btn primary" data-action="focus-tier" data-level="${rec.level}">Learn new ${rec.level} cards</button>`;
+    const ai = allStats('ai');
+    const web = allStats('website');
+    const preferred = ai.due || ai.weak || !web.due ? 'ai' : 'website';
     return `
       <section class="panel" style="margin-bottom:18px">
         <span class="eyebrow">Recommended next action</span>
         <div class="row" style="margin-top:10px">
-          ${cta}
-          ${weak > 0 && due > 0 ? `<button class="btn ghost" data-action="build-weak-queue">Drill weak (${weak})</button>` : ''}
+          <button class="btn primary" data-action="start-domain-review" data-domain="${preferred}">Start ${escapeHTML(domainLabel(preferred))} Review</button>
+          <button class="btn ghost" data-action="set-tab" data-tab="review">Choose review track</button>
           <span class="spacer"></span>
-          <span class="small muted">Focus tier: <strong>${escapeHTML(rec.level)}</strong> (${rec.pct}% solid — unlock the next tier at 60%)</span>
-        </div>
-        <div class="ring-row" style="margin-top:16px">
-          ${mastery.map((m) => `<button class="ring-cell ${m.level === rec.level ? 'rec' : ''}" data-action="focus-tier" data-level="${m.level}">${masteryRing(m.pct, 62)}<span class="small" style="font-weight:800">${escapeHTML(m.level)}</span><span class="small muted">${m.solid}/${m.total} solid</span></button>`).join('')}
+          <span class="small muted">AI due: <strong>${ai.due}</strong> - Website due: <strong>${web.due}</strong></span>
         </div>
       </section>`;
   }
@@ -748,7 +537,7 @@
     return `<svg class="bars" viewBox="0 0 200 88" role="img">${bars}${labs}</svg>`;
   }
 
-  function renderAnalytics() {
+  function renderProgress() {
     const now = Date.now();
     const log = state.log || [];
     const dayKey = (t) => new Date(t).toISOString().slice(0, 10);
@@ -788,17 +577,25 @@
       if (p && p.reviews > 0) { reviewed++; sSum += p.stability || 0; dSum += p.difficulty || 0; }
     });
     const mastery = tierMastery();
+    const aiStats = allStats('ai');
+    const webStats = allStats('website');
     return `
-      ${renderNextAction()}
       <section class="grid two">
         <div class="panel">
-          <span class="eyebrow">Memory analytics · FSRS-6</span>
-          <h2>How your memory is doing</h2>
+          <span class="eyebrow">Progress</span>
+          <h2>Review progress</h2>
+          <div class="stat-grid mini-stats">
+            ${statCard(aiStats.seen, `AI seen of ${aiStats.total}`)}
+            ${statCard(aiStats.due, 'AI due')}
+            ${statCard(webStats.seen, `Website seen of ${webStats.total}`)}
+            ${statCard(webStats.due, 'Website due')}
+          </div>
+          <h3 style="margin-top:18px">Memory health</h3>
           <div class="stat-grid">
-            <div class="stat"><strong>${retention == null ? '—' : retention + '%'}</strong><span>True retention (last ${recent.length || 0} reviews)</span></div>
+            <div class="stat"><strong>${retention == null ? '-' : retention + '%'}</strong><span>Recall rate from the last ${recent.length || 0} reviews</span></div>
             <div class="stat"><strong>${streak}</strong><span>Day streak</span></div>
-            <div class="stat"><strong>${reviewed ? (sSum / reviewed).toFixed(1) + 'd' : '—'}</strong><span>Avg stability</span></div>
-            <div class="stat"><strong>${reviewed ? (dSum / reviewed).toFixed(1) : '—'}</strong><span>Avg difficulty (1–10)</span></div>
+            <div class="stat"><strong>${reviewed ? (sSum / reviewed).toFixed(1) + 'd' : '-'}</strong><span>Avg stability</span></div>
+            <div class="stat"><strong>${reviewed ? (dSum / reviewed).toFixed(1) : '-'}</strong><span>Avg difficulty (1-10)</span></div>
           </div>
           <h3 style="margin-top:18px">Reviews per day (last 14 days)</h3>
           ${svgBars(dayCounts, dayLabels)}
@@ -806,17 +603,17 @@
           ${svgBars(forecast, fLabels)}
         </div>
         <div class="panel">
-          <h3>Calibration — confidence vs. accuracy</h3>
-          <p class="small muted">Well-calibrated learners are accurate when certain and humble when not. Big gaps mean you are fooling yourself — the most expensive learning error.</p>
+          <h3>Calibration</h3>
+          <p class="small muted">Use this to compare confidence with recall quality after review sessions.</p>
           <div class="table-wrap"><table>
             <tr><th>You said</th><th>Reviews</th><th>Actually recalled</th></tr>
-            ${conf.map((c) => `<tr><td>${confName[c.level]}</td><td>${c.n}</td><td>${c.acc == null ? '—' : c.acc + '%'}</td></tr>`).join('')}
+            ${conf.map((c) => `<tr><td>${confName[c.level]}</td><td>${c.n}</td><td>${c.acc == null ? '-' : c.acc + '%'}</td></tr>`).join('')}
           </table></div>
           <h3 style="margin-top:18px">Card states</h3>
           <div class="graph">${Object.entries(statuses).map(([k, v]) => `<span class="node knowledge-node">${k}: ${v}</span>`).join('')}</div>
-          <h3 style="margin-top:18px">Tier mastery (progressive overload)</h3>
+          <h3 style="margin-top:18px">AI tier progress</h3>
           <div class="list">
-            ${mastery.map((m) => `<div class="list-item"><strong>${escapeHTML(m.level)}</strong> — ${m.solid}/${m.total} solid (stability ≥ 7 days)<div class="progress-bar" style="--w:${m.pct}%;margin-top:8px"><span></span></div></div>`).join('')}
+            ${mastery.map((m) => `<div class="list-item"><strong>${escapeHTML(m.level)}</strong> - ${m.solid}/${m.total} solid (stability >= 7 days)<div class="progress-bar" style="--w:${m.pct}%;margin-top:8px"><span></span></div></div>`).join('')}
           </div>
         </div>
       </section>`;
@@ -827,10 +624,10 @@
     return (AW && (AW.byId[id] || AW.terms[0])) || null;
   }
 
-  function renderArchWeb() {
+  function renderWebsiteCurriculum() {
     const AW = window.ARCH_WEB;
-    if (!AW) return '<section class="panel"><h2>Architecture Web</h2><p class="muted">Module failed to load (data/webdev.js missing).</p></section>';
-    const st = state.archweb;
+    if (!AW) return '<section class="panel"><h2>Website Curriculum</h2><p class="muted">Website terminology failed to load.</p></section>';
+    const st = state.website;
     if (!st.id || !AW.byId[st.id]) st.id = AW.terms[0].id;
     const q = (st.q || '').trim().toLowerCase();
     const tiers = ['All', 'Beginner', 'Intermediate', 'Advanced'];
@@ -847,11 +644,11 @@
     return `
       <section class="grid two">
         <div class="panel">
-          <span class="eyebrow">Architecture website review mode</span>
-          <h2>Web terms for architecture firms</h2>
-          <p>${AW.terms.length} terms every architecture-studio website is built from. Study the wireframe, read both explanations, then test yourself.</p>
+          <span class="eyebrow">Website Terminology</span>
+          <h2>Website Curriculum</h2>
+          <p>${AW.terms.length} website terms with wireframes, professional explanations, plain-English explanations, examples, and review questions.</p>
           <div class="toolbar">
-            <input class="input" style="flex:2;min-width:150px" data-aw-field="q" placeholder="Search terms…" value="${escapeHTML(st.q)}" />
+            <input class="input" style="flex:2;min-width:150px" data-aw-field="q" placeholder="Search website terms..." value="${escapeHTML(st.q)}" />
             <select data-aw-field="tier">${tiers.map((t) => `<option ${t === st.tier ? 'selected' : ''}>${t}</option>`).join('')}</select>
             <select data-aw-field="group">${groups.map((g) => `<option ${g === st.group ? 'selected' : ''}>${g}</option>`).join('')}</select>
           </div>
@@ -859,27 +656,28 @@
             ${list.map((t) => `
               <button class="aw-item ${t.id === term.id ? 'active' : ''}" data-action="aw-select" data-id="${t.id}">
                 <span class="aw-item-wf">${AW.wire(t.v)}</span>
-                <span><strong>${escapeHTML(t.title)}</strong><em>${escapeHTML(t.tier)} · ${escapeHTML(t.group)}</em></span>
+                <span><strong>${escapeHTML(t.title)}</strong><em>${escapeHTML(t.tier)} - ${escapeHTML(t.group)}</em></span>
               </button>`).join('') || '<div class="empty">No terms match this filter.</div>'}
           </div>
         </div>
         <div class="panel light aw-detail">
-          <div class="meta"><span class="badge">${escapeHTML(term.tier)}</span><span class="badge">${escapeHTML(term.group)}</span><span class="badge">${cardStatus(cardById(term.id))}</span></div>
+          <div class="meta"><span class="badge">Website Terminology</span><span class="badge">${escapeHTML(term.tier)}</span><span class="badge">${escapeHTML(term.group)}</span><span class="badge">${cardStatus(cardById(term.id))}</span></div>
           <h2>${escapeHTML(term.title)}</h2>
           <figure class="aw-figure">${AW.wire(term.v)}</figure>
           <h3>Professional explanation</h3>
           <p>${escapeHTML(term.pro)}</p>
-          <h3>Explain it to a 5-year-old</h3>
+          <h3>Plain-English explanation</h3>
           <p class="aw-eli5">${escapeHTML(term.eli5)}</p>
-          <h3>Why it matters for architecture websites</h3>
+          <h3>Why it matters</h3>
           <p>${escapeHTML(term.why)}</p>
           <h3>Example</h3>
           <p>${escapeHTML(term.example)}</p>
           <h3>Review question</h3>
           <p><strong>${escapeHTML(term.question)}</strong></p>
           <div class="row" style="margin:10px 0 14px">
-            <button class="btn primary" data-action="review-card" data-id="${term.id}">Review this card</button>
-            <span class="small muted">Due: ${fmtDate(p.due)} · Reviews: ${p.reviews}</span>
+            <button class="btn primary" data-action="review-card" data-id="${term.id}">Review this term</button>
+            <button class="btn ghost" data-action="start-domain-review" data-domain="website">Start Website Terminology Review</button>
+            <span class="small muted">Due: ${fmtDate(p.due)} - Reviews: ${p.reviews}</span>
           </div>
           <h3>Related concepts</h3>
           <div class="graph">${related.map((r) => `<button class="node knowledge-node" data-action="aw-select" data-id="${r.id}">${escapeHTML(r.title)}</button>`).join('')}</div>
@@ -968,17 +766,17 @@
     return { percent, missing, label };
   }
 
-  function renderCurriculum() {
-    const cards = filteredCards(120);
-    const total = filteredCards().length;
+  function renderAICurriculum() {
+    const cards = filteredCards(120, 'ai');
+    const total = filteredCards(Infinity, 'ai').length;
     return `
       <section class="panel">
-        <span class="eyebrow">Curriculum map</span>
-        <h2>AI foundations → operator → builder → expert</h2>
-        <p>${DATA.cards.length} cards cover core terminology, system concepts, tool names, prompting, RAG, agents, evaluation, safety, and production patterns. Use filters to target weak areas.</p>
-        ${renderFilters()}
+        <span class="eyebrow">AI</span>
+        <h2>AI Curriculum</h2>
+        <p>${domainCards('ai').length} cards cover AI terminology, prompting, RAG, agents, evaluation, safety, tools, and production patterns. Use filters to target weak areas.</p>
+        ${renderFilters('ai')}
         <div class="toolbar">
-          <button class="btn primary" data-action="build-queue">Build queue from filters</button>
+          <button class="btn primary" data-action="start-domain-review" data-domain="ai">Review AI cards</button>
           <span class="small muted">Showing ${cards.length} of ${total} matching cards.</span>
         </div>
         <div class="card-grid">${cards.map((card) => miniCard(card)).join('')}</div>
@@ -992,10 +790,12 @@
           ${renderSprint()}
         </div>
         <div class="panel">
-          <h3>Safe scope note</h3>
-          <div class="warning">The original wording included “AI worm”. This curriculum treats that as likely “AI work/workflow”. AI worms are included only as a defensive security concept: no malware-building steps, propagation instructions, or exploitation playbooks.</div>
-          <h3 style="margin-top:18px">Source notes</h3>
-          <div class="list map-list">${DATA.sourceNotes.slice(0, 5).map((s) => `<div class="list-item"><strong>${escapeHTML(s.name)}</strong><p>${escapeHTML(s.note)}</p></div>`).join('')}</div>
+          <h3>AI track focus</h3>
+          <div class="list">
+            <div class="list-item"><strong>Learn the terms</strong><p>Use the curriculum as a reference when a review answer feels unclear.</p></div>
+            <div class="list-item"><strong>Practice retrieval</strong><p>Start AI Review when you are ready to test recall instead of reading.</p></div>
+            <div class="list-item"><strong>Apply in Prompt Lab</strong><p>Turn concepts into prompts, output formats, and evaluation criteria.</p></div>
+          </div>
         </div>
       </section>
     `;
@@ -1019,35 +819,6 @@
     `;
   }
 
-  function renderGlossary() {
-    const q = state.filters.q.trim().toLowerCase();
-    const terms = DATA.glossary.filter((g) => {
-      if (state.filters.level !== 'All' && g.level !== state.filters.level) return false;
-      if (state.filters.category !== 'All' && g.category !== state.filters.category) return false;
-      if (!q) return true;
-      return [g.term, g.definition, g.category, ...(g.tags || [])].join(' ').toLowerCase().includes(q);
-    });
-    return `
-      <section class="panel">
-        <span class="eyebrow">Searchable AI vocabulary</span>
-        <h2>Glossary</h2>
-        <p>Use this as a quick reference, then convert weak terms back into active recall in Reviews.</p>
-        ${renderFilters()}
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Term</th><th>Level</th><th>Category</th><th>Definition</th><th>Action</th></tr></thead>
-            <tbody>
-              ${terms.map((g) => {
-                const card = DATA.cards.find((c) => c.title === g.term);
-                return `<tr><td class="knowledge-node"><strong>${escapeHTML(g.term)}</strong></td><td>${escapeHTML(g.level)}</td><td>${escapeHTML(g.category)}</td><td>${escapeHTML(g.definition)}</td><td>${card ? `<button class="btn ghost" data-action="review-card" data-id="${card.id}">Review</button>` : ''}</td></tr>`;
-              }).join('')}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    `;
-  }
-
   function renderSettings() {
     const s = allStats();
     return `
@@ -1061,7 +832,7 @@
             <label class="list-item"><strong>Focus minutes</strong><input class="input" type="number" min="5" max="120" data-setting="focusMinutes" value="${state.timer.focusMinutes}" /></label>
             <label class="list-item"><strong>Break minutes</strong><input class="input" type="number" min="1" max="45" data-setting="breakMinutes" value="${state.timer.breakMinutes}" /></label>
             <label class="list-item"><strong>Desired retention: ${Math.round((state.desiredRetention || 0.9) * 100)}%</strong><input class="input" type="range" min="80" max="95" step="1" data-setting="desiredRetention" value="${Math.round((state.desiredRetention || 0.9) * 100)}" /><span class="small muted">FSRS-6 scheduler. Higher = shorter intervals, more reviews, stronger memory. 90% is the evidence-based default.</span></label>
-            <label class="list-item"><strong>Interleaving</strong><select data-setting="interleave"><option value="on" ${state.interleave !== false ? 'selected' : ''}>On — mix categories (recommended)</option><option value="off" ${state.interleave === false ? 'selected' : ''}>Off — block by category</option></select><span class="small muted">Mixed practice feels harder but builds far stronger discrimination between concepts.</span></label>
+            <label class="list-item"><strong>Interleaving</strong><select data-setting="interleave"><option value="on" ${state.interleave !== false ? 'selected' : ''}>On - mix topics (recommended)</option><option value="off" ${state.interleave === false ? 'selected' : ''}>Off - block by topic</option></select><span class="small muted">Mixed practice feels harder but builds far stronger discrimination between concepts.</span></label>
           </div>
           <div class="toolbar">
             <button class="btn primary" data-action="export-progress">Export progress JSON</button>
@@ -1081,10 +852,10 @@
           <h3 style="margin-top:18px">Keyboard shortcuts</h3>
           <div class="list">
             <div class="list-item"><span class="kbd">Space</span> Reveal answer when not typing.</div>
-            <div class="list-item"><span class="kbd">1</span> Again · <span class="kbd">2</span> Hard · <span class="kbd">3</span> Good · <span class="kbd">4</span> Easy after reveal.</div>
+            <div class="list-item"><span class="kbd">1</span> Again - <span class="kbd">2</span> Hard - <span class="kbd">3</span> Good - <span class="kbd">4</span> Easy after reveal.</div>
           </div>
           <h3 style="margin-top:18px">Version</h3>
-          <p>${escapeHTML(DATA.appName)} ${escapeHTML(DATA.version)} · generated ${escapeHTML(DATA.generated)}</p>
+          <p>${escapeHTML(DATA.appName)} ${escapeHTML(DATA.version)} - generated ${escapeHTML(DATA.generated)}</p>
         </div>
       </section>
     `;
@@ -1124,22 +895,6 @@
     }
     saveState();
     render();
-  }
-
-  function scoreTextAgainstCard(text, card) {
-    const stop = new Set('what when where why how does that this with from into about your before after through using used such have will into than then they them because plus minus means very each also only'.split(' '));
-    const words = [card.title, card.back, card.whyItMatters, ...(card.tags || []), ...(card.connections || [])]
-      .join(' ')
-      .toLowerCase()
-      .replace(/[^a-z0-9åäö]+/g, ' ')
-      .split(/\s+/)
-      .filter((w) => w.length > 3 && !stop.has(w));
-    const keywords = unique(words).slice(0, 26);
-    const lower = (text || '').toLowerCase();
-    const hit = keywords.filter((k) => lower.includes(k));
-    const missing = keywords.filter((k) => !lower.includes(k));
-    const percent = keywords.length ? Math.round((hit.length / keywords.length) * 100) : 0;
-    return { keywords, hit, missing, percent };
   }
 
   function unique(list) {
@@ -1255,28 +1010,49 @@
     if (!btn) return;
     const action = btn.dataset.action;
     if (action === 'set-tab') {
-      state.tab = btn.dataset.tab;
+      state.tab = TAB_IDS.has(btn.dataset.tab) ? btn.dataset.tab : (LEGACY_TABS[btn.dataset.tab] || 'dashboard');
       saveState();
       render();
       return;
     }
     if (action === 'start-review') {
       state.tab = 'review';
-      if (!state.queue.length || state.queueIndex >= state.queue.length) buildQueue();
+      state.queue = [];
+      state.queueIndex = 0;
       saveState();
       render();
       return;
     }
+    if (action === 'review-landing') {
+      state.tab = 'review';
+      state.queue = [];
+      state.queueIndex = 0;
+      state.showAnswer = false;
+      state.currentAnswer = '';
+      saveState();
+      render();
+      return;
+    }
+    if (action === 'start-domain-review') {
+      state.tab = 'review';
+      state.reviewDomain = btn.dataset.domain === 'website' ? 'website' : 'ai';
+      buildQueue(null, state.reviewDomain);
+      render();
+      toast(`${state.queue.length} ${domainLabel(state.reviewDomain)} cards added to review queue.`);
+      return;
+    }
     if (action === 'build-queue') {
-      buildQueue();
+      buildQueue(null, state.reviewDomain || 'ai');
       state.tab = 'review';
       render();
       toast(`${state.queue.length} cards added to review queue.`);
       return;
     }
     if (action === 'review-card') {
+      const card = cardById(btn.dataset.id);
       state.queue = [btn.dataset.id];
       state.queueIndex = 0;
+      state.reviewDomain = domainForCard(card);
       state.showAnswer = false;
       state.currentAnswer = '';
       state.tab = 'review';
@@ -1294,52 +1070,6 @@
       gradeCurrent(Number(btn.dataset.rating));
       return;
     }
-    if (action === 'random-reword') {
-      const cards = filteredCards();
-      const card = cards[Math.floor(Math.random() * cards.length)] || DATA.cards[Math.floor(Math.random() * DATA.cards.length)];
-      state.reword.id = card.id;
-      state.reword.answer = '';
-      saveState();
-      render();
-      return;
-    }
-    if (action === 'save-reword') {
-      const p = progressFor(state.reword.id);
-      p.rewords = p.rewords || [];
-      p.rewords.push({ t: Date.now(), text: state.reword.answer.slice(0, 1200), score: scoreTextAgainstCard(state.reword.answer, cardById(state.reword.id)).percent });
-      if (p.rewords.length > 8) p.rewords = p.rewords.slice(-8);
-      saveState();
-      render();
-      toast('Rewording saved locally.');
-      return;
-    }
-    if (action === 'graph-node') {
-      state.graph.focus = btn.dataset.id || null;
-      saveState();
-      render();
-      return;
-    }
-    if (action === 'graph-cat') {
-      state.graph.cat = btn.dataset.cat;
-      state.graph.focus = null;
-      saveState();
-      render();
-      return;
-    }
-    if (action === 'graph-mode') {
-      state.graph.mode = btn.dataset.mode;
-      saveState();
-      render();
-      return;
-    }
-    if (action === 'tree-node') {
-      state.filters.level = btn.dataset.level;
-      state.filters.category = btn.dataset.cat;
-      state.tab = 'curriculum';
-      saveState();
-      render();
-      return;
-    }
     if (action === 'confidence') {
       state.confidence = Number(btn.dataset.level);
       state.showAnswer = true;
@@ -1349,7 +1079,7 @@
     }
     if (action === 'build-weak-queue') {
       state.tab = 'review';
-      buildQueue('weak');
+      buildQueue('weak', state.reviewDomain || 'ai');
       if (!state.queue.length) toast('No weak cards right now. Keep reviewing to surface them.');
       saveState();
       render();
@@ -1357,32 +1087,16 @@
     }
     if (action === 'focus-tier') {
       state.filters.level = btn.dataset.level;
-      state.tab = 'review';
-      buildQueue();
+      state.reviewDomain = 'ai';
+      state.tab = 'aicurriculum';
       saveState();
       render();
       return;
     }
     if (action === 'aw-select') {
-      state.archweb.id = btn.dataset.id;
+      state.website.id = btn.dataset.id;
       saveState();
       render();
-      return;
-    }
-    if (action === 'select-connect') {
-      state.connect.id = btn.dataset.id;
-      state.connect.answer = '';
-      saveState();
-      render();
-      return;
-    }
-    if (action === 'save-connect') {
-      const p = progressFor(state.connect.id);
-      p.connectionNotes = p.connectionNotes || [];
-      p.connectionNotes.push({ t: Date.now(), text: state.connect.answer.slice(0, 1200) });
-      if (p.connectionNotes.length > 8) p.connectionNotes = p.connectionNotes.slice(-8);
-      saveState();
-      toast('Connection note saved locally.');
       return;
     }
     if (action === 'copy-prompt') {
@@ -1437,25 +1151,17 @@
   document.addEventListener('change', (event) => {
     const el = event.target.closest('[data-aw-field]');
     if (!el) return;
-    state.archweb[el.dataset.awField] = el.value;
+    state.website[el.dataset.awField] = el.value;
     saveState();
     render();
   });
 
   document.addEventListener('input', (event) => {
     const aw = event.target.closest('input[data-aw-field="q"]');
-    if (aw) { state.archweb.q = aw.value; saveState(); const v = aw.value; render(); const el2 = document.querySelector('input[data-aw-field="q"]'); if (el2) { el2.focus(); el2.setSelectionRange(v.length, v.length); } return; }
+    if (aw) { state.website.q = aw.value; saveState(); const v = aw.value; render(); const el2 = document.querySelector('input[data-aw-field="q"]'); if (el2) { el2.focus(); el2.setSelectionRange(v.length, v.length); } return; }
     const target = event.target;
     if (target.matches('[data-field="currentAnswer"]')) {
       state.currentAnswer = target.value;
-      saveState();
-    }
-    if (target.matches('[data-field="rewordAnswer"]')) {
-      state.reword.answer = target.value;
-      saveState();
-    }
-    if (target.matches('[data-field="connectAnswer"]')) {
-      state.connect.answer = target.value;
       saveState();
     }
     if (target.matches('[data-prompt-field]')) {
@@ -1513,7 +1219,7 @@
         try {
           const imported = JSON.parse(reader.result);
           if (!imported.state) throw new Error('Missing state object');
-          state = deepMerge(defaultState(), imported.state);
+          state = normalizeState(deepMerge(defaultState(), imported.state));
           saveState();
           render();
           toast('Progress imported.');

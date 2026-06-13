@@ -168,7 +168,7 @@ h2 { letter-spacing: -.03em; font-weight: 700; }
 }
 .tabs { gap: 4px; padding: 6px; border: 1px solid rgba(125, 211, 252, .14); border-radius: 18px; background: rgba(10, 20, 36, .55); }
 .tab-btn {
-  text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; font-weight: 700;
+  text-transform: none; letter-spacing: 0; font-size: .72rem; font-weight: 700;
   border-radius: 12px; border: 1px solid transparent;
 }
 .tab-btn.active {
