@@ -98,3 +98,17 @@ h1{margin:0;font-size:clamp(1.28rem,3vw,2rem);line-height:1.05;letter-spacing:-.
 .connect-chip.missed{border-style:dashed;border-color:rgba(245,158,11,.6);color:#fde68a}
 .connect-chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
 .connect-arrow{color:var(--accent);font-weight:800;font-size:1.1rem}
+
+/* ===== Flashcard answer field + self-review contrast ===== */
+/* Darken the answer field so it stands out on the light flashcard, and make
+   the self-review (confidence + grade) buttons brighter and legible. */
+.card-review .flashcard textarea{background:#0e1c33;color:#eaf2fd;border-color:rgba(148,163,184,.5)}
+.card-review .flashcard textarea::placeholder{color:#9fb2c9}
+.card-review .flashcard textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,.28)}
+.flashcard .confidence-block{border-color:rgba(15,23,42,.2);background:rgba(15,23,42,.04)}
+.flashcard .btn.bad{background:#fee2e2;border-color:#ef4444;color:#b91c1c;font-weight:800}
+.flashcard .btn.warn{background:#fef3c7;border-color:#f59e0b;color:#b45309;font-weight:800}
+.flashcard .btn.good{background:#dcfce7;border-color:#22c55e;color:#15803d;font-weight:800}
+.flashcard .btn.purple{background:#ede9fe;border-color:#a78bfa;color:#6d28d9;font-weight:800}
+.flashcard .btn.ghost{background:#fff;border-color:#cbd5e1;color:#334155;font-weight:700}
+.flashcard .btn.bad:hover,.flashcard .btn.warn:hover,.flashcard .btn.good:hover,.flashcard .btn.purple:hover,.flashcard .btn.ghost:hover{filter:brightness(.97)}
