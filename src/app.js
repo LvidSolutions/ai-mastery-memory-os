@@ -146,6 +146,21 @@
     return domain === 'website' ? 'Website Terminology' : 'AI';
   }
 
+  function swedishTerm(card) {
+    const map = window.SV_TERMS;
+    if (!map) return '';
+    const sv = map[card.title];
+    return sv && sv !== card.title ? sv : '';
+  }
+
+  function cardVisual(card) {
+    const AW = window.ARCH_WEB;
+    if (!AW || !isWebsiteCard(card)) return '';
+    const term = AW.byId[card.id] || (card.visualId && AW.byId[card.visualId]);
+    if (!term || !term.v) return '';
+    return `<figure class="aw-figure card-visual">${AW.wire(term.v)}</figure>`;
+  }
+
   function domainForCard(card) {
     return isWebsiteCard(card) ? 'website' : 'ai';
   }
@@ -517,7 +532,11 @@
             <span class="badge">${escapeHTML(card.chunk)}</span>
             ${card.tags.slice(0, 4).map((t) => `<span class="badge">#${escapeHTML(t)}</span>`).join('')}
           </div>
-          <h2>${escapeHTML(card.title)}</h2>
+          <div class="term-head">
+            <h2>${escapeHTML(card.title)}</h2>
+            ${isWrite && swedishTerm(card) ? `<span class="term-sv" title="Swedish translation">SV · ${escapeHTML(swedishTerm(card))}</span>` : ''}
+          </div>
+          ${cardVisual(card)}
           <p><strong>Question:</strong> ${escapeHTML(card.front)}</p>
           ${isWrite ? `<label for="answer"><strong>Your answer before reveal</strong></label>
           <textarea id="answer" data-field="currentAnswer" placeholder="Write from memory. Bullet points are fine.">${escapeHTML(state.currentAnswer)}</textarea>` : ''}
