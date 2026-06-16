@@ -9,7 +9,7 @@ A local-first learning system for AI, website terminology, and SEO & CMS, built 
 - **Review** — a landing screen where you choose exactly one of AI Review, Website Terminology Review, or SEO & CMS Review, then use active-recall flashcards with spaced repetition. Each track reviews only its own cards.
 - **AI Curriculum** — AI terminology, prompting, RAG, agents, evaluation, safety, tools, and production patterns.
 - **Website Curriculum** — 36 illustrated website terminology cards with wireframes, professional explanations, plain-English explanations, examples, and review questions.
-- **SEO & CMS Curriculum** — 119 SEO, CMS, and backend concepts grouped into seven subcategories (SEO Foundations, Technical SEO, Website Architecture SEO, Backend & Infrastructure, CMS Concepts, CMS-Powered SEO Implementation, and Architecture-Firm SEO), each with a professional explanation, plain-English explanation, why-it-matters, website + architecture-firm examples, related concepts, and a review question. Browse by subcategory and start an SEO & CMS Review directly from the page.
+- **SEO & CMS Curriculum** — a focused, HHL-oriented priority path of the highest-value SEO, CMS, and backend concepts (search intent, crawling/indexing/ranking, meta tags, image SEO, sitemaps, structured data, Core Web Vitals, portfolio/local SEO, headless CMS, content modeling, dynamic pages, SEO fields, draft/publish, APIs, databases, deployment, and more). It is ordered as a learning path and grouped by subcategory, each concept with a professional explanation, plain-English explanation, why-it-matters, website + architecture-firm examples, related concepts, and a review question. Browse and start an SEO & CMS Review directly from the page. The full library of concepts lives in `data/seo-cms.js`; only the prioritized set is currently surfaced (the rest stay in the codebase for future use).
 - **Dual coding** — every revealed answer adds a visual memory image, a draw-it-yourself prompt, and optional audio explanations (text-to-speech).
 - **Prompt Lab** — a structured prompt builder plus a searchable library of prompt methods for ChatGPT, Claude, coding agents, RAG, research, and more.
 - **Progress** — review counts, due cards, retention, calibration, and tier progress.
@@ -59,7 +59,7 @@ data/content.js            core curriculum (generated data)
 data/memory-ai-expert-pack.js   additional expert cards + prompt methods
 data/no-memory-review-format.js review-answer format (professional + ELI5)
 data/webdev.js             Website terminology module (36 terms + SVG wireframes)
-data/seo-cms.js            SEO & CMS module (119 SEO/CMS/backend concepts in 7 subcategories)
+data/seo-cms.js            SEO & CMS module (119 concepts; HHL-priority subset currently surfaced)
 data/dual-coding-aids.js   visual memory images + audio support
 scripts/                   data build/validate utilities (Python)
 docs/                      architecture, curriculum map, learning science, audits

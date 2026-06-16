@@ -20,6 +20,44 @@
     'Architecture-Firm SEO'
   ];
 
+  // HHL 80/20 priority set. Only these concepts are currently surfaced in the
+  // SEO & CMS curriculum and merged into the review deck. Every other concept
+  // stays in TERMS below (nothing is deleted) but is not surfaced or merged,
+  // so it does not appear in the curriculum, review queues, or progress.
+  const FEATURED = new Set([
+    // SEO foundations
+    'seo-search-intent', 'seo-crawling', 'seo-indexing', 'seo-ranking',
+    'seo-meta-title', 'seo-meta-description', 'seo-url-structure', 'seo-internal-linking',
+    'seo-robots-txt', 'seo-canonical-url', 'seo-slugs',
+    // technical SEO essentials (image SEO, sitemap, structured data, social, vitals, redirects)
+    'seo-image-optimization', 'seo-xml-sitemap', 'seo-structured-data', 'seo-open-graph',
+    'seo-core-web-vitals', 'seo-lcp', 'seo-cls', 'seo-redirects',
+    // alt text (image SEO implementation)
+    'cms-seo-image-alt',
+    // architecture website SEO
+    'seo-portfolio-seo', 'seo-local-seo', 'seo-project-page', 'seo-service-page-strategy',
+    // CMS fundamentals
+    'cms-cms', 'cms-headless-cms', 'cms-content-type', 'cms-entry', 'cms-field',
+    'cms-content-relationships', 'cms-media-library', 'cms-dynamic-pages',
+    'cms-reusable-components', 'cms-seo-fields', 'cms-draft-publish', 'cms-preview-mode',
+    'cms-global-settings', 'cms-driven-routing',
+    // modern website infrastructure
+    'backend-content-model', 'backend-api', 'backend-database', 'backend-authentication',
+    'backend-environment-variables', 'backend-deployment-pipeline'
+  ]);
+
+  // Curriculum display order for the focused set (learning-path progression):
+  // foundations -> technical -> architecture-site SEO -> CMS -> infrastructure.
+  const FEATURED_GROUP_ORDER = [
+    'SEO Foundations',
+    'Technical SEO',
+    'Website Architecture SEO',
+    'Architecture-Firm SEO',
+    'CMS Concepts',
+    'CMS-Powered SEO Implementation',
+    'Backend & Infrastructure'
+  ];
+
   /* Wireframe specs reuse ARCH_WEB primitives (200x120 canvas):
      b=box, f=faint box, i=image, a=accent box, l=text line, t=label, c=circle, w=line, ar=arrow */
   const TERMS = [
@@ -1360,21 +1398,35 @@
   const wire = (window.ARCH_WEB && typeof window.ARCH_WEB.wire === 'function') ? window.ARCH_WEB.wire : null;
 
   const byId = {};
-  TERMS.forEach((t) => { byId[t.id] = t; });
+  TERMS.forEach((t) => { byId[t.id] = t; t.featured = FEATURED.has(t.id); });
+  const featuredTerms = TERMS.filter((t) => t.featured);
 
   function groupSlug(group) {
     return String(group || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   }
 
-  window.SEO_CMS = { category: CATEGORY, groups: GROUPS, terms: TERMS, byId, wire };
+  window.SEO_CMS = {
+    category: CATEGORY,
+    groups: GROUPS,
+    terms: TERMS,
+    byId,
+    wire,
+    // Focused HHL set surfaced in the curriculum + review.
+    featuredGroupOrder: FEATURED_GROUP_ORDER,
+    featuredTerms,
+    isFeatured: (id) => FEATURED.has(id)
+  };
 
-  /* ---- merge into SRS deck ---- */
+  /* ---- merge featured terms into SRS deck ---- */
+  /* Non-featured terms stay in TERMS for future use but are not added to the
+     deck, so they never appear in review queues or progress calculations. */
   const DATA = window.AI_MASTERY_DATA;
   if (!DATA || DATA.__seoCmsLoaded) return;
   DATA.__seoCmsLoaded = true;
   if (Array.isArray(DATA.categories) && !DATA.categories.includes(CATEGORY)) DATA.categories.push(CATEGORY);
   const existing = new Set(DATA.cards.map((c) => c.id));
   for (const t of TERMS) {
+    if (!t.featured) continue;
     if (existing.has(t.id)) continue;
     const example = t.arch ? `${t.example} Architecture-firm example: ${t.arch}` : t.example;
     DATA.cards.push({

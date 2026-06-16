@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-seo-cms-v5';
+const CACHE = 'ai-mastery-memory-os-seo-cms-focus-v6';
 const ASSETS = [
   './',
   './index.html',

@@ -919,11 +919,15 @@
     const S = window.SEO_CMS;
     if (!S) return '<section class="panel"><h2>SEO &amp; CMS Curriculum</h2><p class="muted">SEO &amp; CMS data failed to load.</p></section>';
     const st = state.seo;
-    if (!st.id || !S.byId[st.id]) st.id = S.terms[0].id;
+    const featured = S.featuredTerms && S.featuredTerms.length ? S.featuredTerms : S.terms;
+    const groupOrder = S.featuredGroupOrder || S.groups;
+    const isFeatured = S.isFeatured || (() => true);
+    if (!st.id || !S.byId[st.id] || !isFeatured(st.id)) st.id = featured[0].id;
     const q = (st.q || '').trim().toLowerCase();
     const tiers = ['All', 'Beginner', 'Intermediate', 'Advanced'];
-    const groups = ['All', ...S.groups];
-    const list = S.terms.filter((t) => {
+    const activeGroups = groupOrder.filter((g) => featured.some((t) => t.group === g));
+    const groups = ['All', ...activeGroups];
+    const list = featured.filter((t) => {
       if (st.tier !== 'All' && t.level !== st.tier) return false;
       if (st.group !== 'All' && t.group !== st.group) return false;
       if (!q) return true;
@@ -931,9 +935,9 @@
     });
     const term = seoTerm(st.id);
     const p = progressFor(term.id);
-    const related = term.related.map((id) => S.byId[id]).filter(Boolean);
+    const related = term.related.map((id) => S.byId[id]).filter((r) => r && isFeatured(r.id));
     const figure = (typeof S.wire === 'function' && term.v) ? `<figure class="aw-figure">${S.wire(term.v)}</figure>` : '';
-    const groupedHTML = S.groups.map((g) => {
+    const groupedHTML = activeGroups.map((g) => {
       const items = list.filter((t) => t.group === g);
       if (!items.length) return '';
       return `<div class="seo-group">
@@ -950,7 +954,7 @@
         <div class="panel">
           <span class="eyebrow">SEO &amp; CMS</span>
           <h2>SEO &amp; CMS Curriculum</h2>
-          <p>${S.terms.length} concepts across ${S.groups.length} subcategories: SEO foundations, technical SEO, website-architecture SEO, backend &amp; infrastructure, CMS concepts, CMS-powered SEO implementation, and architecture-firm SEO.</p>
+          <p>${featured.length} priority concepts for building, managing, and optimizing an architecture website with a CMS and strong SEO. Ordered as a learning path: SEO foundations, technical SEO, architecture-site SEO, CMS fundamentals, then website infrastructure.</p>
           <div class="toolbar">
             <input class="input" style="flex:2;min-width:150px" data-seo-field="q" placeholder="Search SEO, CMS, and backend terms..." value="${escapeHTML(st.q)}" />
             <select data-seo-field="tier">${tiers.map((t) => `<option ${t === st.tier ? 'selected' : ''}>${t}</option>`).join('')}</select>
@@ -958,7 +962,7 @@
           </div>
           <div class="toolbar">
             <button class="btn primary" data-action="start-domain-review" data-domain="seo">Start SEO &amp; CMS Review</button>
-            <span class="small muted">Showing ${list.length} of ${S.terms.length} concepts.</span>
+            <span class="small muted">Showing ${list.length} of ${featured.length} priority concepts.</span>
           </div>
           <div class="aw-list">
             ${groupedHTML || '<div class="empty">No concepts match this filter.</div>'}
