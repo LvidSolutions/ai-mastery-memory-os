@@ -17,7 +17,8 @@
     'Data Engineering': { icon: 'database', scene: 'Data pantry', hook: 'Data is the ingredients; tidy ingredients make the AI better.' },
     'Math & ML Essentials': { icon: 'gauge', scene: 'Score gauge', hook: 'The gauge shows whether the model is guessing better or worse.' },
     'Multimodal AI': { icon: 'eye', scene: 'Eyes and ears', hook: 'The AI gets more senses than text: images, audio, video, or documents.' },
-    'AI Expert Meta-Skills': { icon: 'map', scene: 'Strategy map', hook: 'You choose the right path, the right tool, and the right check for the problem.' }
+    'AI Expert Meta-Skills': { icon: 'map', scene: 'Strategy map', hook: 'You choose the right path, the right tool, and the right check for the problem.' },
+    'SEO & CMS': { icon: 'pipeline', scene: 'Content-to-pages pipeline', hook: 'Picture content flowing from a CMS through a build into fast pages that search engines can find.' }
   };
 
   function escapeHTML(value) {
@@ -207,7 +208,8 @@
       'AI Foundations': 220, 'LLM Mechanics': 260, 'Prompting': 330, 'RAG & Knowledge': 392,
       'Agents & Automation': 440, 'Evaluation': 494, 'Production & System Design': 523,
       'Safety & Governance': 587, 'Tools & Ecosystem': 659, 'Data Engineering': 294,
-      'Math & ML Essentials': 349, 'Multimodal AI': 698, 'AI Expert Meta-Skills': 784
+      'Math & ML Essentials': 349, 'Multimodal AI': 698, 'AI Expert Meta-Skills': 784,
+      'SEO & CMS': 466
     }[category] || 330;
     [0, 0.12, 0.24].forEach((delay, i) => {
       const osc = ctx.createOscillator();

@@ -7,16 +7,19 @@
   const MINUTE = 60 * 1000;
   const DAY = 24 * 60 * MINUTE;
   const WEBSITE_CATEGORY = 'Architecture Web';
+  const SEO_CATEGORY = 'SEO & CMS';
 
   const TABS = [
     ['dashboard', 'Dashboard'],
     ['review', 'Review'],
     ['aicurriculum', 'AI Curriculum'],
     ['websitecurriculum', 'Website Curriculum'],
+    ['seocurriculum', 'SEO & CMS Curriculum'],
     ['promptlab', 'Prompt Lab'],
     ['progress', 'Progress'],
     ['settings', 'Settings']
   ];
+  const CURRICULUM_TAB = { ai: 'aicurriculum', website: 'websitecurriculum', seo: 'seocurriculum' };
   const TAB_IDS = new Set(TABS.map(([id]) => id));
   const REVIEW_MODES = [
     ['flashcards', 'Flashcards'],
@@ -50,6 +53,7 @@
     showAnswer: false,
     currentAnswer: '',
     website: { id: null, q: '', tier: 'All', group: 'All' },
+    seo: { id: null, q: '', tier: 'All', group: 'All' },
     promptLab: { goal: '', context: '', constraints: '', examples: '', output: '', quality: '' },
     timer: {
       mode: 'focus',
@@ -101,7 +105,7 @@
   function normalizeState(nextState) {
     if (!TAB_IDS.has(nextState.tab)) nextState.tab = LEGACY_TABS[nextState.tab] || 'dashboard';
     if (!nextState.website && nextState.archweb) nextState.website = nextState.archweb;
-    if (!['ai', 'website', null].includes(nextState.reviewDomain)) nextState.reviewDomain = null;
+    if (!['ai', 'website', 'seo', null].includes(nextState.reviewDomain)) nextState.reviewDomain = null;
     if (nextState.reviewMode != null && !REVIEW_MODE_IDS.has(nextState.reviewMode)) nextState.reviewMode = null;
     return nextState;
   }
@@ -138,12 +142,19 @@
     return DATA.cards.find((card) => card.id === id) || DATA.cards[0];
   }
 
+  function isSeoCard(card) {
+    return card.category === SEO_CATEGORY || card.type === 'seo' || /^(seo|cms|backend)-/.test(String(card.id || ''));
+  }
+
   function isWebsiteCard(card) {
+    if (isSeoCard(card)) return false;
     return card.category === WEBSITE_CATEGORY || String(card.id || '').startsWith('aw-') || card.type === 'term';
   }
 
   function domainLabel(domain) {
-    return domain === 'website' ? 'Website Terminology' : 'AI';
+    if (domain === 'website') return 'Website Terminology';
+    if (domain === 'seo') return 'SEO & CMS';
+    return 'AI';
   }
 
   function swedishTerm(card) {
@@ -162,13 +173,14 @@
   }
 
   function domainForCard(card) {
-    return isWebsiteCard(card) ? 'website' : 'ai';
+    if (isSeoCard(card)) return 'seo';
+    if (isWebsiteCard(card)) return 'website';
+    return 'ai';
   }
 
   function domainCards(domain = 'all') {
-    if (domain === 'website') return DATA.cards.filter(isWebsiteCard);
-    if (domain === 'ai') return DATA.cards.filter((card) => !isWebsiteCard(card));
-    return DATA.cards.slice();
+    if (domain === 'all') return DATA.cards.slice();
+    return DATA.cards.filter((card) => domainForCard(card) === domain);
   }
 
   function domainCategories(domain = 'all') {
@@ -249,6 +261,7 @@
       review: renderReview,
       aicurriculum: renderAICurriculum,
       websitecurriculum: renderWebsiteCurriculum,
+      seocurriculum: renderSeoCurriculum,
       promptlab: renderPromptLab,
       progress: renderProgress,
       settings: renderSettings
@@ -264,6 +277,7 @@
     const s = allStats();
     const aiStats = allStats('ai');
     const webStats = allStats('website');
+    const seoStats = allStats('seo');
     const levelCards = DATA.levels.map((level) => {
       const cards = domainCards('ai').filter((card) => card.level === level);
       const done = cards.filter((card) => progressFor(card.id).reviews > 0).length;
@@ -277,14 +291,14 @@
     return `\n      ${renderNextAction()}
       <section class="grid two">
         <div class="panel hero command-hero"><span class="orbital o1" aria-hidden="true"></span><span class="orbital o2" aria-hidden="true"></span>
-          <span class="eyebrow">AI + Website Terminology</span>
+          <span class="eyebrow">AI · Website Terminology · SEO &amp; CMS</span>
           <h2>Choose a track, review from memory, and keep progress visible.</h2>
-          <p>The app now centers on two learning areas: AI and Website Terminology. Use Review for active recall, browse each curriculum separately, and keep Prompt Lab for applied AI work.</p>
+          <p>The app centers on three learning areas: AI, Website Terminology, and SEO &amp; CMS. Use Review for active recall, browse each curriculum separately, and keep Prompt Lab for applied AI work.</p>
           <div class="hero-actions">
             <button class="btn primary" data-action="set-tab" data-tab="review">Open Review</button>
-            <button class="btn ghost" data-action="set-tab" data-tab="promptlab">Open Prompt Lab</button>
             <button class="btn ghost" data-action="set-tab" data-tab="aicurriculum">AI Curriculum</button>
             <button class="btn ghost" data-action="set-tab" data-tab="websitecurriculum">Website Curriculum</button>
+            <button class="btn ghost" data-action="set-tab" data-tab="seocurriculum">SEO &amp; CMS Curriculum</button>
           </div>
         </div>
         <div class="panel">${renderTimer()}</div>
@@ -294,7 +308,7 @@
         ${statCard(s.due, 'Due cards')}
         ${statCard(aiStats.seen, `AI seen of ${aiStats.total}`)}
         ${statCard(webStats.seen, `Website seen of ${webStats.total}`)}
-        ${statCard(`${s.retention}%`, 'Good/Easy ratings')}
+        ${statCard(seoStats.seen, `SEO & CMS seen of ${seoStats.total}`)}
       </section>
 
       <section class="grid two" style="margin-top:18px">
@@ -312,8 +326,8 @@
         <div class="panel">
           <h3>Start here</h3>
           <div class="list">
-            <div class="list-item"><strong>1. Review</strong><p>Choose AI Review or Website Terminology Review from the Review screen.</p></div>
-            <div class="list-item"><strong>2. Browse</strong><p>Use the AI Curriculum and Website Curriculum as separate reference spaces.</p></div>
+            <div class="list-item"><strong>1. Review</strong><p>Choose AI, Website Terminology, or SEO &amp; CMS Review from the Review screen.</p></div>
+            <div class="list-item"><strong>2. Browse</strong><p>Use the AI, Website, and SEO &amp; CMS curricula as separate reference spaces.</p></div>
             <div class="list-item"><strong>3. Apply</strong><p>Use Prompt Lab to turn AI concepts into clear prompts, rubrics, and workflows.</p></div>
           </div>
         </div>
@@ -329,6 +343,7 @@
           <div class="card-grid">
             ${trackCard('ai', aiStats, 'AI Curriculum', 'aicurriculum')}
             ${trackCard('website', webStats, 'Website Curriculum', 'websitecurriculum')}
+            ${trackCard('seo', seoStats, 'SEO & CMS Curriculum', 'seocurriculum')}
           </div>
         </div>
       </section>
@@ -356,7 +371,7 @@
   function miniCard(card) {
     const p = progressFor(card.id);
     const domain = domainForCard(card);
-    const topic = domain === 'website' ? (card.chunk || 'Website Terminology') : card.category;
+    const topic = domain === 'ai' ? card.category : (card.chunk || domainLabel(domain));
     return `
       <div class="mini-card knowledge-node concept-card">
         <div class="meta"><span class="badge dark">${escapeHTML(domainLabel(domain))}</span><span class="badge dark">${escapeHTML(card.level)}</span><span class="badge dark">${escapeHTML(cardStatus(card))}</span></div>
@@ -504,7 +519,7 @@
     const card = cardById(state.queue[state.queueIndex]);
     const p = progressFor(card.id);
     const domain = state.reviewDomain || domainForCard(card);
-    const topic = domain === 'website' ? (card.chunk || 'Website Terminology') : card.category;
+    const topic = domain === 'ai' ? card.category : (card.chunk || domainLabel(domain));
     const percent = Math.round(((state.queueIndex) / state.queue.length) * 100);
     let prompt;
     if (state.showAnswer) {
@@ -654,14 +669,16 @@
   function renderReviewLanding() {
     const aiStats = allStats('ai');
     const webStats = allStats('website');
+    const seoStats = allStats('seo');
     return `
       <section class="panel review-stage"><span class="orbital o2" aria-hidden="true"></span>
         <span class="eyebrow">Active recall + spaced repetition</span>
         <h2>Choose a review track</h2>
-        <p>Pick the deck you want to review. Next you'll choose a review mode — flashcards, match, connect, or write in your own words — using only that track's cards.</p>
-        <div class="review-choice-grid">
+        <p>Pick exactly one deck to review. Next you'll choose a review mode — flashcards, match, connect, or write in your own words — using only that track's cards.</p>
+        <div class="review-choice-grid cols-3">
           ${reviewChoice('ai', 'AI Review', 'Review AI concepts, prompting, RAG, agents, evaluation, safety, tools, and production terms.', aiStats)}
           ${reviewChoice('website', 'Website Terminology Review', 'Review website terminology with wireframes, plain-English explanations, and practical examples.', webStats)}
+          ${reviewChoice('seo', 'SEO & CMS Review', 'Review only SEO, CMS, and backend concepts: search, indexing, Core Web Vitals, headless CMS, APIs, and architecture-firm SEO.', seoStats)}
         </div>
       </section>
     `;
@@ -680,7 +697,7 @@
         </div>
         <div class="row">
           <button class="btn primary" data-action="start-domain-review" data-domain="${domain}">Start ${escapeHTML(title)}</button>
-          <button class="btn ghost" data-action="set-tab" data-tab="${domain === 'website' ? 'websitecurriculum' : 'aicurriculum'}">Open curriculum</button>
+          <button class="btn ghost" data-action="set-tab" data-tab="${CURRICULUM_TAB[domain] || 'aicurriculum'}">Open curriculum</button>
         </div>
       </article>
     `;
@@ -887,6 +904,88 @@
           </div>
           <h3>Related concepts</h3>
           <div class="graph">${related.map((r) => `<button class="node knowledge-node" data-action="aw-select" data-id="${r.id}">${escapeHTML(r.title)}</button>`).join('')}</div>
+          <p class="small muted" style="margin-top:12px">Practice: ${escapeHTML(term.practice)}</p>
+        </div>
+      </section>
+    `;
+  }
+
+  function seoTerm(id) {
+    const S = window.SEO_CMS;
+    return (S && (S.byId[id] || S.terms[0])) || null;
+  }
+
+  function renderSeoCurriculum() {
+    const S = window.SEO_CMS;
+    if (!S) return '<section class="panel"><h2>SEO &amp; CMS Curriculum</h2><p class="muted">SEO &amp; CMS data failed to load.</p></section>';
+    const st = state.seo;
+    if (!st.id || !S.byId[st.id]) st.id = S.terms[0].id;
+    const q = (st.q || '').trim().toLowerCase();
+    const tiers = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+    const groups = ['All', ...S.groups];
+    const list = S.terms.filter((t) => {
+      if (st.tier !== 'All' && t.level !== st.tier) return false;
+      if (st.group !== 'All' && t.group !== st.group) return false;
+      if (!q) return true;
+      return (t.title + ' ' + t.pro + ' ' + t.eli5 + ' ' + t.why + ' ' + t.group).toLowerCase().includes(q);
+    });
+    const term = seoTerm(st.id);
+    const p = progressFor(term.id);
+    const related = term.related.map((id) => S.byId[id]).filter(Boolean);
+    const figure = (typeof S.wire === 'function' && term.v) ? `<figure class="aw-figure">${S.wire(term.v)}</figure>` : '';
+    const groupedHTML = S.groups.map((g) => {
+      const items = list.filter((t) => t.group === g);
+      if (!items.length) return '';
+      return `<div class="seo-group">
+          <div class="seo-group-head">${escapeHTML(g)} <span class="muted">${items.length}</span></div>
+          ${items.map((t) => `
+            <button class="aw-item ${t.id === term.id ? 'active' : ''}" data-action="seo-select" data-id="${t.id}">
+              <span class="aw-item-wf seo-chip">${escapeHTML(String(t.level || '?').charAt(0))}</span>
+              <span><strong>${escapeHTML(t.title)}</strong><em>${escapeHTML(t.level)} - ${escapeHTML(t.group)}</em></span>
+            </button>`).join('')}
+        </div>`;
+    }).join('');
+    return `
+      <section class="grid two">
+        <div class="panel">
+          <span class="eyebrow">SEO &amp; CMS</span>
+          <h2>SEO &amp; CMS Curriculum</h2>
+          <p>${S.terms.length} concepts across ${S.groups.length} subcategories: SEO foundations, technical SEO, website-architecture SEO, backend &amp; infrastructure, CMS concepts, CMS-powered SEO implementation, and architecture-firm SEO.</p>
+          <div class="toolbar">
+            <input class="input" style="flex:2;min-width:150px" data-seo-field="q" placeholder="Search SEO, CMS, and backend terms..." value="${escapeHTML(st.q)}" />
+            <select data-seo-field="tier">${tiers.map((t) => `<option ${t === st.tier ? 'selected' : ''}>${t}</option>`).join('')}</select>
+            <select data-seo-field="group">${groups.map((g) => `<option ${g === st.group ? 'selected' : ''}>${escapeHTML(g)}</option>`).join('')}</select>
+          </div>
+          <div class="toolbar">
+            <button class="btn primary" data-action="start-domain-review" data-domain="seo">Start SEO &amp; CMS Review</button>
+            <span class="small muted">Showing ${list.length} of ${S.terms.length} concepts.</span>
+          </div>
+          <div class="aw-list">
+            ${groupedHTML || '<div class="empty">No concepts match this filter.</div>'}
+          </div>
+        </div>
+        <div class="panel light aw-detail">
+          <div class="meta"><span class="badge">SEO &amp; CMS</span><span class="badge">${escapeHTML(term.group)}</span><span class="badge">${escapeHTML(term.level)}</span><span class="badge">${cardStatus(cardById(term.id))}</span></div>
+          <h2>${escapeHTML(term.title)}</h2>
+          ${figure}
+          <h3>Professional explanation</h3>
+          <p>${escapeHTML(term.pro)}</p>
+          <h3>Plain-English explanation</h3>
+          <p class="aw-eli5">${escapeHTML(term.eli5)}</p>
+          <h3>Why it matters</h3>
+          <p>${escapeHTML(term.why)}</p>
+          <h3>Website implementation example</h3>
+          <p>${escapeHTML(term.example)}</p>
+          ${term.arch ? `<h3>Architecture-firm example</h3><p>${escapeHTML(term.arch)}</p>` : ''}
+          <h3>Review question</h3>
+          <p><strong>${escapeHTML(term.question)}</strong></p>
+          <div class="row" style="margin:10px 0 14px">
+            <button class="btn primary" data-action="review-card" data-id="${term.id}">Review this concept</button>
+            <button class="btn ghost" data-action="start-domain-review" data-domain="seo">Start SEO &amp; CMS Review</button>
+            <span class="small muted">Due: ${fmtDate(p.due)} - Reviews: ${p.reviews}</span>
+          </div>
+          <h3>Related concepts</h3>
+          <div class="graph">${related.map((r) => `<button class="node knowledge-node" data-action="seo-select" data-id="${r.id}">${escapeHTML(r.title)}</button>`).join('')}</div>
           <p class="small muted" style="margin-top:12px">Practice: ${escapeHTML(term.practice)}</p>
         </div>
       </section>
@@ -1243,7 +1342,7 @@
     }
     if (action === 'start-domain-review') {
       state.tab = 'review';
-      state.reviewDomain = btn.dataset.domain === 'website' ? 'website' : 'ai';
+      state.reviewDomain = ['website', 'seo'].includes(btn.dataset.domain) ? btn.dataset.domain : 'ai';
       state.reviewMode = null;
       state.queue = [];
       state.queueIndex = 0;
@@ -1382,6 +1481,12 @@
       render();
       return;
     }
+    if (action === 'seo-select') {
+      state.seo.id = btn.dataset.id;
+      saveState();
+      render();
+      return;
+    }
     if (action === 'copy-prompt') {
       copyText(buildPrompt());
       return;
@@ -1433,15 +1538,25 @@
 
   document.addEventListener('change', (event) => {
     const el = event.target.closest('[data-aw-field]');
-    if (!el) return;
-    state.website[el.dataset.awField] = el.value;
-    saveState();
-    render();
+    if (el) {
+      state.website[el.dataset.awField] = el.value;
+      saveState();
+      render();
+      return;
+    }
+    const seoEl = event.target.closest('[data-seo-field]');
+    if (seoEl) {
+      state.seo[seoEl.dataset.seoField] = seoEl.value;
+      saveState();
+      render();
+    }
   });
 
   document.addEventListener('input', (event) => {
     const aw = event.target.closest('input[data-aw-field="q"]');
     if (aw) { state.website.q = aw.value; saveState(); const v = aw.value; render(); const el2 = document.querySelector('input[data-aw-field="q"]'); if (el2) { el2.focus(); el2.setSelectionRange(v.length, v.length); } return; }
+    const seoQ = event.target.closest('input[data-seo-field="q"]');
+    if (seoQ) { state.seo.q = seoQ.value; saveState(); const v = seoQ.value; render(); const el2 = document.querySelector('input[data-seo-field="q"]'); if (el2) { el2.focus(); el2.setSelectionRange(v.length, v.length); } return; }
     const target = event.target;
     if (target.matches('[data-field="currentAnswer"]')) {
       state.currentAnswer = target.value;

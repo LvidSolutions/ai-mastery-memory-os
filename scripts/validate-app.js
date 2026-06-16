@@ -17,10 +17,11 @@ const doc = { getElementById: () => null, addEventListener: () => {}, querySelec
 global.window = { document: doc }; global.document = doc;
 
 const load = (f) => eval.call(global, fs.readFileSync(path.join(ROOT, f), 'utf8'));
-['data/content.js', 'data/memory-ai-expert-pack.js', 'data/prompt-methods-v2.js', 'data/no-memory-review-format.js', 'data/webdev.js', 'src/fsrs.js'].forEach(load);
+['data/content.js', 'data/memory-ai-expert-pack.js', 'data/prompt-methods-v2.js', 'data/no-memory-review-format.js', 'data/webdev.js', 'data/seo-cms.js', 'src/fsrs.js'].forEach(load);
 
 const D = global.window.AI_MASTERY_DATA;
 const AW = global.window.ARCH_WEB;
+const SC = global.window.SEO_CMS;
 const F = global.window.FSRS;
 
 check('deck loaded with 300+ cards', D && D.cards.length >= 300, D && D.cards.length + ' cards');
@@ -32,6 +33,14 @@ check('arch web: 36 terms', AW && AW.terms.length === 36);
 let brokenRel = 0;
 AW.terms.forEach((t) => t.related.forEach((r) => { if (!AW.byId[r]) brokenRel++; }));
 check('arch web: 0 broken related links', brokenRel === 0, brokenRel + ' broken');
+check('seo & cms: 119 terms', SC && SC.terms.length === 119, SC && SC.terms.length + '');
+check('seo & cms: 7 subcategories', SC && SC.groups.length === 7);
+let seoBrokenRel = 0;
+SC.terms.forEach((t) => t.related.forEach((r) => { if (!SC.byId[r]) seoBrokenRel++; }));
+check('seo & cms: 0 broken related links', seoBrokenRel === 0, seoBrokenRel + ' broken');
+const seoCards = D.cards.filter((c) => c.category === 'SEO & CMS');
+check('seo & cms: 119 cards merged into deck', seoCards.length === 119, seoCards.length + '');
+check('seo & cms: none mistyped as website term', !seoCards.some((c) => c.type === 'term'));
 check('prompt methods: 23+', D.promptMethods && D.promptMethods.length >= 23, D.promptMethods.length + '');
 const pmFields = ['id', 'category', 'name', 'use', 'why', 'formula', 'template', 'eval'];
 check('prompt methods complete', D.promptMethods.every((m) => pmFields.every((k) => m[k])));

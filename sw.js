@@ -1,4 +1,4 @@
-const CACHE = 'ai-mastery-memory-os-review-modes-v4';
+const CACHE = 'ai-mastery-memory-os-seo-cms-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const ASSETS = [
   './data/dual-coding-aids.js',
   './data/cards.json',
   './data/webdev.js',
+  './data/seo-cms.js',
   './data/sv-translations.js',
   './src/fsrs.js',
   './data/prompt-methods-v2.js',

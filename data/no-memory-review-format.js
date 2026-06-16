@@ -80,11 +80,14 @@
     return String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
   }
 
-  const isWebsiteCard = (card) => card.category === 'Architecture Web' || String(card.id || '').startsWith('aw-') || card.type === 'term';
+  const isSeoCard = (card) => card.category === 'SEO & CMS' || card.type === 'seo' || /^(seo|cms|backend)-/.test(String(card.id || ''));
+  const isWebsiteCard = (card) => !isSeoCard(card) && (card.category === 'Architecture Web' || String(card.id || '').startsWith('aw-') || card.type === 'term');
+  // SEO/CMS and website terms describe real web concepts, not AI systems.
+  const isNonAiCard = (card) => isWebsiteCard(card) || isSeoCard(card);
 
   function detailedExplanation(card) {
-    if (isWebsiteCard(card)) {
-      // Website terminology: explain the actual web concept, not AI systems.
+    if (isNonAiCard(card)) {
+      // Website / SEO / CMS terminology: explain the actual concept, not AI systems.
       const parts = [
         `${card.title}: ${card.back}`,
         card.whyItMatters ? `Why it matters: ${card.whyItMatters}` : '',
