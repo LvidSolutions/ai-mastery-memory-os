@@ -465,7 +465,7 @@
         </div>
         <div class="mode-bar-meta">
           <span class="badge dark">${escapeHTML(domainLabel(domain))}</span>
-          <button class="btn ghost btn-sm" data-action="review-landing">Change track</button>
+          <button class="btn ghost btn-sm track-switch" data-action="review-landing">Change track</button>
         </div>
       </div>`;
   }

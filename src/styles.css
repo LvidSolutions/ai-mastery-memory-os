@@ -75,6 +75,8 @@ h1{margin:0;font-size:clamp(1.28rem,3vw,2rem);line-height:1.05;letter-spacing:-.
 .mode-pill:hover{color:var(--text)}
 .mode-pill.active{color:#03111d;background:linear-gradient(135deg,var(--accent),#7dd3fc);box-shadow:0 6px 18px rgba(56,189,248,.28)}
 .mode-bar-meta{display:flex;align-items:center;gap:8px}
+.track-switch{background:rgba(56,189,248,.14);border-color:rgba(56,189,248,.5);color:#bae6fd;font-weight:700;white-space:nowrap}
+.track-switch:hover{background:rgba(56,189,248,.22);color:#e0f2fe}
 .btn-sm{padding:7px 11px;font-size:.85rem}
 .mode-card-grid{margin-top:16px}
 .mode-card{gap:10px}.mode-card h4{font-size:1.05rem}.mode-card .btn{margin-top:auto}
