@@ -98,8 +98,7 @@
     const parts = [
       `${card.title}: ${card.back}`,
       card.whyItMatters ? `In practical AI, this concept shapes how you build, choose, steer, or control a system: ${card.whyItMatters}` : '',
-      card.example ? `A concrete example: ${card.example}` : '',
-      'To understand it correctly, you should be able to say what the input is, what the output is, when the concept is used, which risks exist, and how it ties to quality, cost, safety, or evaluation.'
+      card.example ? `A concrete example: ${card.example}` : ''
     ].filter(Boolean);
     return parts.join(' ');
   }

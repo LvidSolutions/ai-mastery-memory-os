@@ -6,6 +6,64 @@
   DATA.version = '2.1.0-memory-pro';
   DATA.generated = '2026-06-10';
 
+  const eli5Map = {
+    'ms-desirable-difficulty': 'Riding a bike on grass is harder than on smooth pavement, but it actually makes you a better rider. Some practice that feels tougher right now helps you remember things much longer.',
+    'ms-calibration': 'It\'s like knowing for sure you can do ten jumping jacks but admitting you\'re only guessing about doing fifty. Good learners can tell the difference between really knowing and just guessing.',
+    'ms-interleaving': 'Imagine practicing free throws, then dribbling, then passing, all mixed up in one practice instead of one at a time. Mixing it up forces your brain to figure out which skill to use right then.',
+    'ms-self-explanation': 'Instead of just saying \'2 plus 2 is 4,\' you explain out loud why it\'s 4 using blocks. Telling yourself the \'why\' makes the idea stick way better than just saying the answer.',
+    'ms-transfer-practice': 'It\'s like learning to ride a bike in your driveway and then actually riding it to a friend\'s house on a bumpy street. Using a skill somewhere new proves you really learned it.',
+    'ms-generation-effect': 'Trying to remember your friend\'s phone number yourself, even if you get it wrong, helps you learn it better than someone just reading it to you. Guessing first makes your brain work harder and remember more.',
+    'ms-cognitive-load': 'Your brain is like a small cup. If you pour too many ideas in at once, it spills over and you forget things. If you pour too little, you don\'t really learn anything new at all.',
+    'ms-overlearning-warning': 'Practicing a puzzle you already finished feels fun, but it\'s like coloring the same page ten times instead of trying new pages. You feel busy, but you\'re not getting better at the hard stuff.',
+    'meta-problem-framing': 'Before building a sandcastle, you decide what shape it is, who it\'s for, how much sand you have, and how you\'ll know it turned out great. That planning step is called framing.',
+    'meta-task-decomposition': 'Building a huge Lego castle is scary all at once, so you break it into small steps: build the wall, then the tower, then the gate. Each small piece is easier to check and fix.',
+    'meta-eval-first': 'Before a baking contest, you decide what makes a cookie \'good\' (not burnt, sweet, round) before you start baking. Deciding the rules first helps you actually bake a winning cookie.',
+    'meta-prompt-versioning': 'Prompts are like a recipe for a robot helper. If you save each version of the recipe, you can always go back to the one that made the best cookies if a new one flops.',
+    'prompt-context-engineering': 'Context engineering is like packing a lunchbox for a robot brain — choosing exactly which notes, pictures, and tools go inside so it has what it needs and nothing it doesn\'t.',
+    'prompt-structured-outputs': 'Instead of letting a robot answer in messy scribbles, you give it a coloring-book outline with boxes to fill in, like name here, age here. That way everyone can read the answer the same way.',
+    'prompt-few-shot-design': 'Showing a robot a few example drawings of \'happy cat\' and \'sad cat\' teaches it the pattern faster than just describing feelings in words. Good examples show tricky cases too, like a sleepy cat.',
+    'prompt-constraint-stack': 'A constraint stack is like a list of rules taped to a fridge: wash hands first, then no candy before dinner, then lights out by eight. The robot follows the rules in that exact order of importance.',
+    'prompt-prompt-chaining': 'Instead of asking a robot to build a whole treehouse in one breath, you ask it one step at a time: cut the wood, then nail the boards, then paint it, checking each step before moving on.',
+    'prompt-self-critique-limits': 'If you can\'t see that your shoelace is untied, looking in the same mirror twice won\'t help — you need someone else to point it out. A robot checking its own work can miss the same mistake too.',
+    'prompt-claude-xml': 'Putting labels like <task> and <examples> around your instructions is like using separate lunchbox compartments so the apple doesn\'t squish the sandwich — it helps the robot keep each part straight.',
+    'prompt-codex-task-ticket': 'Asking a robot to fix code is like leaving a clear note for a babysitter: here\'s the house, here\'s exactly what to do, here\'s what not to touch, and here\'s how I\'ll know you did it right.',
+    'rag-query-rewriting': 'If you ask a librarian \'the bird book\' but mean a specific blue parrot book, rewriting your question to add details like color and name helps them find exactly the right book faster.',
+    'rag-metadata-filtering': 'Metadata filtering is like only looking in the \'dinosaur\' bin at the toy store instead of every bin in the whole shop, because you already know what kind of toy you want.',
+    'rag-citation-grounding': 'Citation grounding means if you tell your friend a fact, you also point to exactly which page of the book you read it on, so they know you\'re not just making it up.',
+    'rag-retrieval-eval': 'Before grading a book report, you first check if the kid actually found the right book in the library. Retrieval evaluation checks that the robot grabbed the right facts before judging its answer.',
+    'agents-plan-act-observe': 'It\'s like playing a video game: you decide your next move, press the button, watch what happens on screen, and then decide your next move based on that, over and over.',
+    'agents-state-machine': 'A state machine is like the rules of a board game: you can only move from \'start\' to \'go\' or \'jail\' along marked paths, never randomly anywhere, so everyone knows what can happen next.',
+    'agents-tool-permissions': 'Giving a toddler only safe scissors and not the kitchen knife is tool permission. You let the robot use just the tools it needs so a mistake can\'t cause a big mess.',
+    'agents-memory-architecture': 'Agent memory architecture is like deciding what goes in your diary, what you tell a friend, and what you forget by tomorrow — choosing what the robot remembers and for how long.',
+    'agents-human-approval': 'Before a kid mails a letter to grandma using mom\'s credit card, mom should say okay first. Big or risky actions need a grown-up\'s nod before the robot actually does them.',
+    'eval-llm-judge-rubric': 'A judge at a talent show uses a scorecard, not just gut feelings, and doesn\'t give extra points just because someone sang longer. An AI judge needs the same fair, clear scorecard.',
+    'eval-error-taxonomy': 'Sorting broken toys into bins like \'missing piece,\' \'batteries dead,\' or \'just glued wrong\' helps you fix them faster. An error taxonomy sorts a robot\'s mistakes into bins the same way.',
+    'eval-canary-tests': 'Coal miners used to bring a canary bird that got sick before the air turned dangerous for people. Canary tests are quick little checks that warn you early if something broke.',
+    'eval-ablation': 'If your bike has a bell, basket, and streamers, and you want to know what the bell does, you take it off one at a time and ride to see what changes. That\'s ablation testing.',
+    'prod-prompt-caching': 'If you ask grandma the same bedtime story every night, she gets faster at telling it because she remembers it already. Prompt caching lets the robot reuse what it already \'remembers\' to answer quicker and cheaper.',
+    'prod-model-routing': 'Easy questions go to your big sister, but really tricky math homework goes to dad. Model routing sends each question to the helper best suited for how hard, risky, or urgent it is.',
+    'prod-observability-traces': 'A trace is like a flight recorder on an airplane — it writes down everything that happened on the trip, so if something goes wrong, you can look back and see exactly what occurred.',
+    'prod-fallbacks': 'If your favorite swing is broken, the playground has a backup slide so you still have fun. A fallback strategy is the backup plan for when the robot\'s first choice doesn\'t work.',
+    'prod-latency-budget': 'Getting ready for school has a time budget: five minutes to dress, five to eat, five to brush teeth. A latency budget splits up how much time each step of the robot\'s answer gets.',
+    'data-data-leakage': 'It\'s like peeking at the answer key before a test — your grade looks amazing, but you didn\'t really learn anything, and you\'ll be surprised when a real new test shows up.',
+    'data-lineage': 'Data lineage is like tracing a carrot back to the farm it grew on, the truck that carried it, and the store that sold it — knowing the whole journey of where information came from.',
+    'data-drift': 'If your shoes fit perfectly last year but your feet grew, the same shoes don\'t work anymore. Data drift is when the real world changes shape after the AI already learned its old shoe size.',
+    'data-privacy-boundary': 'A privacy boundary is like a fence around your backyard that decides who\'s allowed to come in, look around, or take your toys — keeping certain information safe inside the fence.',
+    'multimodal-grounding': 'If you tell a story about a photo, multimodal grounding means pointing at the actual dog in the picture to prove there really is a dog, instead of just guessing from imagination.',
+    'multimodal-ocr-limits': 'Reading a friend\'s messy handwritten note, you might mix up an \'r\' for an \'n\' or miss a smudged word. Computers reading text from pictures can make the very same mix-ups.',
+    'safety-prompt-injection-defense': 'If a stranger\'s note is tucked inside your lunchbox telling you to give away your dessert, you shouldn\'t just obey it. Safety here means treating outside notes as suspicious, not as trusted orders.',
+    'safety-least-privilege': 'Giving a kid just the one house key they need, instead of the whole janitor\'s keyring, is least privilege — only handing over the smallest amount of access required to do the job.',
+    'safety-model-card': 'A model card is like the back of a cereal box that tells you what\'s inside, who it\'s good for, and warnings like "may contain nuts." It tells grown-ups what the AI is good at, what it\'s bad at, and how to use it safely.',
+    'tools-langgraph': 'LangGraph is like a board game with marked steps and arrows showing where you can move next. It helps an AI follow a clear path of steps, remember where it\'s been, and use the right tool at each stop.',
+    'tools-pgvector': 'Imagine a giant toy box that can also tell you which toys look or feel most alike, just by sorting them. pgvector lets a database do that with ideas and words, finding things that mean something similar.',
+    'tools-opentelemetry': 'OpenTelemetry is like putting the same kind of stickers on every toy in different rooms so one person can walk around and see exactly what every toy is doing. It helps computers track what\'s happening everywhere in one consistent way.',
+    'tools-playwright': 'Playwright is like a robot puppet that clicks buttons and types on a website for you, over and over, to make sure everything still works. It tests web pages so people don\'t have to click around by hand every time.',
+    'tools-n8n': 'n8n is like a row of dominoes where knocking over the first one makes a chain of helpers do their jobs automatically. It connects different apps and tools so one event can trigger a whole chain of actions.',
+    'tools-supabase': 'Supabase is like a ready-made playhouse that already has a kitchen, a mailbox, and a toy chest built in. It gives app builders a database, logins, file storage, and live updates all in one place, so they don\'t build each piece from scratch.',
+    'tools-vercel': 'Vercel is like a magic mailbox: you drop your finished drawing in, and it instantly appears on a wall for everyone to see. It takes code from a project and puts it live on the internet automatically, even making test copies first.',
+    'expert-ai-operating-system': 'Think of it like your own recipe book that gets better every time you cook: you write down what worked, keep your best tools handy, and check the taste before serving. An AI operating system is that same habit loop of prompts, tools, and checks that keeps improving your results.',
+  };
+
   const addUnique = (arr, items, key = 'id') => {
     const seen = new Set(arr.map((item) => item[key]));
     for (const item of items) {
@@ -101,7 +159,8 @@
     tags,
     chunk,
     connections,
-    practice
+    practice,
+    eli5: eli5Map[id]
   }));
   addUnique(DATA.cards, extraCards);
 

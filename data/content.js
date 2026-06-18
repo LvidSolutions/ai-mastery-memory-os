@@ -50,7 +50,8 @@ window.AI_MASTERY_DATA = {
         "Flashcards",
         "Metacognition"
       ],
-      "practice": "Apply Active recall to one AI concept you reviewed today."
+      "practice": "Apply Active recall to one AI concept you reviewed today.",
+      "eli5": "It's like trying to remember a song from memory before you hum along with it. Trying first, even if you get it wrong, makes your brain hold onto it better than just listening."
     },
     {
       "id": "learning-spaced-repetition",
@@ -72,7 +73,8 @@ window.AI_MASTERY_DATA = {
         "SM-2",
         "Forgetting curve"
       ],
-      "practice": "Apply Spaced repetition to one AI concept you reviewed today."
+      "practice": "Apply Spaced repetition to one AI concept you reviewed today.",
+      "eli5": "Imagine watering a plant right before it gets thirsty, not too early or too late. Reviewing what you learned right before you'd forget it keeps the idea alive in your head."
     },
     {
       "id": "learning-chunking",
@@ -94,7 +96,8 @@ window.AI_MASTERY_DATA = {
         "Concept graph",
         "Context window"
       ],
-      "practice": "Apply Chunking to one AI concept you reviewed today."
+      "practice": "Apply Chunking to one AI concept you reviewed today.",
+      "eli5": "It's like turning a big pile of LEGO bricks into one finished toy car. Your brain can hold one car easier than a hundred loose bricks, so grouping facts together makes them easier to carry around."
     },
     {
       "id": "learning-elaboration",
@@ -116,7 +119,8 @@ window.AI_MASTERY_DATA = {
         "Concrete examples",
         "RAG"
       ],
-      "practice": "Apply Elaboration to one AI concept you reviewed today."
+      "practice": "Apply Elaboration to one AI concept you reviewed today.",
+      "eli5": "It's like asking 'why does the ice cream melt in the sun?' instead of just saying 'it melts.' Connecting a new fact to other things you know makes it stick like glue."
     },
     {
       "id": "learning-interleaving",
@@ -138,7 +142,8 @@ window.AI_MASTERY_DATA = {
         "Evaluation",
         "Prompting"
       ],
-      "practice": "Apply Interleaving to one AI concept you reviewed today."
+      "practice": "Apply Interleaving to one AI concept you reviewed today.",
+      "eli5": "It's like practicing throwing, catching, and kicking a ball all in the same game, instead of only throwing for an hour. Mixing different skills together helps you get better at telling them apart."
     },
     {
       "id": "learning-metacognition",
@@ -159,7 +164,8 @@ window.AI_MASTERY_DATA = {
         "Active recall",
         "Evaluation"
       ],
-      "practice": "Apply Metacognition to one AI concept you reviewed today."
+      "practice": "Apply Metacognition to one AI concept you reviewed today.",
+      "eli5": "It's like checking your backpack before school to see what you really packed, not just what you think you packed. It's noticing what you truly know versus what only looks familiar."
     },
     {
       "id": "learning-feynman-rewording",
@@ -180,7 +186,8 @@ window.AI_MASTERY_DATA = {
         "Chunking",
         "Concrete examples"
       ],
-      "practice": "Apply Feynman rewording to one AI concept you reviewed today."
+      "practice": "Apply Feynman rewording to one AI concept you reviewed today.",
+      "eli5": "It's like explaining your favorite cartoon to your baby sister using only easy words. If she looks confused, you find the fuzzy part and explain it again until it makes sense."
     },
     {
       "id": "learning-desirable-difficulty",
@@ -201,7 +208,8 @@ window.AI_MASTERY_DATA = {
         "Active recall",
         "Interleaving"
       ],
-      "practice": "Apply Desirable difficulty to one AI concept you reviewed today."
+      "practice": "Apply Desirable difficulty to one AI concept you reviewed today.",
+      "eli5": "It's like riding a bike on a slightly bumpy path instead of a perfectly smooth one. The bumps make it harder right now, but they teach your balance so much better for later."
     },
     {
       "id": "artificial-intelligence",
@@ -226,7 +234,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Artificial intelligence from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Artificial intelligence from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a robot friend who can do things people are usually good at, like reading a story, naming an animal in a picture, or making up a new joke."
     },
     {
       "id": "machine-learning",
@@ -251,7 +260,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Machine learning from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Machine learning from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Instead of telling a puppy every single rule, you show it tons of examples of sitting and treats until it figures out the pattern itself. That's how these computer programs learn too."
     },
     {
       "id": "deep-learning",
@@ -276,7 +286,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Deep learning from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Deep learning from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Imagine a long line of friends passing a drawing down, each one adding a little more detail before passing it on. Many layers working together help the computer understand tricky pictures or sounds."
     },
     {
       "id": "generative-ai",
@@ -301,7 +312,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Generative AI from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Generative AI from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a magic crayon box that looked at thousands of drawings and now can draw brand new pictures, stories, or songs of its own, based on what it learned."
     },
     {
       "id": "model",
@@ -326,7 +338,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Model from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Model from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Think of it like a recipe a chef memorized after baking hundreds of cookies. Once it knows the recipe by heart, you give it ingredients (a question) and it bakes you cookies (an answer)."
     },
     {
       "id": "algorithm",
@@ -351,7 +364,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Algorithm from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Algorithm from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a step-by-step recipe card: first do this, then do that. It tells the computer exactly what steps to follow to solve a puzzle or make a decision."
     },
     {
       "id": "dataset",
@@ -376,7 +390,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Dataset from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Dataset from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a big box of flashcards used for practice. The computer studies all the cards in the box to learn how to answer new questions later."
     },
     {
       "id": "feature",
@@ -401,7 +416,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Feature from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Feature from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like clues a detective uses to solve a case, such as footprint size or hair color. A feature is one clue, like a word or a color, that helps the computer make a guess."
     },
     {
       "id": "label",
@@ -426,7 +442,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Label from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Label from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like the answer key taped to the back of a quiz. The label tells the computer the correct answer for each example so it can learn what 'right' looks like."
     },
     {
       "id": "training",
@@ -451,7 +468,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Training from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Training from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like practicing free throws over and over, missing some, then adjusting your aim each time. The computer keeps adjusting itself after lots of practice shots until it gets better."
     },
     {
       "id": "inference",
@@ -476,7 +494,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Inference from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Inference from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like using everything you practiced in soccer drills to actually play in a real game. The computer uses what it already learned to answer something brand new."
     },
     {
       "id": "prompt",
@@ -501,7 +520,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Prompt from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Prompt from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like telling a friend exactly what kind of birthday card to draw: 'make it funny, with a dinosaur, and big letters.' The clearer your request, the better the drawing turns out."
     },
     {
       "id": "completion-or-response",
@@ -526,7 +546,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Completion or response from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Completion or response from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like the answer your friend gives back after you ask them a riddle. You then check if their answer actually makes sense and solves the riddle correctly."
     },
     {
       "id": "token",
@@ -551,7 +572,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Token from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Token from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like cutting a sentence into puzzle pieces, sometimes a whole word, sometimes just part of one. The computer reads these little pieces one at a time to understand what you wrote."
     },
     {
       "id": "context-window",
@@ -576,7 +598,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Context window from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Context window from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like how much story your friend can remember while you're telling it. If you talk too long, they might forget the beginning, so there's a limit to how much they can keep in mind at once."
     },
     {
       "id": "hallucination",
@@ -601,7 +624,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Hallucination from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Hallucination from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a kid confidently telling you unicorns deliver the mail, said with a totally serious face. The AI sometimes makes up things that sound true but aren't, so you should always double-check."
     },
     {
       "id": "temperature",
@@ -626,7 +650,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Temperature from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Temperature from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like deciding how wild your scoop of ice cream toppings can be. A low setting keeps things plain and predictable, a high setting lets it get surprising and random."
     },
     {
       "id": "system-prompt",
@@ -651,7 +676,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write System prompt from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write System prompt from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like giving a babysitter the house rules before you leave: bedtime is eight, no candy before dinner. These are the steady rules the AI follows the whole time it's helping you."
     },
     {
       "id": "user-prompt",
@@ -676,7 +702,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write User prompt from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write User prompt from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like asking the babysitter for something specific tonight: 'can we build a fort and watch one movie?' It's your particular request for right now, on top of the general house rules."
     },
     {
       "id": "embedding",
@@ -701,7 +728,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Embedding from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Embedding from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like organizing toys on a shelf so all the cars sit together and all the dolls sit together. Things that mean similar stuff get placed near each other so the computer can find related ideas fast."
     },
     {
       "id": "classification",
@@ -726,7 +754,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Classification from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Classification from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like sorting laundry into a 'shirts' pile and a 'socks' pile. The computer looks at something new and decides which pile, or category, it belongs in."
     },
     {
       "id": "regression",
@@ -751,7 +780,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Regression from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Regression from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like guessing how tall you'll be next year based on how you grew this year. Instead of picking a category, the computer predicts a number, like a price or a score."
     },
     {
       "id": "clustering",
@@ -776,7 +806,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Clustering from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Clustering from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like dumping a box of mixed buttons on the table and grouping the round ones together and the square ones together, without anyone telling you the group names first."
     },
     {
       "id": "supervised-learning",
@@ -801,7 +832,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Supervised learning from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Supervised learning from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like studying for a spelling test with flashcards that already have the correct spelling written on the back. The computer learns from examples that come with the right answers attached."
     },
     {
       "id": "unsupervised-learning",
@@ -826,7 +858,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Unsupervised learning from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Unsupervised learning from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like sorting a pile of seashells by what looks similar, even though nobody told you the shell names. The computer finds its own groups and patterns without an answer key."
     },
     {
       "id": "reinforcement-learning",
@@ -851,7 +884,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Reinforcement learning from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Reinforcement learning from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like training a dog with treats: good moves get a treat, bad moves don't. Over many tries, the computer learns which actions earn the most rewards."
     },
     {
       "id": "neural-network",
@@ -876,7 +910,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Neural network from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Neural network from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a chain of friends passing a whispered message, each one tweaking it slightly before passing it on. Many connected layers work together to turn an input into a useful answer."
     },
     {
       "id": "loss-function",
@@ -901,7 +936,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Loss function from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Loss function from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a game show buzzer that beeps loudly when your guess is way off and stays quiet when you're close. The computer listens for the beep and tries to make it quieter each time."
     },
     {
       "id": "accuracy",
@@ -925,7 +961,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Accuracy from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Accuracy from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like counting how many answers you got right out of a whole quiz. But if the quiz is almost all true-or-false 'true,' just guessing 'true' looks accurate without really knowing anything."
     },
     {
       "id": "precision",
@@ -949,7 +986,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Precision from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Precision from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a metal detector at the beach: every time it beeps for treasure, precision asks how often there's really treasure there, not just a bottle cap."
     },
     {
       "id": "recall",
@@ -973,7 +1011,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Recall from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Recall from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like searching a playground for every red ball that's hidden. Recall asks how many of the red balls you actually managed to find, out of all the ones that were really there."
     },
     {
       "id": "f1-score",
@@ -998,7 +1037,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write F1 score from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write F1 score from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a fairness referee that checks both how often your treasure-detector beeps correctly and how much actual treasure you found, blending the two into one single fair score."
     },
     {
       "id": "overfitting",
@@ -1023,7 +1063,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Overfitting from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Overfitting from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Imagine studying for a spelling test by memorizing the exact order of words on one practice sheet. You'd ace that sheet but fail a new test with different words, because you memorized instead of really learning to spell!"
     },
     {
       "id": "underfitting",
@@ -1047,7 +1088,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Underfitting from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Underfitting from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like trying to draw a cat after looking at it for only one second. Your drawing is too simple and messy to look like a real cat, because you didn't pay enough attention to learn the details."
     },
     {
       "id": "validation-set",
@@ -1072,7 +1114,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Validation set from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Validation set from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Before the big spelling bee, you practice on some bonus flashcards your mom kept secret from your final test. You use them to see what you need to study more, without peeking at the real test questions."
     },
     {
       "id": "test-set",
@@ -1096,7 +1139,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Test set from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Test set from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "This is the surprise quiz at the very end that nobody studied for ahead of time. It tells everyone how well you actually learned, since you can't practice on it first or take it over and over."
     },
     {
       "id": "api",
@@ -1121,7 +1165,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write API from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write API from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Think of a restaurant menu: you don't go into the kitchen, you just tell the waiter what you want and they bring it back. An API is like that menu, letting one computer program ask another for help."
     },
     {
       "id": "workflow-automation",
@@ -1146,7 +1191,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Workflow automation from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Workflow automation from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's like a toy train track that carries your blocks through each station automatically: pick up, paint, then box, without you doing every step by hand. The track makes sure things happen the same way every time."
     },
     {
       "id": "ai-assistant",
@@ -1171,7 +1217,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write AI assistant from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write AI assistant from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "Imagine a helpful robot friend who can chat with you, remember your favorite color, fetch things you ask for, and even do small chores, all by following what you say."
     },
     {
       "id": "chatbot",
@@ -1196,7 +1243,8 @@ window.AI_MASTERY_DATA = {
         "data",
         "models"
       ],
-      "practice": "Write Chatbot from memory, then connect it to AI in a concrete AI workflow."
+      "practice": "Write Chatbot from memory, then connect it to AI in a concrete AI workflow.",
+      "eli5": "It's a toy walkie-talkie that talks back. Sometimes it just says pre-recorded phrases, but fancier ones can really think about what you said and answer in new ways."
     },
     {
       "id": "transformer",
@@ -1222,7 +1270,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Transformer from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Transformer from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Picture a big team of detectives all looking at the same mystery clues together at once, instead of one at a time. That teamwork trick is the special engine inside many smart AI brains today."
     },
     {
       "id": "self-attention",
@@ -1248,7 +1297,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Self-attention from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Self-attention from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "When you read a story, you glance back at earlier pages to remember who a character is. Self-attention is the AI doing that same glancing-back trick for every word, deciding which other words matter most."
     },
     {
       "id": "multi-head-attention",
@@ -1274,7 +1324,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Multi-head attention from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Multi-head attention from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like having several pairs of eyes looking at the same coloring page at once, one watching the colors, one the lines, one the shapes, then putting their notes together for a fuller picture."
     },
     {
       "id": "positional-encoding",
@@ -1300,7 +1351,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Positional encoding from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Positional encoding from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "If you shuffled a comic strip's panels, the story wouldn't make sense. Positional encoding is like numbering the panels so the AI knows panel 1 comes before panel 2, not just what's drawn in them."
     },
     {
       "id": "tokenizer",
@@ -1326,7 +1378,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Tokenizer from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Tokenizer from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine chopping a sandwich into bite-sized pieces before eating it. A tokenizer chops sentences into small word-pieces called tokens so the AI can chew on them one bite at a time."
     },
     {
       "id": "vocabulary",
@@ -1352,7 +1405,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Vocabulary from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Vocabulary from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like a box of alphabet blocks the AI is allowed to play with. If a word isn't a whole block, the AI breaks it into smaller blocks it already knows to spell it out."
     },
     {
       "id": "pretraining",
@@ -1378,7 +1432,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Pretraining from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Pretraining from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "This is like a kid reading thousands of picture books before starting school, soaking up how stories and words generally work, before ever learning a specific subject like math."
     },
     {
       "id": "supervised-fine-tuning",
@@ -1404,7 +1459,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Supervised fine-tuning from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Supervised fine-tuning from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "After reading lots of books, a tutor now shows the AI worked examples with the correct answers, like flashcards with the right response on the back, so it learns to answer that way too."
     },
     {
       "id": "instruction-tuning",
@@ -1429,7 +1485,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Instruction tuning from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Instruction tuning from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like teaching a puppy to understand many different commands such as sit, fetch, and roll over, so it can follow whatever new instruction you give it, not just one trick."
     },
     {
       "id": "rlhf",
@@ -1455,7 +1512,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write RLHF from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write RLHF from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine training a puppy with treats: good behavior gets a treat, bad behavior doesn't. RLHF is people giving the AI a thumbs up or thumbs down on its answers so it learns what humans like better."
     },
     {
       "id": "lora",
@@ -1481,7 +1539,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write LoRA from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write LoRA from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Instead of repainting an entire house to change one room's color, you just add a small new coat of paint where needed. LoRA tweaks a few small parts of the AI instead of rebuilding the whole thing."
     },
     {
       "id": "quantization",
@@ -1507,7 +1566,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Quantization from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Quantization from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like packing for a trip using a smaller suitcase by folding clothes tighter. The AI squeezes its numbers into less space so it runs faster and lighter, even if a little detail gets lost."
     },
     {
       "id": "batch",
@@ -1533,7 +1593,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Batch from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Batch from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Instead of carrying one cookie at a time from the kitchen, you load a whole tray and carry them together. A batch is the AI processing many examples on one tray instead of one by one."
     },
     {
       "id": "gpu",
@@ -1559,7 +1620,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write GPU from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write GPU from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "A GPU is like having hundreds of helpers each coloring one tiny square of a giant coloring book at the very same time, so the whole picture gets finished super fast."
     },
     {
       "id": "tpu",
@@ -1584,7 +1646,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write TPU from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write TPU from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "If a GPU is a team of many helpers, a TPU is a team built specially just for doing one kind of math problem AI loves, like a kitchen gadget made only for slicing carrots, but really, really fast."
     },
     {
       "id": "vector-database",
@@ -1610,7 +1673,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Vector database from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Vector database from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine a giant toy bin organized so that toys that are alike sit near each other. A vector database stores ideas as points so the AI can quickly grab the ones most similar to what it's looking for."
     },
     {
       "id": "cosine-similarity",
@@ -1636,7 +1700,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Cosine similarity from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Cosine similarity from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like comparing which way two arrows are pointing on the ground. If they point almost the same direction, they're considered close buddies in meaning, even if one arrow is longer than the other."
     },
     {
       "id": "semantic-search",
@@ -1662,7 +1727,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Semantic search from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Semantic search from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Instead of finding a book only by matching exact words in the title, this search finds books about the same idea, like asking for 'fast cars' and still getting a book called 'speedy automobiles.'"
     },
     {
       "id": "chunking-for-rag",
@@ -1688,7 +1754,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Chunking for RAG from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Chunking for RAG from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like cutting a big pizza into slices instead of trying to swallow it whole. Chunking cuts long documents into bite-sized pieces so the AI can grab just the right slice it needs."
     },
     {
       "id": "reranking",
@@ -1714,7 +1781,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Reranking from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Reranking from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "After fishing several toys out of the toy bin, you sort them again to put your actual favorite on top. Reranking lets the AI re-sort what it found so the best answer goes first."
     },
     {
       "id": "rag-pipeline",
@@ -1740,7 +1808,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write RAG pipeline from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write RAG pipeline from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Picture a librarian who finds the right book, opens it to the right page, copies the helpful part onto a sticky note, and then answers your question using that note. That whole chain of steps is the pipeline."
     },
     {
       "id": "grounding",
@@ -1766,7 +1835,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Grounding from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Grounding from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like a kid who answers questions by checking the answer key instead of just guessing from memory. Grounding means the AI looks at real notes or facts before answering, not just guessing."
     },
     {
       "id": "citation-discipline",
@@ -1792,7 +1862,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Citation discipline from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Citation discipline from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine every fact you say in school has to come with a little sticky note pointing to which book you found it in. Citation discipline means the AI always shows its homework sources."
     },
     {
       "id": "prompt-injection",
@@ -1818,7 +1889,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Prompt injection from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Prompt injection from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like a stranger slipping a fake note into your backpack that says 'give me your lunch money,' pretending to be from your teacher. Prompt injection is sneaky text trying to trick the AI into obeying it instead of you."
     },
     {
       "id": "jailbreak",
@@ -1844,7 +1916,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Jailbreak from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Jailbreak from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine trying clever tricks to convince a babysitter to let you eat candy before dinner, even though the rule says no. A jailbreak is someone tricking the AI into breaking its safety rules."
     },
     {
       "id": "guardrails",
@@ -1870,7 +1943,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Guardrails from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Guardrails from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "They're like the bumpers on a bowling lane that keep your ball from rolling into the gutter. Guardrails keep the AI's answers from rolling off into unsafe or wrong territory."
     },
     {
       "id": "moderation",
@@ -1896,7 +1970,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Moderation from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Moderation from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like a playground monitor watching for kids using mean words or breaking rules, and stepping in before things get out of hand. Moderation checks AI content for the same kind of trouble."
     },
     {
       "id": "function-calling",
@@ -1922,7 +1997,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Function calling from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Function calling from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine pressing a specific button on a remote control to turn on the TV, instead of just describing what you want out loud. Function calling lets the AI press exact buttons to get real things done."
     },
     {
       "id": "json-schema-output",
@@ -1948,7 +2024,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write JSON schema output from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write JSON schema output from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like a coloring page with numbered boxes that must be filled in a certain order. JSON schema output makes the AI answer in a neat, predictable shape that a computer can read easily."
     },
     {
       "id": "zero-shot-prompting",
@@ -1973,7 +2050,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Zero-shot prompting from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Zero-shot prompting from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like being asked to draw a dragon you've never been shown an example of, just based on the word 'dragon.' Zero-shot prompting asks the AI to do a task with no examples at all."
     },
     {
       "id": "few-shot-prompting",
@@ -1999,7 +2077,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Few-shot prompting from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Few-shot prompting from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like showing a few example drawings before asking 'now draw one like these.' Few-shot prompting gives the AI a couple of examples so it copies the style and pattern."
     },
     {
       "id": "chain-of-thought-prompting",
@@ -2025,7 +2104,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Chain-of-thought prompting from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Chain-of-thought prompting from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like asking a kid to show their work on a math problem step by step instead of just blurting the answer. This helps the AI think things through, though sometimes it keeps the scratch work hidden."
     },
     {
       "id": "prompt-chaining",
@@ -2051,7 +2131,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Prompt chaining from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Prompt chaining from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Instead of asking a robot to bake a whole cake in one breath, you ask it to crack the eggs, then mix, then bake, checking each step before moving to the next, like following a recipe card by card."
     },
     {
       "id": "evaluation-dataset",
@@ -2077,7 +2158,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Evaluation dataset from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Evaluation dataset from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like a spelling test with an answer key you already trust, so when your robot friend takes the same test, you can check its answers and see if it's getting smarter."
     },
     {
       "id": "benchmark",
@@ -2103,7 +2185,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Benchmark from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Benchmark from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Imagine every kid in school takes the exact same race to see who runs fastest. It's fair for comparing runners, but it doesn't tell you who's best at climbing trees."
     },
     {
       "id": "confusion-matrix",
@@ -2129,7 +2212,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Confusion matrix from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Confusion matrix from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's a scoreboard for a guessing game that counts how many times you correctly said 'dog,' wrongly said 'dog,' correctly said 'not dog,' and missed a real dog."
     },
     {
       "id": "roc-auc",
@@ -2155,7 +2239,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write ROC AUC from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write ROC AUC from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Picture sorting red and blue balls into a line from most-red to most-blue. This score tells you how good you are at keeping the reds mostly on one side no matter where you draw the cutoff line."
     },
     {
       "id": "calibration",
@@ -2181,7 +2266,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Calibration from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Calibration from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "If you say you're 80% sure it'll rain, calibration means it actually rains about 8 out of 10 times you say that, just like a weather frog who doesn't lie about how sure he is."
     },
     {
       "id": "data-leakage",
@@ -2207,7 +2293,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Data leakage from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Data leakage from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like peeking at the answer key before a test without anyone noticing, so you ace it, but you didn't really learn anything and you'll be surprised by a real test."
     },
     {
       "id": "model-drift",
@@ -2233,7 +2320,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Model drift from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Model drift from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "A robot trained to spot summer clothes gets confused when winter comes and everyone wears coats, because the world changed and it's still expecting shorts."
     },
     {
       "id": "latency",
@@ -2259,7 +2347,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Latency from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Latency from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's the wait time between asking your friend a question and hearing them answer, like counting seconds between asking 'are we there yet?' and getting a reply."
     },
     {
       "id": "throughput",
@@ -2285,7 +2374,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Throughput from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Throughput from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "Think of a hot dog stand: throughput is how many hot dogs the cook can hand out every minute when a big hungry crowd shows up."
     },
     {
       "id": "cost-per-token",
@@ -2311,7 +2401,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Cost per token from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Cost per token from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's like paying a penny for every word you write and every word you get back in a letter, so long chatty letters cost more pennies than short ones."
     },
     {
       "id": "prompt-caching",
@@ -2337,7 +2428,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Prompt caching from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Prompt caching from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "If you already wrote the first half of your story yesterday, you don't rewrite it today, you just keep that page and add new pages, saving time and crayons."
     },
     {
       "id": "fine-tuning-vs-rag",
@@ -2363,7 +2455,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write Fine-tuning vs RAG from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write Fine-tuning vs RAG from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "RAG is like handing your friend a fresh newspaper before they answer a question, while fine-tuning is like sending them to ballet class for months so dancing just becomes part of who they are."
     },
     {
       "id": "api-key",
@@ -2389,7 +2482,8 @@ window.AI_MASTERY_DATA = {
         "RAG",
         "evaluation"
       ],
-      "practice": "Write API key from memory, then connect it to prompting in a concrete AI workflow."
+      "practice": "Write API key from memory, then connect it to prompting in a concrete AI workflow.",
+      "eli5": "It's a secret password sticker that lets your toy robot talk to another toy's walkie-talkie. You never show that sticker to strangers or leave it lying around the playground."
     },
     {
       "id": "agent",
@@ -2415,7 +2509,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Agent from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Agent from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like a helpful puppy that doesn't just sit when told, but can fetch the ball, open the gate, and figure out three steps on its own to get to its favorite toy."
     },
     {
       "id": "planner-executor-architecture",
@@ -2442,7 +2537,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Planner-executor architecture from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Planner-executor architecture from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "One kid draws the treasure map and decides where to dig, while another kid actually grabs the shovel and digs the holes, reporting back what they found."
     },
     {
       "id": "tool-router",
@@ -2469,7 +2565,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Tool router from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Tool router from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like a crossing guard at school who looks at each kid and decides if they should go to the library, the cafeteria, or the gym based on what they're carrying."
     },
     {
       "id": "state-machine",
@@ -2496,7 +2593,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write State machine from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write State machine from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Think of a board game where you can only move from 'Start' to 'Go' to 'Finish' in a set order, so nobody can suddenly jump to the end without following the rules."
     },
     {
       "id": "semantic-memory",
@@ -2523,7 +2621,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Semantic memory from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Semantic memory from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's the part of your brain that remembers your sister's favorite color is purple, even though you weren't there the day she found that out."
     },
     {
       "id": "episodic-memory",
@@ -2550,7 +2649,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Episodic memory from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Episodic memory from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's remembering the actual day you fell off your bike at the park last Tuesday, scraped your knee, and your mom kissed it better."
     },
     {
       "id": "procedural-memory",
@@ -2577,7 +2677,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Procedural memory from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Procedural memory from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like remembering how to tie your shoelaces with your hands, even if you can't explain the steps out loud, because your fingers just know the dance."
     },
     {
       "id": "scratchpad",
@@ -2604,7 +2705,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Scratchpad from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Scratchpad from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's the back of a napkin where you scribble math while figuring out how many cookies to share, but you'd never staple that messy napkin into your final report."
     },
     {
       "id": "observability",
@@ -2631,7 +2733,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Observability from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Observability from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like having tiny cameras and notebooks all over a treehouse so grown-ups can later see exactly what the kids did, when, and why something broke."
     },
     {
       "id": "tracing",
@@ -2658,7 +2761,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Tracing from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Tracing from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's a breadcrumb trail showing every single step a robot took, like leaving footprints in the snow so anyone can follow exactly where you walked."
     },
     {
       "id": "evaluation-harness",
@@ -2685,7 +2789,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Evaluation harness from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Evaluation harness from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's a robot teacher that quizzes your homework-helper robot with the same set of tricky questions every day to make sure it isn't getting worse at its job."
     },
     {
       "id": "golden-dataset",
@@ -2712,7 +2817,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Golden dataset from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Golden dataset from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's the one perfect answer sheet that the whole class agrees is correct, kept safe in a special folder so nobody can argue about what the right answer was."
     },
     {
       "id": "prompt-unit-test",
@@ -2739,7 +2845,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Prompt unit test from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Prompt unit test from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like trying on your shoes every morning to make sure they still fit after you changed something, instead of waiting to discover at school that they don't."
     },
     {
       "id": "red-teaming",
@@ -2766,7 +2873,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Red-teaming from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Red-teaming from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's hiring sneaky pretend burglars to try to break into your treehouse on purpose, so you find the weak boards before a real raccoon does."
     },
     {
       "id": "human-in-the-loop",
@@ -2793,7 +2901,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Human-in-the-loop from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Human-in-the-loop from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "When the robot isn't sure whether to give a kid two cookies or three, it pauses and asks a grown-up to decide instead of guessing."
     },
     {
       "id": "confidence-threshold",
@@ -2820,7 +2929,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Confidence threshold from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Confidence threshold from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like a rule that says if you're less than pretty sure about an answer, you have to raise your hand and ask the teacher instead of blurting it out."
     },
     {
       "id": "fallback-model",
@@ -2847,7 +2957,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Fallback model from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Fallback model from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's the backup flashlight you grab when your main one runs out of batteries, so you're never left totally in the dark."
     },
     {
       "id": "retrieval-precision",
@@ -2874,7 +2985,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Retrieval precision from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Retrieval precision from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "If you ask for red blocks from a toy bin and most of what comes out is actually blue, your precision is bad because too many wrong blocks got mixed in."
     },
     {
       "id": "retrieval-recall",
@@ -2901,7 +3013,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Retrieval recall from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Retrieval recall from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "If there are five red blocks hiding in the toy bin and you only manage to find two of them, your recall is low because you missed the others."
     },
     {
       "id": "chunk-overlap",
@@ -2928,7 +3041,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Chunk overlap from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Chunk overlap from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "When cutting a comic strip into pieces, you snip a little extra overlap on each piece so you don't accidentally chop a character's head off between two pages."
     },
     {
       "id": "hybrid-search",
@@ -2955,7 +3069,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Hybrid search from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Hybrid search from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like looking for your friend by both shouting their exact name and also looking for anyone wearing a red hat, so you catch them whether you remember the name or just the look."
     },
     {
       "id": "bm25",
@@ -2982,7 +3097,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write BM25 from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write BM25 from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's an old-school way of finding the best book report by counting how often special words show up, while not getting fooled by super long, word-stuffed reports."
     },
     {
       "id": "knowledge-graph",
@@ -3009,7 +3125,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Knowledge graph from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Knowledge graph from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like a giant web of yarn connecting family photos: this yarn says 'is mom of,' that yarn says 'lives with,' so you can trace how everyone is connected."
     },
     {
       "id": "mcp",
@@ -3036,7 +3153,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write MCP from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write MCP from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like a universal adapter plug that lets any robot toy plug into any wall socket, so new gadgets and information can connect without needing a special cord each time."
     },
     {
       "id": "webhook",
@@ -3063,7 +3181,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Webhook from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Webhook from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like a doorbell: the moment someone presses it, your house automatically knows to flick on the porch light without you watching the door all day."
     },
     {
       "id": "oauth-scopes",
@@ -3090,7 +3209,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write OAuth scopes from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write OAuth scopes from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's giving the dog walker a key that only opens your front door, not your whole house, so if the key gets lost, they still can't get into your toy room."
     },
     {
       "id": "secrets-management",
@@ -3117,7 +3237,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Secrets management from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Secrets management from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Your house key isn't taped to the front door, right? It's hidden somewhere safe. Secrets management is hiding the special keys that let programs talk to each other, instead of leaving them out where anyone could grab them."
     },
     {
       "id": "rate-limiting",
@@ -3144,7 +3265,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Rate limiting from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Rate limiting from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Imagine a water slide where the lifeguard only lets one kid go down every few seconds, so nobody crashes into each other. Rate limiting is that lifeguard, making sure a computer service doesn't get too many requests at once."
     },
     {
       "id": "retry-with-backoff",
@@ -3171,7 +3293,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Retry with backoff from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Retry with backoff from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "If you knock on a friend's door and nobody answers, you wait a little before knocking again, then wait even longer the next time. Retry with backoff is a computer doing the same polite waiting instead of banging on the door nonstop."
     },
     {
       "id": "queue",
@@ -3198,7 +3321,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Queue from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Queue from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "It's like the line at an ice cream truck. Everyone waits their turn, the truck serves one person at a time, and if a big crowd shows up suddenly, the line just gets longer instead of everything falling apart."
     },
     {
       "id": "ci-cd",
@@ -3225,7 +3349,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write CI/CD from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write CI/CD from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Think of a toy factory with a checking machine at the end of the conveyor belt that tests every toy before it goes in the box. CI/CD automatically tests and ships new pieces of a program so broken toys never reach the shelf."
     },
     {
       "id": "docker",
@@ -3252,7 +3377,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Docker from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Docker from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Docker is like packing a complete lunchbox with the sandwich, napkin, and fork all together, so wherever you open it, your lunch works the same way. It packs a program with everything it needs so it runs the same on any computer."
     },
     {
       "id": "git",
@@ -3279,7 +3405,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Git from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Git from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Git is like a magic notebook that saves every drawing you ever made of your treehouse, so you can always flip back and see an old version, or let a friend draw their own branch of it."
     },
     {
       "id": "github",
@@ -3306,7 +3433,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write GitHub from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write GitHub from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "GitHub is like a big shared treehouse where lots of kids store their notebooks of drawings, so everyone can see each other's work, suggest changes, and build projects together online."
     },
     {
       "id": "github-actions",
@@ -3333,7 +3461,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write GitHub Actions from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write GitHub Actions from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Imagine a robot helper living inside your treehouse that automatically checks your homework and tidies your room every time you finish something. GitHub Actions is that robot, running checks and chores automatically inside GitHub."
     },
     {
       "id": "openai-codex",
@@ -3360,7 +3489,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write OpenAI Codex from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write OpenAI Codex from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Codex is like a robot friend who can read your messy block-building instructions, fix the wobbly parts, and even build along with you, whether you're at your desk, on your tablet, or in the clubhouse."
     },
     {
       "id": "github-copilot",
@@ -3387,7 +3517,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write GitHub Copilot from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write GitHub Copilot from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "GitHub Copilot is like a buddy sitting next to you while you build with blocks, who quietly hands you the next piece you probably need before you even ask for it."
     },
     {
       "id": "cursor",
@@ -3414,7 +3545,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Cursor from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Cursor from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Cursor is a drawing notebook that has a smart helper built right into the pages, so when you're sketching something, you can just ask it questions and it edits the picture with you."
     },
     {
       "id": "vs-code",
@@ -3441,7 +3573,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write VS Code from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write VS Code from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "VS Code is like a giant toolbox desk where you write your stories, and you can clip on extra gadgets, like a flashlight or a magnifying glass, to help you write and fix mistakes."
     },
     {
       "id": "hugging-face",
@@ -3468,7 +3601,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Hugging Face from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Hugging Face from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Hugging Face is like a giant toy-sharing library where people from all over bring their cleverest invented toys, the instructions for building them, and games to test if they actually work, so everyone can borrow and improve them."
     },
     {
       "id": "langchain",
@@ -3494,7 +3628,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write LangChain from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write LangChain from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "LangChain is like a set of train tracks and train cars that snap together, letting you connect a smart talking robot to other little tools, like a calculator car or a memory car, so they all work as one train."
     },
     {
       "id": "llamaindex",
@@ -3521,7 +3656,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write LlamaIndex from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write LlamaIndex from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "LlamaIndex is like a librarian who organizes your own family photo albums and notes so that when your smart robot friend needs an answer, it can quickly find the right page instead of guessing."
     },
     {
       "id": "faiss",
@@ -3548,7 +3684,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write FAISS from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write FAISS from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "FAISS is like a super fast game of matching socks from a giant laundry basket, where instead of checking every single sock one by one, it has tricks to find the closest matching pair almost instantly."
     },
     {
       "id": "chroma",
@@ -3575,7 +3712,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Chroma from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Chroma from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Chroma is like a small toy chest at home where you keep your sock-matching game pieces, easy to set up and play with right there in your room while you're testing your project."
     },
     {
       "id": "pinecone",
@@ -3602,7 +3740,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Pinecone from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Pinecone from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Pinecone is like a giant professional warehouse that stores millions of matching socks for a huge laundromat business, built to handle searching through a mountain of socks every single day without breaking down."
     },
     {
       "id": "mlflow",
@@ -3629,7 +3768,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write MLflow from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write MLflow from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "MLflow is like a science fair logbook where you write down every recipe you tried for your slime, how much glue you used, how stretchy it turned out, and which jar you put the best batch in."
     },
     {
       "id": "weights-and-biases",
@@ -3656,7 +3796,8 @@ window.AI_MASTERY_DATA = {
         "security",
         "evaluation"
       ],
-      "practice": "Write Weights and Biases from memory, then connect it to automation in a concrete AI workflow."
+      "practice": "Write Weights and Biases from memory, then connect it to automation in a concrete AI workflow.",
+      "eli5": "Weights and Biases is like a scoreboard and diary combined, where you track every experiment you run, every question you asked your robot, and how well each answer turned out, so you can compare them later."
     },
     {
       "id": "scaling-laws",
@@ -3682,7 +3823,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Scaling laws from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Scaling laws from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Scaling laws are like noticing that the more flour, sugar, and oven time you use for cookies, the bigger and better the batch turns out, in a pretty predictable way you can guess ahead of time."
     },
     {
       "id": "compute-optimal-training",
@@ -3708,7 +3850,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Compute optimal training from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Compute optimal training from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "It's like baking the perfect cake: you don't just dump in all the flour or bake it forever, you carefully balance the ingredients and the oven time so you get the best cake without wasting anything."
     },
     {
       "id": "distillation",
@@ -3734,7 +3877,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Distillation from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Distillation from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Distillation is like a wise grandparent teaching a kid all their best tricks in a short, simple lesson, so the kid can do almost as well as grandpa but much faster and without needing as much space."
     },
     {
       "id": "mixture-of-experts",
@@ -3760,7 +3904,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Mixture of experts from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Mixture of experts from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Imagine a classroom with experts in dinosaurs, space, and bugs. When a question comes in about volcanoes, only the volcano expert raises their hand to answer, instead of the whole class trying at once."
     },
     {
       "id": "sparse-activation",
@@ -3786,7 +3931,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Sparse activation from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Sparse activation from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Sparse activation is like only turning on the lights in the room you're actually using in a big house, instead of lighting up every single room all the time, which saves a lot of electricity."
     },
     {
       "id": "kv-cache",
@@ -3812,7 +3958,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write KV cache from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write KV cache from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "It's like keeping your place in a storybook with a bookmark instead of starting from page one every time someone asks what happens next. The KV cache remembers earlier parts of the story so it doesn't have to reread them."
     },
     {
       "id": "speculative-decoding",
@@ -3838,7 +3985,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Speculative decoding from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Speculative decoding from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Speculative decoding is like a fast little helper guessing the next few words of a sentence for you, while the smart teacher just glances over to check if the guesses are right, which is quicker than writing every word alone."
     },
     {
       "id": "long-context-modeling",
@@ -3864,7 +4012,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Long-context modeling from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Long-context modeling from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Long-context modeling is like being able to remember everything in a giant storybook instead of just the last page, but you still need to actually pay attention to the right parts to tell the story well."
     },
     {
       "id": "attention-optimization",
@@ -3890,7 +4039,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Attention optimization from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Attention optimization from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Attention optimization is like learning a faster way to scan a big picture book for clues, so you can still find what matters without staring at every single page for too long."
     },
     {
       "id": "multimodal-model",
@@ -3916,7 +4066,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Multimodal model from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Multimodal model from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "A multimodal model is like a friend who can understand a drawing, a song, and a story all at once, and can answer you back using whichever one fits best, pictures, words, or sounds."
     },
     {
       "id": "vision-language-model",
@@ -3942,7 +4093,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Vision-language model from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Vision-language model from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "A vision-language model is like a friend who looks at your picture book and can tell you what's happening in the pictures using words, or point to the picture when you ask a question about the story."
     },
     {
       "id": "diffusion-model",
@@ -3968,7 +4120,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Diffusion model from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Diffusion model from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "A diffusion model is like cleaning fingerprints off a foggy window a little bit at a time until a clear picture appears, and it actually learned how to do this by practicing making windows foggy and then un-fogging them."
     },
     {
       "id": "speech-to-text",
@@ -3994,7 +4147,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Speech-to-text from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Speech-to-text from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Speech-to-text is like a friend who listens to you talking and writes down everything you say in a notebook so you can read it back later, perfect for turning chatty meetings into notes."
     },
     {
       "id": "text-to-speech",
@@ -4020,7 +4174,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Text-to-speech from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Text-to-speech from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Text-to-speech is like a robot reading your bedtime story out loud for you, turning the words on the page into a voice you can actually hear."
     },
     {
       "id": "synthetic-data",
@@ -4046,7 +4201,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Synthetic data from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Synthetic data from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Synthetic data is like practicing with pretend play-dough cookies instead of real ones from the bakery, useful for practicing, but you still have to check that the pretend cookies look and act like the real thing."
     },
     {
       "id": "evaluation-contamination",
@@ -4072,7 +4228,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Evaluation contamination from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Evaluation contamination from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Evaluation contamination is like accidentally peeking at the answer key before a test, so you ace it, but it doesn't really prove you learned the material, just that you saw the answers already."
     },
     {
       "id": "adversarial-example",
@@ -4098,7 +4255,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Adversarial example from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Adversarial example from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "An adversarial example is like a sneaky drawing made to trick your friend into thinking a cat is a dog, by changing tiny details just enough to confuse them, even though it still looks normal to you."
     },
     {
       "id": "interpretability",
@@ -4124,7 +4282,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Interpretability from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Interpretability from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Interpretability is like being a detective trying to figure out why your friend picked chocolate ice cream instead of vanilla, looking for clues in how they think instead of just accepting their answer."
     },
     {
       "id": "mechanistic-interpretability",
@@ -4150,7 +4309,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Mechanistic interpretability from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Mechanistic interpretability from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Mechanistic interpretability is like taking apart a toy robot piece by piece to see exactly which gears and wires make its arm wave, instead of just watching the arm wave from the outside."
     },
     {
       "id": "activation",
@@ -4176,7 +4336,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Activation from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Activation from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Imagine a light switch in a toy robot that glows brighter or dimmer depending on what it sees. That glow is the activation — a little number telling the next part of the robot how excited to be."
     },
     {
       "id": "logits",
@@ -4202,7 +4363,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Logits from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Logits from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Before a fortune teller says her final guess, she scribbles messy notes ranking which answers seem likely. Logits are those messy scribbles — raw scores the computer hasn't tidied up into real percentages yet."
     },
     {
       "id": "softmax",
@@ -4228,7 +4390,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Softmax from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Softmax from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Softmax is like cutting a pizza into slices so all the slices add up to the whole pizza. It takes messy scores and turns them into fair percentages that always add up to 100%."
     },
     {
       "id": "top-k-sampling",
@@ -4254,7 +4417,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Top-k sampling from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Top-k sampling from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Pretend you can only pick your next word from the 5 best words in a word jar, ignoring all the silly ones. Top-k sampling makes the computer pick only from a small jar of its best guesses."
     },
     {
       "id": "top-p-sampling",
@@ -4280,7 +4444,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Top-p sampling from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Top-p sampling from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Instead of a fixed number of words, imagine filling a bucket with the most likely words until it's 90% full, then picking from just those. Top-p sampling keeps adding choices until there's enough good stuff to choose from."
     },
     {
       "id": "beam-search",
@@ -4306,7 +4471,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Beam search from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Beam search from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Like exploring a maze by sending out several scouts down different paths at once and keeping only the ones doing best so far. Beam search tracks a few good paths instead of just one, hoping to find the best ending."
     },
     {
       "id": "reward-model",
@@ -4332,7 +4498,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Reward model from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Reward model from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Think of a judge at a talent show who hands out gold stars to the best performances. A reward model is that judge, learning to score answers so the AI knows which ones to try to make more often."
     },
     {
       "id": "rlaif",
@@ -4358,7 +4525,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write RLAIF from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write RLAIF from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Instead of asking a grown-up to grade your drawings, you ask a robot teacher to grade them instead. RLAIF lets AI judges grade other AI's answers, so it can improve without needing humans to grade every single one."
     },
     {
       "id": "constitutional-ai",
@@ -4384,7 +4552,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Constitutional AI from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Constitutional AI from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Imagine a list of classroom rules taped to the wall, like 'be kind' and 'tell the truth.' The AI checks its own answers against that list and fixes itself if it broke a rule."
     },
     {
       "id": "alignment",
@@ -4410,7 +4579,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Alignment from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Alignment from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "It's like training a puppy to fetch the ball and not chew your shoes — you want its behavior to match what you actually want. Alignment is making sure the AI's actions match what people truly want and value."
     },
     {
       "id": "differential-privacy",
@@ -4436,7 +4606,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Differential privacy from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Differential privacy from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Imagine everyone in class adds a tiny bit of make-believe nonsense to their answer before turning it in, so no one can tell exactly what you personally wrote, but the class average is still right."
     },
     {
       "id": "federated-learning",
@@ -4462,7 +4633,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Federated learning from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Federated learning from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Picture kids in different houses practicing piano on their own pianos, then only mailing in what they learned, never the piano itself. Federated learning lets many devices teach a model without ever sending their private data away."
     },
     {
       "id": "model-card",
@@ -4488,7 +4660,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Model card from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Model card from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "It's like the nutrition label on a cereal box, but for a robot brain — it tells you what the robot is good at, what it struggles with, and what ingredients (data) went into making it."
     },
     {
       "id": "system-card",
@@ -4514,7 +4687,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write System card from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write System card from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Like a safety pamphlet that comes with a new playground ride, explaining how it works, what could go wrong, and what guardrails are in place before kids hop on."
     },
     {
       "id": "data-governance",
@@ -4540,7 +4714,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Data governance from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Data governance from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Think of a library with rules about who can borrow which books, who can read the secret ones, and who checks that books are returned safely. Data governance is those library rules, but for information used by AI."
     },
     {
       "id": "inference-serving",
@@ -4566,7 +4741,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Inference serving from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Inference serving from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "Imagine a busy lemonade stand: orders come in, you mix the lemonade fast, double check it's not too sour, and hand it back quickly. Inference serving is the kitchen that takes AI requests and serves answers reliably."
     },
     {
       "id": "agentic-evaluation",
@@ -4592,7 +4768,8 @@ window.AI_MASTERY_DATA = {
         "deployment",
         "safety"
       ],
-      "practice": "Write Agentic evaluation from memory, then connect it to model internals in a concrete AI workflow."
+      "practice": "Write Agentic evaluation from memory, then connect it to model internals in a concrete AI workflow.",
+      "eli5": "It's like grading a kid not just on the final cookie they baked, but on whether they followed the recipe, fixed mistakes, and didn't make a mess. Agentic evaluation checks the whole journey an AI takes, not just the ending."
     },
     {
       "id": "rtcf-prompt-frame",
@@ -4617,7 +4794,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write RTCF prompt frame from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write RTCF prompt frame from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Like giving a costume, a job, a map, and a recipe card all at once when asking a friend to play pretend. You tell the AI who to be, what to do, what to know, and exactly how to hand back the answer."
     },
     {
       "id": "output-format-control",
@@ -4642,7 +4820,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Output format control from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Output format control from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "It's like telling someone to put their drawing in a specific frame — square, round, or star-shaped — instead of just handing over loose paper. You tell the AI exactly the shape its answer must come in."
     },
     {
       "id": "active-recall-prompt",
@@ -4667,7 +4846,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Active recall prompt from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Active recall prompt from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Like a flashcard buddy who asks you one question, waits for your answer, tells you if you got it right, and then picks the next card to help you remember better."
     },
     {
       "id": "few-shot-examples",
@@ -4692,7 +4872,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Few-shot examples from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Few-shot examples from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Instead of explaining the rules of a card game with words, you just show a few example rounds being played. The AI learns the pattern faster by watching examples than by reading instructions."
     },
     {
       "id": "prompt-decomposition",
@@ -4717,7 +4898,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Prompt decomposition from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Prompt decomposition from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Like building a sandcastle by first gathering sand, then making the base, then the towers, then the flag — one step at a time instead of all at once. Breaking a big task into small steps makes each one easier to get right."
     },
     {
       "id": "verification-prompt",
@@ -4742,7 +4924,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Verification prompt from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Verification prompt from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "It's like asking a detective to double-check every clue in a case file before announcing whodunit. You ask the AI to list its claims and check which ones are actually proven true."
     },
     {
       "id": "agent-tool-prompt",
@@ -4767,7 +4950,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Agent tool prompt from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Agent tool prompt from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Imagine handing a kid a toolbox but also a rulebook saying which tool to use for which job, and when to ask a grown-up first. This tells the AI which tools it may use, and when it needs permission."
     },
     {
       "id": "rubric-prompting",
@@ -4792,7 +4976,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Rubric prompting from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Rubric prompting from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Like a teacher's grading sheet that says exactly how many points each part of a story is worth, instead of just saying 'good job.' A rubric turns fuzzy opinions into clear, countable rules for checking quality."
     },
     {
       "id": "context-engineering",
@@ -4817,7 +5002,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Context engineering from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Context engineering from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Think of packing the perfect backpack before a school trip — snacks, map, rules, and notes — so you're ready for anything. Context engineering is carefully packing what the AI gets to see so it can do its job well."
     },
     {
       "id": "eval-first-prompting",
@@ -4842,7 +5028,8 @@ window.AI_MASTERY_DATA = {
         "evaluation",
         "active recall"
       ],
-      "practice": "Write Eval-first prompting from memory, then connect it to evaluation in a concrete AI workflow."
+      "practice": "Write Eval-first prompting from memory, then connect it to evaluation in a concrete AI workflow.",
+      "eli5": "Like building a target with rings before you start practicing archery, instead of just shooting arrows randomly. You create real test questions first, then improve your prompt by checking it against those tests."
     },
     {
       "id": "chatgpt",
@@ -4867,7 +5054,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write ChatGPT from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write ChatGPT from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "ChatGPT is like a super chatty pen pal who can write stories, help with homework, draw pictures with words, and answer almost any question you type to it."
     },
     {
       "id": "openai-api",
@@ -4892,7 +5080,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write OpenAI API from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write OpenAI API from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "It's like a vending machine for robot brainpower — instead of building your own AI, app makers slide in a request and the API hands back a smart answer to use in their app."
     },
     {
       "id": "claude",
@@ -4917,7 +5106,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Claude from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Claude from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Claude is a friendly AI helper made by Anthropic, like a wise librarian who can chat, write, solve problems, and use little tools to help finish tasks."
     },
     {
       "id": "claude-code",
@@ -4942,7 +5132,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Claude Code from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Claude Code from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Claude Code is like a robot mechanic that lives inside your computer's toolbox, reading your code projects and fixing or building things right there in the terminal."
     },
     {
       "id": "gemini",
@@ -4967,7 +5158,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Gemini from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Gemini from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Gemini is Google's AI assistant, like a Swiss Army knife that can look at pictures, search the web, write code, and help with your Google docs and emails all at once."
     },
     {
       "id": "notebooklm",
@@ -4992,7 +5184,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write NotebookLM from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write NotebookLM from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Imagine handing a super-smart study buddy a stack of your notes, and it reads them all and makes you a tidy summary and quiz sheet. That's what NotebookLM does with your uploaded documents."
     },
     {
       "id": "perplexity",
@@ -5017,7 +5210,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Perplexity from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Perplexity from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Perplexity is like a research librarian who answers your question and always shows you exactly which books (websites) it got the answer from."
     },
     {
       "id": "github-copilot-2",
@@ -5042,7 +5236,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write GitHub Copilot from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write GitHub Copilot from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "GitHub Copilot is like a coding buddy sitting next to you, finishing your sentences in code and suggesting what to type next while you build a program."
     },
     {
       "id": "openai-codex-cli",
@@ -5067,7 +5262,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write OpenAI Codex CLI from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write OpenAI Codex CLI from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "OpenAI Codex CLI is like a robot helper that lives in your computer's command window, peeking through your project folders and typing fixes or commands for you."
     },
     {
       "id": "hugging-face-hub",
@@ -5092,7 +5288,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Hugging Face Hub from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Hugging Face Hub from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Think of a giant toy library where people share their homemade AI models and datasets so other builders can borrow and remix them."
     },
     {
       "id": "google-colab",
@@ -5117,7 +5314,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Google Colab from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Google Colab from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Google Colab is like a free shared notebook in the cloud where you can write code and even borrow a powerful computer's brain (GPU) to run big experiments."
     },
     {
       "id": "kaggle",
@@ -5142,7 +5340,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Kaggle from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Kaggle from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Kaggle is like a playground and contest arena where data scientists race to build the best predictions using shared datasets and notebooks."
     },
     {
       "id": "jupyter",
@@ -5167,7 +5366,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Jupyter from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Jupyter from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Jupyter is like a notebook where you can write a little code, run it right away, and see pictures and charts pop up underneath, all in one place."
     },
     {
       "id": "ollama",
@@ -5192,7 +5392,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Ollama from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Ollama from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Imagine downloading a robot friend onto your own computer instead of calling it on the phone every time. Ollama lets the smart AI live and think right there on your machine, no internet trip needed."
     },
     {
       "id": "lm-studio",
@@ -5217,7 +5418,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write LM Studio from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write LM Studio from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "It's like a toy store app where you can browse shelves of different robot brains, pick one you like, and click a button to bring it home to your computer to play with."
     },
     {
       "id": "vllm",
@@ -5242,7 +5444,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write vLLM from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write vLLM from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Think of a super-fast lemonade stand that can pour hundreds of cups at once without spilling. vLLM is the speedy kitchen behind the scenes that serves AI answers to lots of people quickly."
     },
     {
       "id": "langsmith",
@@ -5267,7 +5470,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write LangSmith from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write LangSmith from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "It's like a diary that watches everything your AI helper does and writes down notes, so you can check later if it made mistakes and fix them."
     },
     {
       "id": "pinecone-2",
@@ -5292,7 +5496,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Pinecone from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Pinecone from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Imagine a giant magical library where books are sorted not by title but by what they mean, so you can grab the closest match instantly. Pinecone is that library, built to never run out of shelf space."
     },
     {
       "id": "weaviate",
@@ -5317,7 +5522,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Weaviate from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Weaviate from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "It's like a toy box that lets you find your favorite truck by saying its name OR by describing what it looks like, mixing both ways of searching at once."
     },
     {
       "id": "zapier",
@@ -5342,7 +5548,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Zapier from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Zapier from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Imagine dominoes: when one toy falls over, it knocks the next one, which knocks the next. Zapier sets up dominoes between your apps so one action automatically triggers another."
     },
     {
       "id": "make",
@@ -5367,7 +5574,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Make from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Make from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "It's like building a marble run with colorful tracks connecting different boxes, so a marble dropped in one box rolls through and makes things happen in all the others."
     },
     {
       "id": "n8n",
@@ -5392,7 +5600,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write n8n from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write n8n from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Think of building your own marble run at home instead of buying one from a store. n8n lets you build and keep your own automation tracks on your own computer."
     },
     {
       "id": "postman",
@@ -5417,7 +5626,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Postman from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Postman from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "It's like a play telephone you use to practice calling a friend's house before the real call, checking that your message comes through clearly and they answer correctly."
     },
     {
       "id": "docker-2",
@@ -5442,7 +5652,8 @@ window.AI_MASTERY_DATA = {
         "coding",
         "AI tools"
       ],
-      "practice": "Write Docker from memory, then connect it to workflow in a concrete AI workflow."
+      "practice": "Write Docker from memory, then connect it to workflow in a concrete AI workflow.",
+      "eli5": "Imagine packing a lunchbox with everything exactly the way you like it, so it tastes the same whether you eat it at school or at grandma's house. Docker packs apps so they work the same everywhere."
     },
     {
       "id": "manual-ai-worms-defensive-concept",
@@ -5466,7 +5677,8 @@ window.AI_MASTERY_DATA = {
         "Least privilege",
         "Monitoring"
       ],
-      "practice": "Write a one-sentence explanation of AI worms defensive concept, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of AI worms defensive concept, then give one concrete use case and one risk.",
+      "eli5": "Some pretend germs can sneak from one toy robot to another and make them misbehave. We learn how these germs spread only so we can build strong locks, checkpoints, and grown-up check-ins that keep our robots safe."
     },
     {
       "id": "manual-fastapi",
@@ -5489,7 +5701,8 @@ window.AI_MASTERY_DATA = {
         "Docker",
         "Structured outputs"
       ],
-      "practice": "Write a one-sentence explanation of FastAPI, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of FastAPI, then give one concrete use case and one risk.",
+      "eli5": "It's like building a drive-through window for your lemonade stand, so other people's cars (computer programs) can pull up, ask for a cup, and get one handed back fast."
     },
     {
       "id": "manual-streamlit",
@@ -5512,7 +5725,8 @@ window.AI_MASTERY_DATA = {
         "Jupyter",
         "RAG"
       ],
-      "practice": "Write a one-sentence explanation of Streamlit, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Streamlit, then give one concrete use case and one risk.",
+      "eli5": "Imagine snapping together blocks to build a little control panel with buttons and screens in minutes, instead of carving it from wood. Streamlit lets you build simple AI screens super quickly."
     },
     {
       "id": "manual-pytorch",
@@ -5535,7 +5749,8 @@ window.AI_MASTERY_DATA = {
         "Fine-tuning",
         "GPU"
       ],
-      "practice": "Write a one-sentence explanation of PyTorch, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of PyTorch, then give one concrete use case and one risk.",
+      "eli5": "Think of a chemistry set made just for teaching a robot how to think. PyTorch gives scientists all the tools and beakers needed to train and experiment with smart machines."
     },
     {
       "id": "manual-scikit-learn",
@@ -5558,7 +5773,8 @@ window.AI_MASTERY_DATA = {
         "Regression",
         "F1 score"
       ],
-      "practice": "Write a one-sentence explanation of Scikit-learn, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Scikit-learn, then give one concrete use case and one risk.",
+      "eli5": "It's like a toolbox full of pre-made cookie cutters for simple shapes. Scikit-learn gives you ready-made tools to teach a computer easy patterns without building everything from scratch."
     },
     {
       "id": "manual-pandas",
@@ -5581,7 +5797,8 @@ window.AI_MASTERY_DATA = {
         "Feature",
         "Evaluation"
       ],
-      "practice": "Write a one-sentence explanation of Pandas, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Pandas, then give one concrete use case and one risk.",
+      "eli5": "Imagine a magic sorting tray that takes a messy pile of trading cards and lines them up neatly into rows and columns so you can study them. Pandas organizes messy data that way."
     },
     {
       "id": "manual-numpy",
@@ -5604,7 +5821,8 @@ window.AI_MASTERY_DATA = {
         "Embedding",
         "PyTorch"
       ],
-      "practice": "Write a one-sentence explanation of NumPy, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of NumPy, then give one concrete use case and one risk.",
+      "eli5": "It's like a calculator with superpowers that can add up thousands of numbers in one blink instead of one at a time. NumPy gives computers that lightning-fast number muscle."
     },
     {
       "id": "manual-anthropic-api",
@@ -5627,7 +5845,8 @@ window.AI_MASTERY_DATA = {
         "Prompting",
         "Tool calling"
       ],
-      "practice": "Write a one-sentence explanation of Anthropic API, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Anthropic API, then give one concrete use case and one risk.",
+      "eli5": "Think of a hotline you can call to ask Claude, a very smart AI friend, to read long stories, use tools, and help you build cool apps that talk back."
     },
     {
       "id": "manual-gemini-api",
@@ -5650,7 +5869,8 @@ window.AI_MASTERY_DATA = {
         "Multimodal",
         "Google AI Studio"
       ],
-      "practice": "Write a one-sentence explanation of Gemini API, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Gemini API, then give one concrete use case and one risk.",
+      "eli5": "It's like a hotline to Google's smart AI friend Gemini, who can look at pictures, read text, and help your app understand all sorts of things at once."
     },
     {
       "id": "manual-openai-agents-sdk",
@@ -5673,7 +5893,8 @@ window.AI_MASTERY_DATA = {
         "State machine",
         "Human-in-the-loop"
       ],
-      "practice": "Write a one-sentence explanation of OpenAI Agents SDK, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of OpenAI Agents SDK, then give one concrete use case and one risk.",
+      "eli5": "Imagine a coach who tells each player on a team when to run, when to pass the ball, and when to follow the rules. This toolkit coaches AI helpers to work together on tasks."
     },
     {
       "id": "manual-golden-dataset",
@@ -5696,7 +5917,8 @@ window.AI_MASTERY_DATA = {
         "Regression test",
         "RAG evals"
       ],
-      "practice": "Write a one-sentence explanation of Golden dataset, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Golden dataset, then give one concrete use case and one risk.",
+      "eli5": "It's like an answer key your teacher trusts completely, used to check if a new student's answers are actually correct before giving them a grade."
     },
     {
       "id": "manual-regression-testing",
@@ -5719,7 +5941,8 @@ window.AI_MASTERY_DATA = {
         "Prompt versioning",
         "Observability"
       ],
-      "practice": "Write a one-sentence explanation of Regression testing, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Regression testing, then give one concrete use case and one risk.",
+      "eli5": "Imagine retesting all your old puzzle pieces every time you add a new one, just to make sure the picture you already finished didn't accidentally break."
     },
     {
       "id": "manual-rag-failure-modes",
@@ -5742,7 +5965,8 @@ window.AI_MASTERY_DATA = {
         "Retrieval precision",
         "Prompt injection"
       ],
-      "practice": "Write a one-sentence explanation of RAG failure modes, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of RAG failure modes, then give one concrete use case and one risk.",
+      "eli5": "Sometimes a librarian helper grabs the wrong book, skips pages, or hands you outdated notes, and the reader doesn't even notice. These are the silly mistakes a fetch-and-answer AI can make."
     },
     {
       "id": "manual-hybrid-search",
@@ -5765,7 +5989,8 @@ window.AI_MASTERY_DATA = {
         "Vector database",
         "Reranking"
       ],
-      "practice": "Write a one-sentence explanation of Hybrid search, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Hybrid search, then give one concrete use case and one risk.",
+      "eli5": "It's like looking for your friend at recess by both shouting their name AND looking around at who looks like them, using two ways of searching together to find them faster."
     },
     {
       "id": "manual-reranking",
@@ -5788,7 +6013,8 @@ window.AI_MASTERY_DATA = {
         "Context window",
         "Grounding"
       ],
-      "practice": "Write a one-sentence explanation of Reranking, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Reranking, then give one concrete use case and one risk.",
+      "eli5": "Imagine grabbing ten toy options off the shelf, then having a very picky friend look them over again and put the very best one on top before you choose."
     },
     {
       "id": "manual-loss-function",
@@ -5811,7 +6037,8 @@ window.AI_MASTERY_DATA = {
         "Gradient descent",
         "Evaluation"
       ],
-      "practice": "Write a one-sentence explanation of Loss function, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Loss function, then give one concrete use case and one risk.",
+      "eli5": "It's like a scorekeeper that tells you how far your thrown ball landed from the target, so you know how to aim better next time."
     },
     {
       "id": "manual-gradient-descent",
@@ -5834,7 +6061,8 @@ window.AI_MASTERY_DATA = {
         "Parameters",
         "Learning rate"
       ],
-      "practice": "Write a one-sentence explanation of Gradient descent, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Gradient descent, then give one concrete use case and one risk.",
+      "eli5": "Imagine playing a game where you're blindfolded on a hill and take small steps downhill toward the lowest point by feeling which way slopes down. That's how the AI finds its way to fewer mistakes."
     },
     {
       "id": "manual-cosine-similarity",
@@ -5857,7 +6085,8 @@ window.AI_MASTERY_DATA = {
         "Vector database",
         "Semantic search"
       ],
-      "practice": "Write a one-sentence explanation of Cosine similarity, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Cosine similarity, then give one concrete use case and one risk.",
+      "eli5": "Think of two arrows drawn on paper pointing in nearly the same direction. Cosine similarity checks how closely two arrows point together to tell if two ideas mean almost the same thing."
     },
     {
       "id": "manual-embedding-dimensionality",
@@ -5880,7 +6109,8 @@ window.AI_MASTERY_DATA = {
         "Vector database",
         "Cosine similarity"
       ],
-      "practice": "Write a one-sentence explanation of Embedding dimensionality, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Embedding dimensionality, then give one concrete use case and one risk.",
+      "eli5": "It's like describing a toy using a list of details: color, size, shape, weight. The more details on your list, the more numbers are needed, and that count is the dimensionality."
     },
     {
       "id": "manual-probability-calibration",
@@ -5903,7 +6133,8 @@ window.AI_MASTERY_DATA = {
         "Recall",
         "Human-in-the-loop"
       ],
-      "practice": "Write a one-sentence explanation of Probability calibration, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Probability calibration, then give one concrete use case and one risk.",
+      "eli5": "Imagine a weather forecaster who says '70% chance of rain' and it actually rains about 7 out of 10 times they say that. Calibration means an AI's confidence guesses are just as trustworthy."
     },
     {
       "id": "manual-confusion-matrix",
@@ -5926,7 +6157,8 @@ window.AI_MASTERY_DATA = {
         "Recall",
         "F1 score"
       ],
-      "practice": "Write a one-sentence explanation of Confusion matrix, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Confusion matrix, then give one concrete use case and one risk.",
+      "eli5": "It's like a report card sorted into four piles: guesses that were right, guesses that wrongly said yes, guesses that wrongly said no, and guesses that were rightly no. It shows exactly where mistakes happened."
     },
     {
       "id": "manual-llm-as-judge",
@@ -5949,7 +6181,8 @@ window.AI_MASTERY_DATA = {
         "Rubric",
         "Human review"
       ],
-      "practice": "Write a one-sentence explanation of LLM-as-judge, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of LLM-as-judge, then give one concrete use case and one risk.",
+      "eli5": "Imagine asking one smart kid to grade everyone's homework using a checklist, while the teacher still spot-checks a few papers to make sure the kid is grading fairly."
     },
     {
       "id": "manual-observability",
@@ -5972,7 +6205,8 @@ window.AI_MASTERY_DATA = {
         "Prompt versioning",
         "RAG failure modes"
       ],
-      "practice": "Write a one-sentence explanation of Observability, then give one concrete use case and one risk."
+      "practice": "Write a one-sentence explanation of Observability, then give one concrete use case and one risk.",
+      "eli5": "It's like a security camera system in a toy factory that watches every machine, every box moved, and every delay, so workers can spot problems quickly without peeking inside anyone's diary."
     }
   ],
   "glossary": [
